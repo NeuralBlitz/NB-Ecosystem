@@ -64,19 +64,19 @@ export default function WikiPage() {
       />
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto">
+      <main className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto bg-background/50 selection:bg-primary/20">
         {/* Header */}
-        <header className="sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-background/80 backdrop-blur-md border-b border-border/40">
-          <div className="flex items-center gap-2 overflow-hidden">
+        <header className="sticky top-0 z-30 flex items-center justify-between px-4 h-16 bg-background/60 backdrop-blur-xl border-b border-border/10">
+          <div className="flex items-center gap-4 overflow-hidden">
             {/* Mobile Menu Trigger */}
             <div className="md:hidden">
               <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="-ml-2">
+                  <Button variant="ghost" size="icon" className="hover:bg-muted/40 rounded-xl">
                     <Menu className="w-5 h-5" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="p-0 w-80 border-r-border">
+                <SheetContent side="left" className="p-0 w-80 border-r-border/20 bg-background shadow-2xl">
                   <Sidebar 
                     files={fileTree} 
                     favorites={favorites}
@@ -92,19 +92,19 @@ export default function WikiPage() {
             </div>
             
             <div className="flex flex-col min-w-0">
-              <nav className="text-xs text-muted-foreground flex items-center gap-1 overflow-hidden whitespace-nowrap mask-linear-fade">
-                 <span>wiki</span>
+              <nav className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground/60 uppercase flex items-center gap-2 overflow-hidden whitespace-nowrap">
+                 <span>WIKI</span>
                  {currentPath?.split('/').map((part, i) => (
                    <span key={i} className="flex items-center">
-                     <span className="mx-1 opacity-50">/</span>
-                     <span className="truncate">{part}</span>
+                     <span className="mx-0.5 opacity-30">/</span>
+                     <span className="truncate opacity-80">{part}</span>
                    </span>
                  ))}
               </nav>
             </div>
           </div>
 
-          <div className="flex items-center gap-1 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             {currentPath && (
               <>
                 <Button 
@@ -112,11 +112,11 @@ export default function WikiPage() {
                   size="icon" 
                   onClick={handleFavorite}
                   disabled={toggleFavorite.isPending}
-                  className={isFavorite ? "text-yellow-500 hover:text-yellow-600" : "text-muted-foreground"}
+                  className={`rounded-xl transition-all ${isFavorite ? "text-yellow-500 bg-yellow-500/10 hover:bg-yellow-500/20" : "text-muted-foreground hover:bg-muted/40"}`}
                 >
                   <Star className={isFavorite ? "fill-current w-5 h-5" : "w-5 h-5"} />
                 </Button>
-                <Button variant="ghost" size="icon" className="hidden sm:inline-flex">
+                <Button variant="ghost" size="icon" className="hidden sm:inline-flex rounded-xl hover:bg-muted/40">
                   <Share2 className="w-4 h-4" />
                 </Button>
               </>
@@ -125,64 +125,69 @@ export default function WikiPage() {
         </header>
 
         {/* Content Body */}
-        <div className="flex-1 p-4 md:p-8 lg:p-12 max-w-5xl mx-auto w-full">
+        <div className="flex-1 p-6 md:p-12 lg:p-20 max-w-4xl mx-auto w-full">
           {!currentPath ? (
-            <div className="flex flex-col items-center justify-center h-[60vh] text-center p-6">
+            <div className="flex flex-col items-center justify-center h-[70vh] text-center p-6">
               <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="max-w-md space-y-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="max-w-md space-y-6"
               >
-                <div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <BookMarked className="w-10 h-10 text-primary" />
+                <div className="w-24 h-24 bg-primary/5 rounded-3xl flex items-center justify-center mx-auto mb-8 ring-1 ring-white/5 shadow-2xl shadow-primary/10">
+                  <BookMarked className="w-12 h-12 text-primary" />
                 </div>
-                <h2 className="text-3xl font-display font-bold text-foreground">Welcome to Wiki</h2>
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  Select a document from the sidebar to start reading. You can search, favorite, and explore the knowledge base.
+                <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight leading-tight">Your Digital Library</h2>
+                <p className="text-muted-foreground/70 text-lg leading-relaxed font-medium">
+                  Explore and search your technical knowledge base with a modern, distraction-free experience.
                 </p>
-                <Button 
-                  size="lg" 
-                  className="mt-6 shadow-lg shadow-primary/25"
-                  onClick={() => {
-                    // Try to find README.md or first file
-                    const findFirstFile = (nodes: any[]): string | null => {
-                      for (const node of nodes) {
-                        if (node.type === 'file') return node.path;
-                        if (node.children) {
-                          const child = findFirstFile(node.children);
-                          if (child) return child;
+                <div className="pt-6">
+                  <Button 
+                    size="lg" 
+                    className="h-14 px-10 rounded-2xl text-lg font-bold shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    onClick={() => {
+                      const findFirstFile = (nodes: any[]): string | null => {
+                        for (const node of nodes) {
+                          if (node.type === 'file') return node.path;
+                          if (node.children) {
+                            const child = findFirstFile(node.children);
+                            if (child) return child;
+                          }
                         }
-                      }
-                      return null;
-                    };
-                    const first = fileTree ? findFirstFile(fileTree) : null;
-                    if (first) handleNavigate(first);
-                  }}
-                >
-                  Get Started
-                </Button>
+                        return null;
+                      };
+                      const first = fileTree ? findFirstFile(fileTree) : null;
+                      if (first) handleNavigate(first);
+                    }}
+                  >
+                    Start Browsing
+                  </Button>
+                </div>
               </motion.div>
             </div>
           ) : isLoadingContent ? (
-            <div className="space-y-8 max-w-3xl animate-in fade-in duration-500">
-              <Skeleton className="h-12 w-3/4 rounded-lg" />
-              <div className="space-y-4">
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-5/6" />
+            <div className="space-y-12 max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out">
+              <Skeleton className="h-16 w-3/4 rounded-2xl bg-muted/20" />
+              <div className="space-y-6">
+                <Skeleton className="h-4 w-full rounded-full bg-muted/10" />
+                <Skeleton className="h-4 w-full rounded-full bg-muted/10" />
+                <Skeleton className="h-4 w-5/6 rounded-full bg-muted/10" />
               </div>
-              <div className="space-y-4 pt-8">
-                <Skeleton className="h-8 w-1/3" />
-                <Skeleton className="h-32 w-full rounded-xl" />
+              <div className="space-y-6 pt-12">
+                <Skeleton className="h-10 w-1/3 rounded-xl bg-muted/20" />
+                <Skeleton className="h-64 w-full rounded-3xl bg-muted/10" />
               </div>
             </div>
           ) : error ? (
-            <div className="flex flex-col items-center justify-center h-[50vh] text-center">
-              <AlertCircle className="w-12 h-12 text-destructive mb-4" />
-              <h3 className="text-xl font-bold">Could not load document</h3>
-              <p className="text-muted-foreground mt-2">
-                The file you are looking for might have been moved or deleted.
+            <div className="flex flex-col items-center justify-center h-[50vh] text-center p-6 bg-destructive/5 rounded-3xl border border-destructive/10">
+              <AlertCircle className="w-12 h-12 text-destructive/50 mb-4" />
+              <h3 className="text-2xl font-bold">Document Not Found</h3>
+              <p className="text-muted-foreground mt-2 max-w-sm">
+                We couldn't locate this file. It may have been moved, renamed, or deleted.
               </p>
+              <Button variant="outline" className="mt-8 rounded-xl" onClick={() => setLocation('/')}>
+                Back to Home
+              </Button>
             </div>
           ) : contentData?.isBinary ? (
             <div className="flex flex-col items-center justify-center min-h-[50vh] p-4 bg-muted/30 rounded-2xl border border-border/40">
@@ -206,15 +211,20 @@ export default function WikiPage() {
               )}
             </div>
           ) : (
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <div className="mb-8 pb-4 border-b border-border/40">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4">
+            <div className="animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out">
+              <div className="mb-12 pb-8 border-b border-border/10">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground tracking-tight leading-tight mb-6">
                   {currentPath.split('/').pop()?.replace('.md', '')}
                 </h1>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                   <span>{Math.ceil((contentData?.content.length || 0) / 1000)} min read</span>
-                   <span>•</span>
-                   <span className="font-mono bg-muted px-2 py-0.5 rounded text-xs">Markdown</span>
+                <div className="flex items-center gap-5 text-sm font-medium text-muted-foreground/60">
+                   <div className="flex items-center gap-2">
+                     <span className="w-1.5 h-1.5 rounded-full bg-primary/40" />
+                     <span>{Math.ceil((contentData?.content.length || 0) / 1000)} min read</span>
+                   </div>
+                   <span className="opacity-20">|</span>
+                   <span className="font-mono bg-muted/30 px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider">
+                     {contentData?.type?.split('/')[1] || 'DOC'}
+                   </span>
                 </div>
               </div>
               
