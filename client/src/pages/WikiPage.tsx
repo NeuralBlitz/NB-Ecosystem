@@ -2,7 +2,7 @@ import { useFileContent, useFileTree, useFavorites, useToggleFavorite } from "@/
 import { Sidebar } from "@/components/Sidebar";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { useLocation, useSearch } from "wouter";
-import { Star, Menu, Share2, Download, AlertCircle } from "lucide-react";
+import { Star, Menu, Share2, Download, AlertCircle, BookMarked } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
