@@ -22,6 +22,8 @@ export const api = {
           content: z.string(),
           type: z.string(),
           path: z.string(),
+          isBinary: z.boolean().optional(),
+          data: z.string().optional(),
         }),
         404: z.object({ message: z.string() }),
         400: z.object({ message: z.string() }),

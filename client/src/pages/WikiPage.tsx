@@ -184,6 +184,27 @@ export default function WikiPage() {
                 The file you are looking for might have been moved or deleted.
               </p>
             </div>
+          ) : contentData?.isBinary ? (
+            <div className="flex flex-col items-center justify-center min-h-[50vh] p-4 bg-muted/30 rounded-2xl border border-border/40">
+              {contentData.type.startsWith('image/') ? (
+                <img 
+                  src={contentData.data} 
+                  alt={currentPath.split('/').pop()} 
+                  className="max-w-full max-h-[70vh] rounded-xl shadow-2xl animate-in zoom-in-95 duration-500"
+                />
+              ) : (
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                    <Download className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold">Binary File</h3>
+                  <p className="text-muted-foreground">This file cannot be displayed directly.</p>
+                  <a href={contentData.data} download={currentPath.split('/').pop()}>
+                    <Button>Download File</Button>
+                  </a>
+                </div>
+              )}
+            </div>
           ) : (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="mb-8 pb-4 border-b border-border/40">

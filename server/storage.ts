@@ -20,7 +20,7 @@ export interface IStorage {
   
   // File System
   getFileTree(): Promise<FileNode[]>;
-  getFileContent(filePath: string): Promise<{ content: string; type: string }>;
+  getFileContent(filePath: string): Promise<{ content: string; type: string; isBinary: boolean; data?: string }>;
 }
 
 export class MemStorage implements IStorage {
@@ -94,7 +94,7 @@ export class MemStorage implements IStorage {
     });
   }
 
-  async getFileContent(filePath: string): Promise<{ content: string; type: string }> {
+  async getFileContent(filePath: string): Promise<{ content: string; type: string; isBinary: boolean; data?: string }> {
     // Prevent directory traversal
     const cleanPath = path.normalize(filePath).replace(/^(\.\.[\/\\])+/, '');
     const absolutePath = path.join(this.dataDir, cleanPath);
@@ -108,10 +108,17 @@ export class MemStorage implements IStorage {
       const stats = await fs.stat(absolutePath);
       if (!stats.isFile()) throw new Error("Not a file");
 
-      const content = await fs.readFile(absolutePath, 'utf-8');
-      const type = mime.lookup(absolutePath) || 'text/plain';
+      const type = mime.lookup(absolutePath) || 'application/octet-stream';
+      const isBinary = !type.startsWith('text/') && !type.includes('json') && !type.includes('javascript') && !type.includes('xml');
 
-      return { content, type };
+      if (isBinary) {
+        const buffer = await fs.readFile(absolutePath);
+        const base64 = buffer.toString('base64');
+        return { content: '', type, isBinary: true, data: `data:${type};base64,${base64}` };
+      } else {
+        const content = await fs.readFile(absolutePath, 'utf-8');
+        return { content, type, isBinary: false };
+      }
     } catch (error) {
       throw new Error("File not found");
     }
