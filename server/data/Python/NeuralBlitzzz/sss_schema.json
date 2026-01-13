@@ -1,0 +1,406 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OSM-TriPH Shared Symbolic Substrate (SSS)",
+  "type": "object",
+  "required": [
+    "version",
+    "id",
+    "createdAt",
+    "ssType",
+    "payload"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "ssType": {
+      "type": "string",
+      "enum": [
+        "SSS",
+        "OSTPH-BUNDLE"
+      ],
+      "default": "SSS"
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "entities",
+        "symbols",
+        "morphAnchors",
+        "constraints",
+        "processEdges",
+        "traceUnits"
+      ],
+      "properties": {
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/entity"
+          }
+        },
+        "symbols": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/symbol"
+          }
+        },
+        "morphAnchors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/morphAnchor"
+          }
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/constraint"
+          }
+        },
+        "processEdges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/processEdge"
+          }
+        },
+        "traceUnits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/traceUnit"
+          }
+        },
+        "motifs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/motif"
+          }
+        },
+        "sessionMeta": {
+          "type": "object",
+          "properties": {
+            "intent": {
+              "type": "string"
+            },
+            "charterLock": {
+              "type": "boolean"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "definitions": {
+    "entity": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "label"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "type": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "temporal": {
+          "type": "object",
+          "properties": {
+            "validFrom": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "validTo": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "provenanceRef": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "symbol": {
+      "type": "object",
+      "required": [
+        "id",
+        "lang",
+        "content"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "lang": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "morphAnchor": {
+      "type": "object",
+      "required": [
+        "id",
+        "anchorType",
+        "params"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "anchorType": {
+          "type": "string",
+          "enum": [
+            "3d",
+            "2d",
+            "temporal",
+            "parametric",
+            "sensor",
+            "actuator"
+          ]
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "attachedSymbol": {
+          "type": "string"
+        },
+        "provenanceRef": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "constraint": {
+      "type": "object",
+      "required": [
+        "id",
+        "expr",
+        "level"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "expr": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "hard",
+            "soft"
+          ],
+          "default": "soft"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "temporalScope": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "end": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "source": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "processEdge": {
+      "type": "object",
+      "required": [
+        "id",
+        "from",
+        "to",
+        "transform"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "transform": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "provenanceRef": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "traceUnit": {
+      "type": "object",
+      "required": [
+        "id",
+        "actor",
+        "action",
+        "inputs",
+        "outputs",
+        "timestamp"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "signature": {
+          "type": "object",
+          "properties": {
+            "sig": {
+              "type": "string"
+            },
+            "scheme": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "motif": {
+      "type": "object",
+      "required": [
+        "id",
+        "summary"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "privacy": {
+          "type": "object",
+          "properties": {
+            "level": {
+              "type": "string",
+              "enum": [
+                "public",
+                "private",
+                "dp"
+              ]
+            },
+            "dpParams": {
+              "type": "object"
+            }
+          }
+        },
+        "linkBack": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

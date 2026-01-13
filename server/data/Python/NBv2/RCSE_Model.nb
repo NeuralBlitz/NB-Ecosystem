@@ -1,0 +1,101 @@
+
+Notebook[{
+  Cell["Resonant Causal Synchronization Equation (RCSE) System", "Title"],
+
+  Cell["Symbolic Variable Definitions", "Section"],
+  Cell[BoxData[
+    RowBox[{
+      "ClearAll", "[", 
+      RowBox[{"ψ", ",", "ϕ", ",", "R", ",", "ℐ", ",", "x", ",", "t", ",", "ℏ", ",", "m", ",", "c", ",", "α", ",", "β", ",", "ωres"}], 
+      "]"}]], "Input"],
+
+  Cell[BoxData[
+    RowBox[{
+      RowBox[{"ψ", "=", "ψ[x, t]"}], ";",
+      RowBox[{"ϕ", "=", "ϕ[x, t]"}], ";",
+      RowBox[{"ℏ", "=", "Symbol["\[HBar]"]"}], ";",
+      RowBox[{"R", "=", "R[t]"}], ";",
+      RowBox[{"ℐ", "=", "ℐ[t]"}], ";"
+    }]], "Input"],
+
+  Cell["Microstate Evolution Equation", "Section"],
+  Cell[BoxData[
+    RowBox[{
+      "MicrostateEq", "=", 
+      RowBox[{"I", " ", "ℏ", " ", 
+        RowBox[{"D", "[", 
+          RowBox[{"ψ", ",", "t"}], "]"}], "==", 
+        RowBox[{"(", 
+          RowBox[{
+            RowBox[{"-", 
+              FractionBox[
+                SuperscriptBox["ℏ", "2"], 
+                RowBox[{"2", " ", "m"}]]}], 
+            RowBox[{"D", "[", 
+              RowBox[{"ψ", ",", 
+                RowBox[{"{", 
+                  RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "+", 
+            RowBox[{"α", " ", "ϕ"}]}], ")"}], " ", "ψ"}]}]], "Input"],
+
+  Cell["Macrostate Field Equation", "Section"],
+  Cell[BoxData[
+    RowBox[{
+      "MacrostateEq", "=", 
+      RowBox[{
+        RowBox[{"D", "[", 
+          RowBox[{"ϕ", ",", 
+            RowBox[{"{", 
+              RowBox[{"t", ",", "2"}], "}"}]}], "]"}], "-", 
+        RowBox[{"c", "^", "2"}], 
+        RowBox[{"D", "[", 
+          RowBox[{"ϕ", ",", 
+            RowBox[{"{", 
+              RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "==", 
+        RowBox[{"β", " ", 
+          RowBox[{"Abs", "[", "ψ", "]"}], "^", "2"}]}]}]], "Input"],
+
+  Cell["Resonant Synchronization Function", "Section"],
+  Cell[BoxData[
+    RowBox[{
+      "ResonanceCondition", "=", 
+      RowBox[{"R", "==", 
+        SuperscriptBox[
+          RowBox[{"Abs", "[", 
+            RowBox[{"Integrate", "[", 
+              RowBox[{
+                RowBox[{"Conjugate", "[", "ψ", "]"}], " ", "ϕ", ",", 
+                RowBox[{"{", 
+                  RowBox[{"x", ",", 
+                    RowBox[{"-", "Infinity"}], ",", "Infinity"}], "}"}]}], "]"}], "]"}], "2"]}]}]], "Input"],
+
+  Cell["Emergent Non-local Phase Integral", "Section"],
+  Cell[BoxData[
+    RowBox[{
+      "PhaseIntegral", "=", 
+      RowBox[{"Integrate", "[", 
+        RowBox[{
+          RowBox[{"ψ", " ", 
+            RowBox[{"Exp", "[", 
+              RowBox[{"I", " ", 
+                RowBox[{"Integrate", "[", 
+                  RowBox[{
+                    RowBox[{"ϕ", "/.", 
+                      RowBox[{"x", "->", "s"}]}], ",", 
+                    RowBox[{"{", 
+                      RowBox[{"s", ",", "x0", ",", "x"}], "}"}]}], "]"}]}], "]"}]}], ",", 
+          RowBox[{"{", 
+            RowBox[{"x", ",", 
+              RowBox[{"-", "Infinity"}], ",", "Infinity"}], "}"}]}], "]"}]}]], "Input"],
+
+  Cell["Bundle into Association", "Section"],
+  Cell[BoxData[
+    RowBox[{
+      "RCSEModel", "=", 
+      RowBox[{"<|", 
+        RowBox[{
+          RowBox[{""MicrostateEq"", "->", "MicrostateEq"}], ",", 
+          RowBox[{""MacrostateEq"", "->", "MacrostateEq"}], ",", 
+          RowBox[{""ResonanceCondition"", "->", "ResonanceCondition"}], ",", 
+          RowBox[{""PhaseIntegral"", "->", "PhaseIntegral"}]}], "|>"}]}]], "Input"]
+}
+]

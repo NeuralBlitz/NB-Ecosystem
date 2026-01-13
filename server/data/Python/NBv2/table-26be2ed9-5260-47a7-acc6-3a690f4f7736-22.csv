@@ -1,0 +1,4 @@
+﻿Subcommand,Example,Function
+lint,gevctl lint probes.gev,Validate GEV rule syntax.
+compile,gevctl compile probes.gev --out rules.bin,Compile rule lattice with PGO.
+inject,kithara chaos --inject &#39;kill_node: cpu-a1&#39;,Run inline fault injection.

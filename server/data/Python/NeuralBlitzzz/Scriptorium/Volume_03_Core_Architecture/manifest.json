@@ -1,0 +1,67 @@
+{
+  "name": "Scriptorium: Volume III - Core Architectural Design",
+  "version": "1.1.0",
+  "UAID": "NBX-DIR-SCRIPT-VOL3",
+  "GoldenDAG": "d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5a6b7",
+  "timestamp": "2025-07-28T15:05:00Z",
+  "description": "This manifest anchors the complete set of documents for Volume III of the Codex Universalis. It details every signal-path, file, equation, and dependency tying the UEF/SIMI v11.1 stack together.",
+  "verification_command": "/invoke custodian --verify path=\\\"/Scriptorium/Volume_03_Core_Architecture/manifest.json\\\"",
+  "contents": [
+    {
+      "name": "00_Layer_Map.md",
+      "type": "file",
+      "description": "High-level operational flow diagrams of the 7-Layer Architecture, including OQT-BOS integration points.",
+      "UAID": "NBX-DOC-VOL3-SEC00",
+      "GoldenDAG": "e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5a6b7c8"
+    },
+    {
+      "name": "01_Universal_Neural_Engine.md",
+      "type": "file",
+      "description": "Detailed specification of the UNE v6.1, including topology, parameters, and quantic processing support.",
+      "UAID": "NBX-DOC-VOL3-SEC01",
+      "GoldenDAG": "f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5a6b7c8d9"
+    },
+    {
+      "name": "02_Synergy_Engine.md",
+      "type": "file",
+      "description": "Specification of the SynE v5.1, detailing its role as master router, macro-planner, and λ-Field orchestrator.",
+      "UAID": "NBX-DOC-VOL3-SEC02",
+      "GoldenDAG": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5a6b7c8d9e0"
+    },
+    {
+      "name": "03_DRS_Engine.md",
+      "type": "file",
+      "description": "Specification of the DRS Engine v4.0, the universal symbolic memory substrate for Ontons and Braids.",
+      "UAID": "NBX-DOC-VOL3-SEC03",
+      "GoldenDAG": "b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5a6b7c8d9e0f1"
+    },
+    {
+      "name": "04_Subsystem_Mesh.md",
+      "type": "file",
+      "description": "Details on cross-functional capabilities: ReflexælCore, Conscientia++, SentiaGuard, Architecton, and Judex.",
+      "UAID": "NBX-DOC-VOL3-SEC04",
+      "GoldenDAG": "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5a6b7c8d9e0f1a2"
+    },
+    {
+      "name": "05_Capability_Kernel_Atlas.md",
+      "type": "file",
+      "description": "Overview of the CK Atlas, with examples of kernels providing domain-specific intelligence.",
+      "UAID": "NBX-DOC-VOL3-SEC05",
+      "GoldenDAG": "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5a6b7c8d9e0f1a2b3"
+    },
+    {
+      "name": "06_Data_and_Control_Flow.md",
+      "type": "file",
+      "description": "High-fidelity execution traces and flowcharts illustrating the system's signal flow and decision points.",
+      "UAID": "NBX-DOC-VOL3-SEC06",
+      "GoldenDAG": "e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5a6b7c8d9e0f1a2b3c4"
+    },
+    {
+      "name": "07_Mathematical_Formalisms.md",
+      "type": "file",
+      "description": "Key equations underpinning core operations, including Binder3 Routing and Reflexive Drift metrics.",
+      "UAID": "NBX-DOC-VOL3-SEC07",
+      "GoldenDAG": "f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5a6b7c8d9e0f1a2b3c4d5"
+    }
+  ]
+}

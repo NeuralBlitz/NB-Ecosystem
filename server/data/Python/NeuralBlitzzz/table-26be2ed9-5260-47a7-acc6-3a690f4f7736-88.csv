@@ -1,0 +1,3 @@
+﻿Tool,Command,Function
+Coq,coqtop -load-glob NBX-PROOF-Φ5-TLA-CausalAcyc.tla,Prove causal acyclicity.
+TLA⁺,tla2sany NBX-PROOF-Φ5-TLA-CausalAcyc.tla,Verify distributed systems.

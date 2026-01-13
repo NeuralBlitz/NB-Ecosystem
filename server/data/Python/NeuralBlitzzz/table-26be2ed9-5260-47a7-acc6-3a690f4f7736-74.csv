@@ -1,0 +1,3 @@
+﻿Subcommand,Example,Function
+autopsy,reflectus autopsy NBX-TRACE-Φ5-CHAOS-042.zip,Root-cause analysis.
+cluster,reflectus cluster --tag &quot;high-risk&quot;,Group similar incidents.

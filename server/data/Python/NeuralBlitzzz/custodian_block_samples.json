@@ -1,0 +1,20 @@
+[
+  {
+    "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "bundle_uri": "s3://veritas/bundle/3f93980e-2b98-482c-86ae-d172040917e0.zip",
+    "phi": 1023,
+    "goldendag_root": "526aab7f0df68dd3c4e4269615821001caeb94c128f855b0a360dff55f60bdd3",
+    "timestamp_ns": 1754565336076776142,
+    "block_id": "abb2ddcd58f01e40c3beed0a2b00f8dd28cc9a26cecb8cc873d8289ad3b8f828",
+    "signature": "149137c1f1b617e50792b23f6d786509522920b48c3dfbd16adc1663c6b6e071"
+  },
+  {
+    "prev_hash": "abb2ddcd58f01e40c3beed0a2b00f8dd28cc9a26cecb8cc873d8289ad3b8f828",
+    "bundle_uri": "s3://veritas/bundle/e875e4ae-3374-4ca3-96d4-58533daa98db.zip",
+    "phi": 1023,
+    "goldendag_root": "1b600d455c3715aaeb760678228a0057473ec19a63e0426d5d78f05e4e3922a3",
+    "timestamp_ns": 1754565336077905025,
+    "block_id": "bcf4850f845767cfec8edb0d27005931f23b9aa0ae157921e29efa1b47b6afda",
+    "signature": "71d9bc75301695252729cdc57d29bf7c22b2891cd1bcebab9741d523b3b3678b"
+  }
+]

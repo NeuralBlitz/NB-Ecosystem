@@ -1,0 +1,119 @@
+{
+  "version": "1.0.0",
+  "id": "ac7e0306-1d24-43ac-8dd7-4cc2aff1ed72",
+  "createdAt": "2025-08-28T14:04:25Z",
+  "createdBy": "demo@osmtrip",
+  "ssType": "SSS",
+  "payload": {
+    "entities": [
+      {
+        "id": "8c97a643-1847-4f6d-9e56-a3615301faa1",
+        "type": "Grasper",
+        "label": "soft_gripper_v1",
+        "attributes": {
+          "material": "silicone",
+          "compliance": 0.32
+        },
+        "temporal": {
+          "validFrom": "2025-08-28T14:04:25Z"
+        },
+        "provenanceRef": "trace-0001"
+      }
+    ],
+    "symbols": [
+      {
+        "id": "5eebfcca-0f6e-41d2-8209-0e43492bfc12",
+        "lang": "symp",
+        "content": "Plan pick_and_place { steps:[approach(), conform(), lift()] }",
+        "links": [
+          "8c97a643-1847-4f6d-9e56-a3615301faa1"
+        ],
+        "metadata": {
+          "complexity": 0.12
+        }
+      }
+    ],
+    "morphAnchors": [
+      {
+        "id": "m-anchor-0001",
+        "anchorType": "3d",
+        "params": {
+          "geometry": "parametric_tip_v1",
+          "baseRadius": 0.012
+        },
+        "attachedSymbol": "5eebfcca-0f6e-41d2-8209-0e43492bfc12",
+        "provenanceRef": "trace-0002"
+      }
+    ],
+    "constraints": [
+      {
+        "id": "cons-0001",
+        "expr": "Grasper.compliance >= 0.8 * Surface.softness",
+        "level": "hard",
+        "weight": 1.0,
+        "source": "ontology:grip.ontosp",
+        "confidence": 0.97
+      }
+    ],
+    "processEdges": [
+      {
+        "id": "pe-0001",
+        "from": "5eebfcca-0f6e-41d2-8209-0e43492bfc12",
+        "to": "m-anchor-0001",
+        "transform": {
+          "type": "attach",
+          "params": {}
+        },
+        "timestamp": "2025-08-28T14:04:25Z",
+        "provenanceRef": "trace-0002"
+      }
+    ],
+    "traceUnits": [
+      {
+        "id": "trace-0002",
+        "actor": "MorphoEngine::v0.2",
+        "action": "morphogenesis_run",
+        "inputs": [
+          "5eebfcca-0f6e-41d2-8209-0e43492bfc12"
+        ],
+        "outputs": [
+          "m-anchor-0001"
+        ],
+        "details": {
+          "simSteps": 1200,
+          "rdParameters": {
+            "activator": 1.0,
+            "inhibitor": 0.55
+          }
+        },
+        "confidence": 0.92,
+        "timestamp": "2025-08-28T14:04:25Z",
+        "signature": {
+          "sig": "MEW...",
+          "scheme": "ed25519"
+        }
+      }
+    ],
+    "motifs": [
+      {
+        "id": "motif-0001",
+        "summary": "gripTip:concave|radius=0.012|compliance=0.32",
+        "privacy": {
+          "level": "dp",
+          "dpParams": {
+            "epsilon": 0.5
+          }
+        },
+        "linkBack": "trace-0002"
+      }
+    ],
+    "sessionMeta": {
+      "intent": "soft_grip_prototype",
+      "charterLock": true,
+      "tags": [
+        "soft-robotics",
+        "prototype"
+      ]
+    }
+  }
+}

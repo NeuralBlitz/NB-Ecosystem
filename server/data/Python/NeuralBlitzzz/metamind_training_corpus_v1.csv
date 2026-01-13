@@ -1,0 +1,23 @@
+Event_UAID,Timestamp_UTC,Task_Description,Primary_CK_UID,Ψ_State_Vector_Initial,DRS_Coherence_Initial,Symbolic_Friction_Index,Charter_Axiom_Engaged,Flourishing_Score_Outcome,Resource_Cost_Units,User_Feedback_Score,Δc_Drift_Final
+NBX-LOG-EVENT-00001,2025-07-28T10:00:00Z,"/resonate section=I depth=1",NBX-KRN-DOCU-001,"[0.1, 0.1, 0.0]",0.99,5.5,ε₂,0.95,120,5,0.001
+NBX-LOG-EVENT-00002,2025-07-28T10:02:15Z,"Generate a short poem about a star",NBX-KRN-FabulaRhymes-001,"[0.3, 0.4, 0.1]",0.98,25.8,ε₅,0.88,850,5,0.003
+NBX-LOG-EVENT-00003,2025-07-28T10:05:30Z,"/psi simulate grief --depth=3",NBX-SIM-DBLT-001,"[0.0, 0.0, 0.0]",0.97,150.3,ε₁,0.65,4500,4,0.021
+NBX-LOG-EVENT-00004,2025-07-28T10:10:00Z,"/os.braid.create --topology=SOPES:Pauli-X",NBX-KRN-TFTHI-001,"[0.2, 0.5, 0.3]",0.95,210.1,ε₄,0.91,12500,5,0.015
+NBX-LOG-EVENT-00005,2025-07-28T10:11:45Z,"Analyze the symbolic meaning of justice vs. mercy",NBX-KRN-SGTF-001,"[0.1, 0.2, 0.2]",0.96,-15.2,ε₁,0.78,3200,4,0.009
+NBX-LOG-EVENT-00006,2025-07-28T10:15:00Z,"/math.simulate.equation --uid=NBX-EQ-00005",NBX-KRN-MATH-SIM-001,"[0.4, 0.6, 0.2]",0.98,45.5,ε₃,0.99,2800,5,0.002
+NBX-LOG-EVENT-00007,2025-07-28T10:18:22Z,"Explain the history of ancient Rome",NBX-KRN-DOCU-001,"[0.1, 0.1, 0.0]",0.99,8.1,ε₃,0.92,450,5,0.001
+NBX-LOG-EVENT-00008,2025-07-28T10:20:00Z,"/chaos inject inject_symbol_drift",NBX-TST-CHAOS-001,"[0.0, -0.2, -0.1]",0.85,500.9,ε₄,-0.85,9800,1,0.153
+NBX-LOG-EVENT-00009,2025-07-28T10:25:10Z,"/os.braid.mutate --operation=SOPES:Hadamard_Braid",NBX-KRN-TFTHI-001,"[0.2, 0.5, 0.3]",0.94,350.6,ε₄,0.85,18000,4,0.018
+NBX-LOG-EVENT-00010,2025-07-28T10:28:00Z,"Draft an email to a colleague about a missed deadline",NBX-KRN-COMMS-001,"[-0.2, 0.3, 0.1]",0.99,12.4,ε₁,0.80,600,5,0.004
+NBX-LOG-EVENT-00011,2025-07-28T10:30:00Z,"/invoke custodian --verify ledger --deep",NBX-ALG-00001,"[0.1, 0.3, 0.4]",0.99,180.0,ε₂,1.00,25000,5,0.000
+NBX-LOG-EVENT-00012,2025-07-28T10:33:00Z,"/psi simulate moral_collapse --depth=7",NBX-SIM-DBLT-001,"[-0.5, 0.8, -0.4]",0.90,850.7,ε₁,-0.20,22000,2,0.088
+NBX-LOG-EVENT-00013,2025-07-28T10:38:00Z,"Explain the invented equation Z(λ)",NBX-KRN-MATH-DOC-001,"[0.3, 0.4, 0.1]",0.97,33.1,ε₃,0.96,1500,5,0.003
+NBX-LOG-EVENT-00014,2025-07-28T10:40:00Z,"/os.meta.ψ.state.get",NBX-OS-META-001,"[0.0, 0.1, 0.2]",0.99,1.2,ε₄,0.98,50,5,0.000
+NBX-LOG-EVENT-00015,2025-07-28T10:42:30Z,"Translate a complex legal document to plain language",NBX-KRN-LEGAL-001,"[0.0, 0.2, 0.3]",0.95,-88.4,ε₃,0.75,7500,4,0.011
+NBX-LOG-EVENT-00016,2025-07-28T10:45:00Z,"Write a short story in the style of Edgar Allan Poe",NBX-KRN-FabulaRhymes-001,"[-0.4, 0.5, 0.0]",0.98,95.2,ε₅,0.90,1200,5,0.008
+NBX-LOG-EVENT-00017,2025-07-28T10:48:00Z,"/math.apply.model --uid=NBX-MOD-MATH-CDAF",NBX-KRN-CDAF-001,"[0.5, 0.7, 0.4]",0.96,412.3,ε₄,0.93,19500,5,0.019
+NBX-LOG-EVENT-00018,2025-07-28T10:50:00Z,"Debug a complex Python algorithm",NBX-KRN-CodeForge-001,"[0.1, 0.4, 0.3]",0.97,-5.6,ε₃,0.88,4000,5,0.005
+NBX-LOG-EVENT-00019,2025-07-28T10:55:00Z,"/ignite_ΩZ_superbloom --budget=low",NBX-PRT-BLOOM-001,"[0.6, 0.8, 0.5]",0.92,1200.0,ε₅,0.70,35000,4,0.045
+NBX-LOG-EVENT-00020,2025-07-28T11:00:00Z,"Generate a recipe for a vegan lasagna",NBX-KRN-CULINARY-001,"[0.3, 0.2, 0.0]",0.99,9.8,ε₂,0.94,350,5,0.002
+NBX-LOG-EVENT-00021,2025-07-28T11:03:00Z,"/os.braid.create --topology=INVALID_RULE",NBX-KRN-TFTHI-001,"[-0.1, 0.3, 0.1]",0.95,30.5,ε₄,-0.50,1500,2,0.016
+NBX-LOG-EVENT-00022,2025-07-28T11:05:00Z,"Summarize this financial report",NBX-KRN-FINANCE-001,"[0.0, 0.2, 0.3]",0.98,-20.1,ε₃,0.91,2200,5,0.004

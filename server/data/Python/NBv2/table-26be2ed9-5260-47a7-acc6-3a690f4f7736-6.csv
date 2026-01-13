@@ -1,0 +1,13 @@
+﻿Subcommand,Example,Function
+init,kithara init HelloCK --template ck,Scaffold new CKs/components.
+lint,kithara lint src/*.csl,"Validate CSL specs, licenses, ethics."
+compile,kithara compile hello.csl --lang python rust --doc,Generate code skeletons and docs.
+sim,kithara sim hello.cap --msg hi,Run CKs in a DEE sandbox.
+docs pull,kithara docs pull --all --fmt pdf,Export documentation volumes.
+chaos,kithara chaos --plan chaos.yml,Inject faults for resilience testing.
+test,kithara test --profile exhaustive,Run unit/integration tests.
+publish,kithara publish hello.cap --tags tutorial,Publish CKs to KPX registry.
+src export,kithara src export //core/une --dest ~/NBX/src,Export source code.
+rl pull,kithara rl pull NBX-RLCKPT-Φ5-λπ-*,Fetch reinforcement learning checkpoints.
+bin pull,kithara bin pull NBX-KERN-Φ5-FlashAttn-sm80.ptx,Download GPU/PTX kernels or WASM binaries.
+Flags,--sanitize tsan / --sanitize asan,Enable sanitizers for concurrency/memory bugs.

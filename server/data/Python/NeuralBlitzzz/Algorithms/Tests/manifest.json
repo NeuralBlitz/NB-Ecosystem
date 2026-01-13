@@ -1,0 +1,151 @@
+{
+  "name": "Algorithms Test Suite Root",
+  "version": "1.0.0",
+  "UAID": "NBX-DIR-ALGORITHMS-TESTS",
+  "GoldenDAG": "b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3",
+  "timestamp": "2025-07-28T14:40:00Z",
+  "description": "This manifest anchors the complete collection of Pytest unit and integration tests for the canonical Python algorithms. Each test file verifies the correctness and stability of its corresponding algorithm in the /Source/ directory.",
+  "verification_command": "/invoke architecton --run_tests --scope=/Algorithms/",
+  "contents": [
+    {
+      "name": "test_goldendag_audit.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00001",
+      "GoldenDAG": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8",
+      "verifies": "NBX-ALG-00001"
+    },
+    {
+      "name": "test_reflexive_drift_tuner.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00002",
+      "GoldenDAG": "b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9",
+      "verifies": "NBX-ALG-00002"
+    },
+    {
+      "name": "test_qdf_query_rewrite.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00003",
+      "GoldenDAG": "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0",
+      "verifies": "NBX-ALG-00003"
+    },
+    {
+      "name": "test_stress_suite_orchestrator.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00004",
+      "GoldenDAG": "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1",
+      "verifies": "NBX-ALG-00004"
+    },
+    {
+      "name": "test_latent_dir_nav.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00005",
+      "GoldenDAG": "e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+      "verifies": "NBX-ALG-00005"
+    },
+    {
+      "name": "test_ck_autoscaffold.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00006",
+      "GoldenDAG": "f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3",
+      "verifies": "NBX-ALG-00006"
+    },
+    {
+      "name": "test_policy_diff_analyzer.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00007",
+      "GoldenDAG": "a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4",
+      "verifies": "NBX-ALG-00007"
+    },
+    {
+      "name": "test_persona_fusion_mixer.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00008",
+      "GoldenDAG": "b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5",
+      "verifies": "NBX-ALG-00008"
+    },
+    {
+      "name": "test_graphml_collapser.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00009",
+      "GoldenDAG": "c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6",
+      "verifies": "NBX-ALG-00009"
+    },
+    {
+      "name": "test_bloom_event_detector.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00010",
+      "GoldenDAG": "d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7",
+      "verifies": "NBX-ALG-00010"
+    },
+    {
+      "name": "test_golden_trace_visualizer.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00011",
+      "GoldenDAG": "e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8",
+      "verifies": "NBX-ALG-00011"
+    },
+    {
+      "name": "test_semantic_persona_diff.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00012",
+      "GoldenDAG": "f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9",
+      "verifies": "NBX-ALG-00012"
+    },
+    {
+      "name": "test_shard_pca_compressor.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00013",
+      "GoldenDAG": "a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0",
+      "verifies": "NBX-ALG-00013"
+    },
+    {
+      "name": "test_bloom_timeline_renderer.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00014",
+      "GoldenDAG": "b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1",
+      "verifies": "NBX-ALG-00014"
+    },
+    {
+      "name": "test_guardian_live_policy_checker.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00015",
+      "GoldenDAG": "c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2",
+      "verifies": "NBX-ALG-00015"
+    },
+    {
+      "name": "test_ck_unit_test_autorunner.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00016",
+      "GoldenDAG": "d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3",
+      "verifies": "NBX-ALG-00016"
+    },
+    {
+      "name": "test_stress_vector_generator.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00017",
+      "GoldenDAG": "e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4",
+      "verifies": "NBX-ALG-00017"
+    },
+    {
+      "name": "test_latent_shell_repl.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00018",
+      "GoldenDAG": "f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5",
+      "verifies": "NBX-ALG-00018"
+    },
+    {
+      "name": "test_zk_snark_integrator.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00019",
+      "GoldenDAG": "a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6",
+      "verifies": "NBX-ALG-00019"
+    },
+    {
+      "name": "test_distributed_shard_compactor.py",
+      "type": "file",
+      "UAID": "NBX-TST-ALG-00020",
+      "GoldenDAG": "b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7",
+      "verifies": "NBX-ALG-00020"
+    }
+  ]
+}

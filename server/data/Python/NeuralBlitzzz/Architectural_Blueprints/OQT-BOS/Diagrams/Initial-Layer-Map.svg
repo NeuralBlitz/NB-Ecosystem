@@ -1,0 +1,69 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <!--
+    OQT-BOS Initial Layer Map
+    Version 1.2 (Corrected for Maximum Compatibility)
+    This diagram illustrates the conceptual layers of the OQT-BOS.
+  -->
+
+  <defs>
+    <!-- A more robust arrowhead definition for marker-end -->
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5"
+        markerWidth="6" markerHeight="6"
+        orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Diagram Title -->
+  <text x="400" y="40" font-size="24" text-anchor="middle" font-weight="bold">OQT-BOS Conceptual Layer Map</text>
+
+  <!-- Layer Rectangles -->
+  <g id="layers" filter="url(#shadow)">
+    <rect x="100" y="80" width="600" height="80" rx="10" ry="10" fill="#cde4ff" stroke="#5a9bd5" stroke-width="2"/>
+    <text x="400" y="115" font-size="18" text-anchor="middle" font-weight="bold">Layer 5: Interface & Application Layer</text>
+    <text x="400" y="140" font-size="14" text-anchor="middle">HALIC, NBCL Parser, User-Facing Tools</text>
+
+    <rect x="100" y="180" width="600" height="80" rx="10" ry="10" fill="#fff2cc" stroke="#ffbf00" stroke-width="2"/>
+    <text x="400" y="215" font-size="18" text-anchor="middle" font-weight="bold">Layer 4: Orchestration & Governance Layer</text>
+    <text x="400" y="240" font-size="14" text-anchor="middle">Synergy Engine, ReflexælCore, CharterLayer</text>
+
+    <rect x="100" y="280" width="600" height="80" rx="10" ry="10" fill="#e2f0d9" stroke="#70ad47" stroke-width="2"/>
+    <text x="400" y="315" font-size="18" text-anchor="middle" font-weight="bold">Layer 3: Simulation & Calculation Layer</text>
+    <text x="400" y="340" font-size="14" text-anchor="middle">PSI Engine, NRC Engine, SOPES Kernel</text>
+    
+    <rect x="100" y="380" width="600" height="80" rx="10" ry="10" fill="#f8cbad" stroke="#ed7d31" stroke-width="2"/>
+    <text x="400" y="415" font-size="18" text-anchor="middle" font-weight="bold">Layer 2: Symbolic Substrate Layer (The Weave)</text>
+    <text x="400" y="440" font-size="14" text-anchor="middle">Braids, Ontons, Topological Structures</text>
+
+    <rect x="100" y="480" width="600" height="80" rx="10" ry="10" fill="#d9d9d9" stroke="#808080" stroke-width="2"/>
+    <text x="400" y="515" font-size="18" text-anchor="middle" font-weight="bold">Layer 1: Foundational Axiomatic Layer</text>
+    <text x="400" y="540" font-size="14" text-anchor="middle">Core Principles, Ethical Physics Constants</text>
+  </g>
+  
+  <!-- Connecting Arrows using robust <path> elements -->
+  <g id="connectors" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)">
+    <!-- Top-down control flow arrow -->
+    <path d="M 250 160 V 472" /> 
+    
+    <!-- Bottom-up data/meaning flow arrow -->
+    <path d="M 550 480 V 168" />
+  </g>
+  
+  <!-- Arrow Labels (horizontal, no rotation) -->
+  <g font-size="14" fill="#333" text-anchor="start">
+    <text x="260" y="310">Control & Constraints</text>
+    <text x="260" y="330">(Top-Down)</text>
+  </g>
+  <g font-size="14" fill="#333" text-anchor="end">
+    <text x="540" y="310">Data & Emergent Meaning</text>
+    <text x="540" y="330">(Bottom-Up)</text>
+  </g>
+</svg>

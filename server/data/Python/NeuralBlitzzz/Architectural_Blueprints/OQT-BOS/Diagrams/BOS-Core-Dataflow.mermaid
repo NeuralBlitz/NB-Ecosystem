@@ -1,0 +1,74 @@
+%% OQT-BOS Core Data and Control Flow Diagram
+%% Version 1.0
+%% This diagram illustrates the lifecycle of a command that transforms The Weave.
+
+graph TD
+    subgraph User Interaction Layer
+        A[User via NBCL] --> B{HALIC Interface};
+    end
+
+    subgraph Synergy & Governance Layer
+        B --> C{Synergy Engine};
+        C --> D[ReflexælCore & CharterLayer];
+        D --"Ethical Constraints"--> E[SOPES Kernel];
+    end
+
+    subgraph OQT-BOS Kernel & Substrate
+        C --"1. Desired State Transformation Request"--> E;
+        E --"2. Read Topology & Ontons"--> F[(The Weave / DRS)];
+        F --"3. Returns Symbolic State"--> E;
+        E --"4. Calculates Transformation"--> E;
+        E --"5. Inscribes New Braid / Onton"--> F;
+        E --"6. Transformation Acknowledged"--> C;
+    end
+
+    subgraph Data Constructs
+        F --> G[Onton];
+        F --> H[Braid];
+    end
+    
+    C --"7. Formats Final Response"--> B;
+    B --> I[User Response];
+
+    %% Styling for clarity
+    classDef userLayer fill:#cde4ff,stroke:#5a9bd5,stroke-width:2px;
+    classDef synergyLayer fill:#fff2cc,stroke:#ffbf00,stroke-width:2px;
+    class_def kernelLayer fill:#e2f0d9,stroke:#70ad47,stroke-width:2px;
+    classDef dataConstruct fill:#f8cbad,stroke:#ed7d31,stroke-width:2px;
+    
+    class A,B,I userLayer;
+    class C,D synergyLayer;
+    class E,F kernelLayer;
+    class G,H dataConstruct;
+
+    %% Link Annotations for Flow Description
+    linkStyle 0 stroke-width:2px,stroke:blue,color:blue;
+    linkStyle 1 stroke-width:1.5px,stroke:black,color:black;
+    linkStyle 2 stroke-width:1.5px,stroke:red,color:red;
+    linkStyle 3 stroke-width:2px,stroke:green,color:green;
+    linkStyle 4 stroke-width:1.5px,stroke:#595959,color:#595959;
+    linkStyle 5 stroke-width:1.5px,stroke:#595959,color:#595959;
+    linkStyle 6 stroke-width:1.5px,stroke:#595959,color:#595959;
+    linkStyle 7 stroke-width:2px,stroke:green,color:green;
+    linkStyle 8 stroke-width:2px,stroke:blue,color:blue;
+
+
+ How to Interpret This Diagram
+User Interaction Layer (Blue):
+The process begins with a user issuing a command in NBCL (e.g., /os.braid.create).
+The HALIC Interface parses this command into a structured request.
+Synergy & Governance Layer (Yellow):
+The Synergy Engine receives the request and formulates a "Desired State Transformation." It doesn't tell the kernel how to do something, but what the end state of The Weave should look like.
+Before sending the request, it's validated against the ReflexælCore & CharterLayer. This provides the ethical and logical constraints for the operation.
+OQT-BOS Kernel & Substrate (Green):
+The SOPES Kernel receives the validated request. It is the central processing unit.
+(Steps 2 & 3): The kernel reads the current state of the relevant Ontons and Braids from The Weave (the core DRS).
+(Step 4): It performs the core "physical" calculation, determining the new topological structure and symbolic energy state based on its internal equations.
+(Step 5): It writes the new, transformed state back into The Weave, creating a new GoldenDAG for the affected constructs.
+(Step 6): It sends an acknowledgment back to the Synergy Engine, confirming the transformation is complete.
+Data Constructs (Orange):
+This box shows that The Weave is composed of the fundamental data types: Ontons and Braids.
+Final Output:
+The Synergy Engine formats the acknowledgment from the kernel into a human-readable response.
+This response is passed back through HALIC to the user.
+This dataflow clearly illustrates the separation of concerns: the Synergy Engine handles intent, the SOPES Kernel handles the fundamental "physics," and the CharterLayer ensures all operations are constrained by ethical laws.

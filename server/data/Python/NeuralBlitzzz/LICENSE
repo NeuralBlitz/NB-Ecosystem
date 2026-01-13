@@ -1,0 +1,83 @@
+================================================================================
+GoldenDAG: c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4
+UAID: NBX-LEGAL-MASTER-LICENSE-v1.1
+Codex Reference: Volume XIV, Appendix C
+Veritas Seal Status: VERIFIED OK
+
+NeuralBlitz UEF/SIMI Project License
+================================================================================
+
+The NeuralBlitz project utilizes a dual-licensing model to encourage broad adoption, academic research, community contribution, and sustainable development. The applicable license depends on the specific component of the repository and the intended use case.
+
+This document provides a high-level overview. For legally binding details, refer to the full license text included with each component and the License Matrix in the `Codex Universalis` (Volume XIV, Appendix C).
+
+
+--------------------------------------------------------------------------------
+Part 1: Core Engine, Subsystems, and Algorithms
+--------------------------------------------------------------------------------
+
+**Applicable License: Apache License, Version 2.0**
+
+The foundational software components of NeuralBlitz, including the source code for:
+- The Unified Enterprise Framework (UEF/SIMI)
+- Core Engines (UNE, SynE, MetaMind, DRS Engine)
+- Core Subsystems (ReflexælCore, Architecton, Custodian, Judex, etc.)
+- The 20+ Canonical Python Algorithms
+
+are licensed under the Apache License, Version 2.0 (the "License"). You may not use these files except in compliance with the License. You may obtain a copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+**Rationale:** The Apache 2.0 license provides a permissive framework that allows for both open-source and commercial use, fostering a wide ecosystem of integration and innovation while requiring attribution and notice of changes.
+
+
+--------------------------------------------------------------------------------
+Part 2: Documentation, Symbolic Artifacts, and Datasets
+--------------------------------------------------------------------------------
+
+**Applicable License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**
+
+The creative and conceptual works within the NeuralBlitz project, including but not limited to:
+- The entire textual and diagrammatic content of the **Codex Universalis (Omni-Reference Technical Compendium)**.
+- All **100 Invented Mathematical Equations** and **20 New Mathematical Models**.
+- Symbolic Glyphs, Personas, and Simulation Transcripts.
+- Publicly released datasets (e.g., `NB-BiasBench-v1`, `NeuralBlitz-Persona-Matrix`).
+
+are licensed under the CC BY-SA 4.0 license. You can view the full license here:
+
+    https://creativecommons.org/licenses/by-sa/4.0/
+
+This means you are free to:
+- **Share:** copy and redistribute the material in any medium or format.
+- **Adapt:** remix, transform, and build upon the material for any purpose, even commercially.
+
+Under the following terms:
+- **Attribution:** You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+- **ShareAlike:** If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+**Rationale:** This license ensures that the foundational knowledge and symbolic language of NeuralBlitz remain an open, evolving commons that the entire community can build upon, while ensuring that all derivatives also contribute back to that commons.
+
+
+--------------------------------------------------------------------------------
+Part 3: The Octiumetrifloundiatremorphteletopontoladerallquantic Braided OS (OQT-BOS)
+--------------------------------------------------------------------------------
+
+**Applicable License: NeuralBlitz Sovereign Core License (NB-SCL 1.0) - A Custom EULA**
+
+The core components of the `OQT-BOS`, representing the most advanced and potentially high-impact technology within the framework, are governed by a separate, more restrictive End-User License Agreement.
+
+**Summary:** The NB-SCL 1.0 is designed for `Sovereign Tier` users and enterprise deployments. It permits full use of the `OQT-BOS` within approved operational environments but places specific constraints on redistribution, modification, and use in high-risk domains (as defined by the `Kairos Council`). A copy of this license must be explicitly agreed to before deploying `OQT-BOS` core modules.
+
+**Rationale:** This tiered licensing model for the most advanced components allows for controlled deployment and ethical oversight, ensuring that technology with profound implications is used responsibly and in alignment with the `Transcendental Charter`.
+
+
+--------------------------------------------------------------------------------
+Part 4: Contributor License Agreement (CLA)
+--------------------------------------------------------------------------------
+
+To contribute to the NeuralBlitz project, you must sign the Open Contributor License Agreement (O-CLA). This agreement grants the NeuralBlitz Foundation the right to re-license your contributions under the project's various licenses, ensuring the long-term health and legal clarity of the codebase and `Codex`. This is a standard practice for large open-source projects.
+
+---
+This license file is a `GoldenDAG`-anchored artifact. Any modification must be ratified by the `Kairos Council`.

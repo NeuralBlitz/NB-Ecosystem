@@ -1,0 +1,8 @@
+﻿Term,Definition,Usage Notes,Relevant UAID
+ROS,Reflexive Ontological Scaffold,Disposable sandbox for paradox-rich reasoning,NBX-DOC-ΦGLO §1.2
+ESS Circuit,Executable DFSM compiled from ReflexælLang,Used for running semantics like “trust” or “justice”,NBX-DOC-ΦGLO §2.4
+Flourishing Score (F),SentiaGuard KPI with  F \geq \theta_0 ,Weights:  w_p\Delta P + w_r\Delta R + w_w\Delta W + w_e\Delta E ,NBX-DOC-Φ1 §1.1
+λ-Field,Sub-ms micro-signal bus,Feeds causal hints from UNE to SynE,NBX-DOC-Φ3 §LambdaBus
+GoldenDAG,Cryptographically sealed DAG chain, h_t = \text{BLAKE3}(DAG_t \Vert h_{t-1}) ,NBX-DOC-Φ3 §DRS-STOR
+Causal Mass,Resistance to symbolic entropy, M_c(C) = \sum w_i \cdot \text{strength}_i \cdot \text{coherence}(C) ,NBX-FAI-Φ6-ED-001
+Entropy Dampener,Two-tier stability system,Combines LambdaRegulatorCK + HomeostasisGovernorCK,NBX-CK-Φ5-EntropyDampener.cap

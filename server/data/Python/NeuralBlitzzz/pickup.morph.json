@@ -1,0 +1,16 @@
+{
+  "Tip": {
+    "baseRadius": 0.012,
+    "fillet": 0.0012,
+    "material": "silicone"
+  },
+  "RD": {
+    "activator": 1.0,
+    "inhibitor": 0.5,
+    "iterations": 120
+  },
+  "Anchors": {
+    "SYM": "pick_and_place",
+    "endpoint": "robot_end"
+  }
+}

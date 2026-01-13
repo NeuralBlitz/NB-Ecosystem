@@ -1,0 +1,6 @@
+﻿Subcommand,Example,Function
+bundle make,veritas bundle make ./nbx --out docs.zip,Package artifacts for audit/regulators.
+bundle verify,veritas bundle verify docs.zip,Cryptographic seal verification.
+config diff,veritas config diff old.yaml new.yaml,Compare configuration changes.
+trace filter,veritas trace filter causal&gt;0.6,"Query trace bundles (e.g., "causal&gt;0.6 &amp;&amp; ck~/Quantum/).
+trace viz,veritas trace viz NBX-TRACE-Φ5-CHAOS-042.zip --focus NBX-CK-Φ3-D4F18C2B,Visualize trace graphs.

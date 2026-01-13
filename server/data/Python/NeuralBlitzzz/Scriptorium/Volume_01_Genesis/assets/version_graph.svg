@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  GoldenDAG: f7a8b9c0d1e2f3a4b5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4
+  UAID: NBX-DGM-SELF-GRAPH-SVG
+  Title: NeuralBlitz Version Lineage & Fork Graph
+  Source: Rendered from /Self-Reflection_Logs/version_graph_complete.graphml
+-->
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555" />
+    </marker>
+  </defs>
+  
+  <style>
+    .edge {
+      stroke: #555;
+      stroke-width: 1.5;
+      marker-end: url(#arrowhead);
+    }
+    .node-rect {
+      stroke-width: 2;
+      rx: 5;
+    }
+    .node-text {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      text-anchor: middle;
+      fill: #212121;
+    }
+    .milestone { fill: #E8F5E9; stroke: #66BB6A; }
+    .grey { fill: #BDBDBD; stroke: #616161; }
+    .os { fill: #BBDEFB; stroke: #42A5F5; }
+    .math { fill: #FFF9C4; stroke: #FDD835; }
+    .final { fill: #FFCDD2; stroke: #E53935; }
+  </style>
+
+  <!-- Edges -->
+  <g class="edges">
+    <path class="edge" d="M 80 50 L 230 50" />
+    <path class="edge" d="M 390 50 L 540 50" />
+    <path class="edge" d="M 295 100 L 295 150" />
+    <path class="edge" d="M 620 100 L 620 160" />
+    <path class="edge" d="M 620 220 L 620 280" />
+    <path class="edge" d="M 370 205 L 530 205" />
+  </g>
+
+  <!-- Nodes -->
+  <g class="nodes">
+    <!-- Prompt Zero (Z0) -->
+    <g transform="translate(10, 25)">
+      <rect class="node-rect milestone" width="140" height="50"/>
+      <text class="node-text" x="70" y="25">Prompt Zero (Z0)</text>
+    </g>
+    
+    <!-- v7.0 Transcendent Nexus -->
+    <g transform="translate(220, 25)">
+      <rect class="node-rect milestone" width="180" height="50"/>
+      <text class="node-text" x="90" y="20">v7.0 Transcendent Nexus</text>
+    </g>
+
+    <!-- v14.0 Sovereign Catalyst -->
+    <g transform="translate(530, 25)">
+      <rect class="node-rect milestone" width="180" height="50"/>
+      <text class="node-text" x="90" y="20">v14.0 Sovereign Catalyst</text>
+    </g>
+
+  
+
+    <!-- Project OQT-BOS -->
+    <g transform="translate(530, 150)">
+      <rect class="node-rect os" width="180" height="60"/>
+      <text class="node-text" x="90" y="25">Project OQT-BOS</text>
+      <text class="node-text" x="90" y="45">(Braided OS Genesis)</text>
+    </g>
+    
+    <!-- Mathematical Invention Mandate -->
+    <g transform="translate(180, 195)">
+      <rect class="node-rect math" width="180" height="60"/>
+      <text class="node-text" x="90" y="25">Mathematical Invention</text>
+      <text class="node-text" x="90" y="45">(120 New Constructs)</text>
+    </g>
+    
+    <!-- Absolute Codex -->
+    <g transform="translate(530, 270)">
+      <rect class="node-rect final" width="180" height="60"/>
+      <text class="node-text" x="90" y="25">Absolute Codex</text>
+      <text class="node-text" x="90" y="45">(Sovereign Synthesis)</text>
+    </g>
+  </g>
+
+</svg>

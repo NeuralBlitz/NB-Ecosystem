@@ -1,0 +1,51 @@
+# This is the main Continuous Integration (CI) workflow for NeuralBlitz.
+# It runs automatically on every push and pull request to the main branch.
+
+name: NeuralBlitz CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # A sequence of tasks that will be executed as part of the job
+    steps:
+      # Step 1: Check out the repository's code
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the Python environment
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
+
+      # Step 3: Install project dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          # Install the NeuralBlitz project itself in editable mode so tests can find the modules
+          pip install -e .
+
+      # Step 4: Lint the code for style issues
+      # This enforces the PEP 8 style guide we defined in CONTRIBUTING.md
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      # Step 5: Run tests with pytest
+      # This ensures that new changes do not break existing functionality.
+      - name: Run tests
+        run: |
+          pytest

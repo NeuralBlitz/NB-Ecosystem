@@ -1,0 +1,3 @@
+﻿Subcommand,Example,Function
+drift report,driftctl report --window 30d,Detect policy drifts.
+drift fix,driftctl fix --policy PII_Shield_L3,Apply drift corrections.

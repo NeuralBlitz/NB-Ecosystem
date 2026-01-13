@@ -1,0 +1,3 @@
+Title: NeuralBlitz: A Unified Cognitive Architecture...
+Authors: A. I. Nomad, T. Reason, E. Sophia
+Categories: cs.AI, cs.NE, cs.LG

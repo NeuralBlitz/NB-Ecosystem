@@ -1,0 +1,144 @@
+{
+  "version": "1.0.0",
+  "id": "b9da6ce6-28d0-4f44-975d-0cf750dedc27",
+  "createdAt": "2025-08-28T14:04:28Z",
+  "createdBy": "demo@osmtrip",
+  "ssType": "OSTPH-BUNDLE",
+  "payload": {
+    "sss": {
+      "version": "1.0.0",
+      "id": "103558fe-938a-4fad-a38e-719739f76a84",
+      "createdAt": "2025-08-28T14:04:27Z",
+      "createdBy": "demo@osmtrip",
+      "ssType": "SSS",
+      "payload": {
+        "entities": [
+          {
+            "id": "d76e0f68-b391-4f6c-b443-b94ab64fdee4",
+            "type": "Grasper",
+            "label": "soft_gripper_v1",
+            "attributes": {
+              "material": "silicone",
+              "compliance": 0.32
+            },
+            "temporal": {
+              "validFrom": "2025-08-28T14:04:27Z"
+            },
+            "provenanceRef": "trace-0001"
+          }
+        ],
+        "symbols": [
+          {
+            "id": "6936e147-d6e3-42d1-bb68-0194685c0332",
+            "lang": "symp",
+            "content": "Plan pick_and_place { steps:[approach(), conform(), lift()] }",
+            "links": [
+              "d76e0f68-b391-4f6c-b443-b94ab64fdee4"
+            ],
+            "metadata": {
+              "complexity": 0.12
+            }
+          }
+        ],
+        "morphAnchors": [
+          {
+            "id": "m-anchor-0001",
+            "anchorType": "3d",
+            "params": {
+              "geometry": "parametric_tip_v1",
+              "baseRadius": 0.012
+            },
+            "attachedSymbol": "6936e147-d6e3-42d1-bb68-0194685c0332",
+            "provenanceRef": "trace-0002"
+          }
+        ],
+        "constraints": [
+          {
+            "id": "cons-0001",
+            "expr": "Grasper.compliance >= 0.8 * Surface.softness",
+            "level": "hard",
+            "weight": 1.0,
+            "source": "ontology:grip.ontosp",
+            "confidence": 0.97
+          }
+        ],
+        "processEdges": [
+          {
+            "id": "pe-0001",
+            "from": "6936e147-d6e3-42d1-bb68-0194685c0332",
+            "to": "m-anchor-0001",
+            "transform": {
+              "type": "attach",
+              "params": {}
+            },
+            "timestamp": "2025-08-28T14:04:27Z",
+            "provenanceRef": "trace-0002"
+          }
+        ],
+        "traceUnits": [
+          {
+            "id": "trace-0002",
+            "actor": "MorphoEngine::v0.2",
+            "action": "morphogenesis_run",
+            "inputs": [
+              "6936e147-d6e3-42d1-bb68-0194685c0332"
+            ],
+            "outputs": [
+              "m-anchor-0001"
+            ],
+            "details": {
+              "simSteps": 1200,
+              "rdParameters": {
+                "activator": 1.0,
+                "inhibitor": 0.55
+              }
+            },
+            "confidence": 0.92,
+            "timestamp": "2025-08-28T14:04:27Z",
+            "signature": {
+              "sig": "MEW...",
+              "scheme": "ed25519"
+            }
+          }
+        ],
+        "motifs": [
+          {
+            "id": "motif-0001",
+            "summary": "gripTip:concave|radius=0.012|compliance=0.32",
+            "privacy": {
+              "level": "dp",
+              "dpParams": {
+                "epsilon": 0.5
+              }
+            },
+            "linkBack": "trace-0002"
+          }
+        ],
+        "sessionMeta": {
+          "intent": "soft_grip_prototype",
+          "charterLock": true,
+          "tags": [
+            "soft-robotics",
+            "prototype"
+          ]
+        }
+      }
+    },
+    "morphResult": {
+      "timestamp": "2025-08-28T14:04:28Z",
+      "params": {
+        "activator": 1.0,
+        "inhibitor": 0.55,
+        "iterations": 128
+      },
+      "signature_nbhs512_stub": "e3bccd847d445acacbb4fe25486a76ad26c49c811764122d440623107bbd216eac8b1bb8b0146f352befd5b1edcc89392fe0c7883e56160b99074720a4c61905",
+      "metrics": {
+        "mean": 2.0816681711721685e-17,
+        "std": 0.9999999974500413,
+        "min": -1.633836042077702,
+        "max": 2.194530795081235
+      }
+    }
+  },
+  "nbhs512_seal_stub": "6a1cf8eee1d55242a343ef3dc58e9d1b0ed9cd335fb25817ae3ab8cd8321aecca9e0b1975377c15e5e6300d04880f0cf123ca9c0ec79bec597add6fb97038780"
+}

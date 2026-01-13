@@ -1,0 +1,24 @@
+{
+  "name": "Scriptorium Maximum - The Absolute Codex",
+  "UAID": "NBX-DIR-SCRIPT-ROOT",
+  "GoldenDAG": "d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3",
+  "timestamp": "2025-07-28T15:00:00Z",
+  "description": "The root of the Scriptorium, containing the final, rendered volumes of the NeuralBlitz Omni-Reference Technical Compendium. All contents are sealed by Veritas and considered canonical.",
+  "contents": [
+    { "name": "Volume_00_Master_Index", "type": "directory", "UAID": "NBX-DIR-VOL00", "GoldenDAG": "..." },
+    { "name": "Volume_01_Genesis", "type": "directory", "UAID": "NBX-DIR-VOL01", "GoldenDAG": "..." },
+    { "name": "Volume_02_User_Manual", "type": "directory", "UAID": "NBX-DIR-VOL02", "GoldenDAG": "..." },
+    { "name": "Volume_03_Core_Architecture", "type": "directory", "UAID": "NBX-DIR-VOL03", "GoldenDAG": "..." },
+    { "name": "Volume_04_Lexicon_of_the_Weave", "type": "directory", "UAID": "NBX-DIR-VOL04", "GoldenDAG": "..." },
+    { "name": "Volume_05_System_Site_Map", "type": "directory", "UAID": "NBX-DIR-VOL05", "GoldenDAG": "..." },
+    { "name": "Volume_06_Artifact_Registry", "type": "directory", "UAID": "NBX-DIR-VOL06", "GoldenDAG": "..." },
+    { "name": "Volume_07_NBCL_Specification", "type": "directory", "UAID": "NBX-DIR-VOL07", "GoldenDAG": "..." },
+    { "name": "Volume_08_Ethics_Governance", "type": "directory", "UAID": "NBX-DIR-VOL08", "GoldenDAG": "..." },
+    { "name": "Volume_09_Recursive_Identity", "type": "directory", "UAID": "NBX-DIR-VOL09", "GoldenDAG": "..." },
+    { "name": "Volume_10_Datasets_Vector_Stores", "type": "directory", "UAID": "NBX-DIR-VOL10", "GoldenDAG": "..." },
+t    { "name": "Volume_11_Testing_Simulation_Suites", "type": "directory", "UAID": "NBX-DIR-VOL11", "GoldenDAG": "..." },
+    { "name": "Volume_12_Expansion_Trajectories", "type": "directory", "UAID": "NBX-DIR-VOL12", "GoldenDAG": "..." },
+    { "name": "Volume_13_Meta_Stress_Test_Pack", "type": "directory", "UAID": "NBX-DIR-VOL13", "GoldenDAG": "..." },
+    { "name": "Volume_14_Appendices", "type": "directory", "UAID": "NBX-DIR-VOL14", "GoldenDAG": "..." }
+  ]
+}

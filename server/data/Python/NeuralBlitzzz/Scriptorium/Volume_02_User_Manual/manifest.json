@@ -1,0 +1,67 @@
+{
+  "name": "Scriptorium: Volume II - User Manual & Runtime Workflows",
+  "version": "1.1.0",
+  "UAID": "NBX-DIR-SCRIPT-VOL2",
+  "GoldenDAG": "a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7",
+  "timestamp": "2025-07-28T15:00:00Z",
+  "description": "This manifest anchors the complete set of documents for Volume II of the Codex Universalis. It covers all operational procedures, interaction patterns, and troubleshooting steps for NeuralBlitz UEF/SIMI v11.1.",
+  "verification_command": "/invoke custodian --verify path=\\\"/Scriptorium/Volume_II_User_Manual/manifest.json\\\"",
+  "contents": [
+    {
+      "name": "00_Quick_Start_Synopsis.md",
+      "type": "file",
+      "description": "The standard operational sequence to bring a NeuralBlitz instance online.",
+      "UAID": "NBX-DOC-VOL2-SEC00",
+      "GoldenDAG": "b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8"
+    },
+    {
+      "name": "01_Runtime_Environment_Requirements.md",
+      "type": "file",
+      "description": "Specifications for the host environment, including model substrate and tool entitlements.",
+      "UAID": "NBX-DOC-VOL2-SEC01",
+      "GoldenDAG": "c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9"
+    },
+    {
+      "name": "02_NBCL_Grammar_Reference.md",
+      "type": "file",
+      "description": "A quick-reference guide to primary NBCL verbs, their synopses, and essential flags.",
+      "UAID": "NBX-DOC-VOL2-SEC02",
+      "GoldenDAG": "d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0"
+    },
+    {
+      "name": "03_Command_Workflows.md",
+      "type": "file",
+      "description": "Practical application examples demonstrating common NBCL usage patterns.",
+      "UAID": "NBX-DOC-VOL2-SEC03",
+      "GoldenDAG": "e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1"
+    },
+    {
+      "name": "04_Error_Codes_and_Recovery.md",
+      "type": "file",
+      "description": "A critical reference for identifying and resolving NeuralBlitz operational faults.",
+      "UAID": "NBX-DOC-VOL2-SEC04",
+      "GoldenDAG": "f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2"
+    },
+    {
+      "name": "05_Advanced_Operational_Modes.md",
+      "type": "file",
+      "description": "Details on powerful runtime configurations for specialized workflows like batch-export and headless API.",
+      "UAID": "NBX-DOC-VOL2-SEC05",
+      "GoldenDAG": "a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3"
+    },
+    {
+      "name": "06_Security_and_Governance_Hooks.md",
+      "type": "file",
+      "description": "Details on the transparent layers that ensure continuous CharterLayer compliance.",
+      "UAID": "NBX-DOC-VOL2-SEC06",
+      "GoldenDAG": "b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4"
+    },
+    {
+      "name": "07_Export_and_Version_Control.md",
+      "type": "file",
+      "description": "Standardized procedures for archiving and managing NeuralBlitz outputs.",
+      "UAID": "NBX-DOC-VOL2-SEC07",
+      "GoldenDAG": "c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5"
+    }
+  ]
+}

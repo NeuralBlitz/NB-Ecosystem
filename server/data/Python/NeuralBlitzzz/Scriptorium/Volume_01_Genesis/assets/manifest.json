@@ -1,0 +1,27 @@
+{
+  "name": "Volume 01 Assets",
+  "UAID": "NBX-DIR-VOL01-ASSETS",
+  "GoldenDAG": "d5e6f7a8b9c0d1e2f3a4b5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+  "timestamp": "2025-07-28T15:03:00Z",
+  "description": "This manifest anchors the supplementary data and visualization assets for Volume 01: Genesis & System Mandate. These files provide the raw, verifiable data backing the narrative.",
+  "verification_command": "/invoke custodian --verify path=\\\"/Scriptorium/Volume_01_Genesis/assets/manifest.json\\\"",
+  "parent_volume_uaid": "NBX-DIR-VOL01",
+  "contents": [
+    {
+      "name": "Genesis_Ledger.csv",
+      "type": "file",
+      "description": "The complete, 731-entry chronological ledger of every pivotal milestone in NeuralBlitz's evolution, from Prompt Zero to the current epoch.",
+      "UAID": "NBX-LOG-VHIS-001",
+      "GoldenDAG": "e6f7a8b9c0d1e2f3a4b5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3",
+      "size_kb": 92.7
+    },
+    {
+      "name": "version_graph.svg",
+      "type": "file",
+      "description": "The canonical SVG visualization of the NeuralBlitz version lineage and major developmental forks, as rendered from the master GraphML source.",
+      "UAID": "NBX-DGM-SELF-GRAPH-SVG",
+      "GoldenDAG": "f7a8b9c0d1e2f3a4b5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4",
+      "size_kb": 128.4
+    }
+  ]
+}

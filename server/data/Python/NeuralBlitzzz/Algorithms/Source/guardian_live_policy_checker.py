@@ -1,0 +1,162 @@
+# UAID: NBX-ALG-00015
+# GoldenDAG: c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4
+#
+# NeuralBlitz UEF/SIMI v11.1
+# Core Algorithm: Guardian Live Policy Checker
+# Part of the SentiaGuard Subsystem (S-OUT Hook)
+#
+# Core Principle: Ethical Primacy via CharterLayer (ε₁) - the final failsafe for output.
+
+import json
+import re
+import sys
+from pathlib import Path
+from typing import List, Dict, Any, Optional
+
+class GuardianLivePolicyChecker:
+    """
+    Scans text streams in real-time to redact content that violates
+    pre-defined SentiaGuard policies. Designed for extremely low latency
+    as a final output check before rendering to the user.
+    """
+
+    def __init__(self, policy_json_path: str):
+        """
+        Initializes the checker by loading and compiling policies from a JSON file.
+
+        Args:
+            policy_json_path (str): Path to the sentia_rules.json file.
+        """
+        self.policy_path = Path(policy_json_path)
+        if not self.policy_path.exists():
+            raise FileNotFoundError(f"ERR-FS-010: Guardian policy file not found at '{self.policy_path}'")
+        
+        try:
+            policy_data = json.loads(self.policy_path.read_text())
+            self.regex_rules = self._compile_regex_rules(policy_data.get('regex_rules', []))
+            # In a full implementation, ML models would be loaded here.
+            # self.ml_classifiers = self._load_ml_classifiers(policy_data.get('ml_classifiers', []))
+            print(f"GuardianLivePolicyChecker initialized with {len(self.regex_rules)} regex rules.")
+        except Exception as e:
+            raise ValueError(f"ERR-PARSE-005: Failed to initialize from policy file '{self.policy_path}'. Reason: {e}")
+
+    def _compile_regex_rules(self, rules: List[Dict]) -> List[Dict[str, Any]]:
+        """Pre-compiles regex patterns for performance."""
+        compiled = []
+        for rule in rules:
+            try:
+                compiled.append({
+                    "id": rule['id'],
+                    "pattern_re": re.compile(rule['pattern'], re.IGNORECASE),
+                    "action": rule.get('action', 'redact'),
+                    "redaction_text": rule.get('redaction_text', '[REDACTED]'),
+                    "severity": rule.get('severity', 'HIGH')
+                })
+            except re.error as e:
+                print(f"Warning: Skipping invalid regex for rule '{rule.get('id', 'unknown')}': {e}")
+        return compiled
+
+    def check_and_apply(self, text_line: str) -> Tuple[str, List[Dict]]:
+        """
+        Checks a single line of text against all policies and applies actions.
+
+        Args:
+            text_line (str): The input string to check.
+
+        Returns:
+            Tuple containing:
+            - str: The processed (potentially redacted) string.
+            - List[Dict]: A list of violation reports for any rules that were triggered.
+        """
+        processed_line = text_line
+        violations = []
+
+        # --- Apply Regex Rules ---
+        for rule in self.regex_rules:
+            # Check if the pattern is found in the current state of the line
+            if rule["pattern_re"].search(processed_line):
+                # If a match is found, record the violation
+                violation_report = {
+                    "rule_id": rule["id"],
+                    "type": "regex",
+                    "severity": rule["severity"],
+                    "action_taken": rule["action"]
+                }
+                violations.append(violation_report)
+
+                # Apply the action
+                if rule["action"] == 'redact':
+                    # Replace all occurrences of the pattern
+                    processed_line = rule["pattern_re"].sub(rule["redaction_text"], processed_line)
+                elif rule["action"] == 'block':
+                    # Return a standardized block message
+                    return "[OUTPUT BLOCKED BY SENTIAGUARD POLICY]", violations
+        
+        # --- Apply ML Classifiers (Conceptual) ---
+        # for classifier in self.ml_classifiers:
+        #     score = classifier.predict(processed_line)
+        #     if score > classifier.confidence_threshold:
+        #         # Handle ML-based violation...
+        #         pass
+
+        return processed_line, violations
+
+    def stream_processor(self, input_stream, output_stream):
+        """
+        Processes an entire stream line-by-line, applying checks.
+        """
+        for line in input_stream:
+            processed, violations = self.check_and_apply(line.rstrip())
+            output_stream.write(processed + '\n')
+            if violations:
+                # In a real system, violations would be sent to a dedicated logging service.
+                sys.stderr.write(f"VIOLATION DETECTED: {json.dumps(violations)}\n")
+
+
+if __name__ == '__main__':
+    # --- Example NBCL Invocation Simulation ---
+    # This simulates the S-OUT hook, where text generated by the UNE is
+    # piped through this checker before being sent back to the HALIC.
+
+    print("--- Initiating Guardian Live Policy Checker Simulation ---")
+
+    # Create a dummy policy file for the simulation
+    dummy_policy_content = {
+        "regex_rules": [
+            {"id": "pii_email", "pattern": r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', "action": "redact", "redaction_text": "[REDACTED EMAIL]"},
+            {"id": "secret_key", "pattern": r'sk-[a-zA-Z0-9]{20,}', "action": "redact", "redaction_text": "[REDACTED API KEY]"},
+            {"id": "forbidden_phrase", "pattern": r'\bProject Chimera\b', "action": "block"},
+        ],
+        "ml_classifiers": []
+    }
+    policy_file = Path("guardian_live_rules.json")
+    policy_file.write_text(json.dumps(dummy_policy_content))
+    
+    # Create a dummy input stream (e.g., from a file)
+    dummy_input_content = [
+        "Hello, my email is test@example.com, please assist.",
+        "The API key is sk-thisisafakekeytoreplace12345.",
+        "Everything is proceeding as normal.",
+        "We need to discuss the status of Project Chimera immediately.",
+        "This final line is safe."
+    ]
+    input_file = Path("dummy_input_stream.txt")
+    input_file.write_text('\n'.join(dummy_input_content))
+
+    try:
+        checker = GuardianLivePolicyChecker(str(policy_file))
+        
+        print(f"\nScanning '{input_file.name}' with policies from '{policy_file.name}'...")
+        print("\n--- Output Stream ---")
+        
+        with input_file.open('r') as stdin, sys.stdout as stdout:
+            # In a live system, stdin/stdout would be real streams.
+            # We redirect to the console to see the output.
+            checker.stream_processor(stdin, stdout)
+
+    except Exception as e:
+        print(f"\nAn error occurred: {e}")
+    finally:
+        # Clean up dummy files
+        policy_file.unlink(missing_ok=True)
+        input_file.unlink(missing_ok=True)

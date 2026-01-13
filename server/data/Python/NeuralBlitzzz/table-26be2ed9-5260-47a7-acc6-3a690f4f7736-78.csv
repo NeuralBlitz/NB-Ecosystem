@@ -1,0 +1,3 @@
+﻿Subcommand,Example,Function
+override,judex override --quorum,Approve risky CKs (requires dual signatures).
+ballot,judex ballot --motion &quot;Charter v4.1&quot;,Cast votes on policy changes.

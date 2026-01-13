@@ -1,0 +1,3 @@
+﻿Subcommand,Example,Function
+compile,policy-compiler rules.yaml --target 3 --out sg_rules_v3.bin,Build DFSM rule binaries.
+diff,policy-compiler diff v2.yaml v3.yaml --risk,Compare policy versions.

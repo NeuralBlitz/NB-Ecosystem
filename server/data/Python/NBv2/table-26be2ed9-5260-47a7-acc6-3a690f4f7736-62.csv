@@ -1,0 +1,3 @@
+﻿Subcommand,Example,Function
+render-all,aise render-all --fmt pdf,Generate full manual.
+grep,aise-cli grep &quot;causal salience&quot; NBX-DOC-Φ1-6A0198A8,Search glossary entries.

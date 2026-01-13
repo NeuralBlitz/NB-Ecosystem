@@ -1,0 +1,3 @@
+﻿Subcommand,Example,Function
+vet,metamind vet mutations/*.mut,Validate mutation DSL.
+train,metamind train --policy lambda_rl,Train reinforcement learning policies.
