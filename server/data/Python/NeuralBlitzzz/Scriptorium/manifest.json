@@ -16,7 +16,7 @@
     { "name": "Volume_08_Ethics_Governance", "type": "directory", "UAID": "NBX-DIR-VOL08", "GoldenDAG": "..." },
     { "name": "Volume_09_Recursive_Identity", "type": "directory", "UAID": "NBX-DIR-VOL09", "GoldenDAG": "..." },
     { "name": "Volume_10_Datasets_Vector_Stores", "type": "directory", "UAID": "NBX-DIR-VOL10", "GoldenDAG": "..." },
-t    { "name": "Volume_11_Testing_Simulation_Suites", "type": "directory", "UAID": "NBX-DIR-VOL11", "GoldenDAG": "..." },
+    { "name": "Volume_11_Testing_Simulation_Suites", "type": "directory", "UAID": "NBX-DIR-VOL11", "GoldenDAG": "..." },
     { "name": "Volume_12_Expansion_Trajectories", "type": "directory", "UAID": "NBX-DIR-VOL12", "GoldenDAG": "..." },
     { "name": "Volume_13_Meta_Stress_Test_Pack", "type": "directory", "UAID": "NBX-DIR-VOL13", "GoldenDAG": "..." },
     { "name": "Volume_14_Appendices", "type": "directory", "UAID": "NBX-DIR-VOL14", "GoldenDAG": "..." }
