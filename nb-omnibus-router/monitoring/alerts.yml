@@ -1,0 +1,92 @@
+# Alert Configuration
+# Generated: 2026-02-08
+
+groups:
+  - name: neuralblitz_alerts
+    rules:
+      - alert: ServiceDown
+        expr: up{job="neuralblitz-router"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "NeuralBlitz Router is down"
+          description: "The NeuralBlitz API router has been unavailable for more than 1 minute."
+
+      - alert: HighErrorRate
+        expr: |
+          rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate has exceeded 5% in the last 5 minutes."
+
+      - alert: RateLimitHits
+        expr: rate(rate_limit_hits_total[5m]) > 10
+        for: 5m
+        labels:
+          severity: info
+        annotations:
+          summary: "Rate limiting active"
+          description: "More than 10 rate limit hits in the last 5 minutes."
+
+      - alert: APILatencyHigh
+        expr: |
+          histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High API latency (p95)"
+          description: "95th percentile latency exceeds 5 seconds."
+
+      - alert: APILatencyCritical
+        expr: |
+          histogram_quantile(0.99, rate(http_request_duration_seconds_bucket[5m])) > 10
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Critical API latency (p99)"
+          description: "99th percentile latency exceeds 10 seconds."
+
+      - alert: PartnerQuotaLow
+        expr: partner_quota_remaining < 100
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Partner quota running low"
+          description: "Partner has less than 100 quota remaining."
+
+      - alert: MemoryUsageHigh
+        expr: |
+          (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage exceeds 90%."
+
+      - alert: CPUUsageHigh
+        expr: |
+          (1 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])))) > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage exceeds 90%."
+
+      - alert: DiskSpaceLow
+        expr: |
+          (1 - (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"})) > 0.9
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Disk space running low"
+          description: "Disk usage exceeds 90%."

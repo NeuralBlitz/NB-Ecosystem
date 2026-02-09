@@ -1,0 +1,46 @@
+# NeuralBlitz Partner Configuration
+# ⚠️ KEEP SECURE - Contains API keys!
+
+partners:
+  partner_alpha:
+    api_key: "nb_pat_xxxxxxxxxxxxxxxxxxxx"
+    name: "Alpha Research Lab"
+    tier: "enterprise"
+    active: true
+    rate_limit: 10000
+    quota_remaining: 1000000
+    permissions:
+      - core
+      - agents
+      - quantum
+      - ui
+    created_at: "2026-02-08"
+    expires_at: "2027-02-08"
+    contact: "admin@alpharesearch.com"
+
+  partner_beta:
+    api_key: "nb_pbt_xxxxxxxxxxxxxxxxxxxx"
+    name: "Beta Innovations"
+    tier: "pro"
+    active: true
+    rate_limit: 1000
+    quota_remaining: 100000
+    permissions:
+      - core
+      - agents
+    created_at: "2026-02-08"
+    expires_at: "2026-08-08"
+    contact: "dev@betainnovations.com"
+
+  partner_gamma:
+    api_key: "nb_pgt_xxxxxxxxxxxxxxxxxxxx"
+    name: "Gamma Systems"
+    tier: "basic"
+    active: true
+    rate_limit: 100
+    quota_remaining: 10000
+    permissions:
+      - core
+    created_at: "2026-02-08"
+    expires_at: "2026-05-08"
+    contact: "tech@gammasystems.com"

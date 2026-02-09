@@ -1,0 +1,26 @@
+entrypoint = "main.go"
+run = ["go", "run", "."]
+modules = ["go-1.21", "nodejs-20", "python-3.11"]
+
+[env]
+GOPATH="$REPL_HOME/gopath"
+
+[nix]
+channel = "stable-24_05"
+packages = ["autorestic", "cairo", "ffmpeg-full", "freetype", "ghostscript", "gobject-introspection", "gtk3", "mono", "nix-output-monitor", "pkg-config", "poop", "python312Packages.pytest", "qhull", "root5", "run", "spidermonkey_102", "src-cli", "tcl", "tk", "toml-cli", "tracy", "vercel-pkg"]
+
+[gitHubImport]
+requiredFiles = [".replit"]
+
+[deployment]
+build = "CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o main"
+run = "./main"
+ignorePorts = false
+deploymentTarget = "gce"
+
+[agent]
+expertMode = true
+
+[[ports]]
+localPort = 8080
+externalPort = 80

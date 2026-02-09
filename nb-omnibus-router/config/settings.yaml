@@ -1,0 +1,29 @@
+# NeuralBlitz Omnibus Router Settings
+# ⚠️ Configuration file - modify as needed
+
+ENVIRONMENT: production
+DEBUG: false
+HOST: "0.0.0.0"
+PORT: 8000
+
+# CORS settings
+ALLOWED_ORIGINS:
+  - "https://your-domain.com"
+  - "https://docs.neuralblitz.ai"
+
+# Logging
+LOG_LEVEL: INFO
+
+# Rate limiting
+RATE_LIMIT_DEFAULT: 100
+
+# Partner management
+PARTNERS_FILE: "config/partners.yaml"
+
+# WebSocket settings
+WEBSOCKET_HEARTBEAT_INTERVAL: 30
+WEBSOCKET_MAX_CONNECTIONS_PER_PARTNER: 10
+
+# Metrics
+METRICS_ENABLED: true
+METRICS_INCLUDE_ENDPOINT_DETAILS: true

@@ -1,0 +1,352 @@
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                            NEURALBLITZ ECOSYSTEM DATA FLOW                                                  │
+│                                               Architecture v50.0 "Apical Synthesis"                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 1: DATA SOURCES (External & Internal)                                                                                 │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                                             │
+│  ┌──────────────────────┐  ┌──────────────────────┐  ┌──────────────────────┐  ┌──────────────────────┐                     │
+│  │   External APIs      │  │   User Inputs        │  │   Agent Actions      │  │   Research Data      │                     │
+│  │   • REST Endpoints   │  │   • Chat Messages    │  │   • Tool Calls       │  │   • Documents        │                     │
+│  │   • WebSockets       │  │   • Forms            │  │   • Policy Selection │  │   • Analytics        │                     │
+│  │   • Webhooks         │  │   • Voice            │  │   • Adaptations      │  │   • Experiments      │                     │
+│  └──────────┬───────────┘  └──────────┬───────────┘  └──────────┬───────────┘  └──────────┬───────────┘                     │
+│             │                         │                         │                         │                                │
+│             └─────────────────────────┴─────────────────────────┴─────────────────────────┘                                │
+│                                               │                                                                             │
+│                                               ▼                                                                             │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│  │                                    DATA TRANSFORMATION LAYER                                                        │   │
+│  │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐           │   │
+│  │  │ Pydantic        │  │ Onton           │  │ StateEntry      │  │ IntentVector    │  │ LearningEvent   │           │   │
+│  │  │ Validation      │→ │ Encoding        │→ │ Wrapping        │→ │ Generation      │→ │ Recording       │           │   │
+│  │  └─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘           │   │
+│  └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                               │                                                                             │
+└───────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────┘
+                                                │
+                                                ▼
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 2: MESSAGE QUEUE & EVENT STREAMS                                                                                      │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                                             │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│  │                                         UnifiedMessageBus (Async)                                                   │   │
+│  │                                                                                                                     │   │
+│  │   ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐     │   │
+│  │   │                                    Message Queue (asyncio.Queue)                                          │     │   │
+│  │   │                                                                                                           │     │   │
+│  │   │  Priority 9 (Critical): LRS_COORDINATION, NEURALBLITZ_ATTESTATION                                      │     │   │
+│  │   │  Priority 7 (High): LRS_AGENT_STATE, NEURALBLITZ_SOURCE_STATE                                          │     │   │
+│  │   │  Priority 5 (Normal): LRS_PRECISION_UPDATE, NEURALBLITZ_INTENT_VECTOR                                  │     │   │
+│  │   │  Priority 3 (Low): LRS_FREE_ENERGY, HEARTBEAT                                                          │     │   │
+│  │   │  Priority 1 (Background): SYNC_REQUEST/RESPONSE                                                        │     │   │
+│  │   │                                                                                                           │     │   │
+│  │   └──────────────────────────────────────────────────────────────────────────────────────────────────────────┘     │   │
+│  │                                                                                                                     │   │
+│  │   Message Flow:                                                                                                     │   │
+│  │   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐                    │   │
+│  │   │  Publish    │───→│   Queue     │───→│  Dequeue    │───→│  Process    │───→│ Distribute  │                    │   │
+│  │   │  (async)    │    │  (ordered)  │    │  (poll)     │    │  (handler)  │    │ (subscribers)│                   │   │
+│  │   └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘                    │   │
+│  │                                                                                                                     │   │
+│  │   Guarantees: At-least-once delivery │ Max 3 retries │ TTL support │ Max queue size: 1000                         │   │
+│  └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+                                                │
+                   ┌────────────────────────────┼────────────────────────────┐
+                   │                            │                            │
+                   ▼                            ▼                            ▼
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 3: STATE MANAGEMENT                                                                                                   │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                                             │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│  │                                    SharedStateManager                                                               │   │
+│  │                                                                                                                     │   │
+│  │   ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐     │   │
+│  │   │                                      UnifiedState Container                                             │     │   │
+│  │   │                                                                                                           │     │   │
+│  │   │   LRS States:                                                                                             │     │   │
+│  │   │   ├── lrs_agent_states: Dict[str, AgentState]          ← Active Inference beliefs & policies           │     │   │
+│  │   │   ├── lrs_precision_states: Dict[str, PrecisionRecord] ← Confidence tracking (Beta distributions)      │     │   │
+│  │   │   ├── lrs_free_energy: Dict[str, FreeEnergyData]       ← Active inference minimization metrics         │     │   │
+│  │   │   └── lrs_multi_agent: Dict[str, CoordinationState]    ← Multi-agent session data                      │     │   │
+│  │   │                                                                                                           │     │   │
+│  │   │   NeuralBlitz States:                                                                                     │     │   │
+│  │   │   ├── neuralblitz_source: Dict[str, SourceState]       ← Omega Prime & coherence metrics                │     │   │
+│  │   │   ├── neuralblitz_intent: Dict[str, IntentVector]      ← Phi vectors (phi_1, phi_22, omega)             │     │   │
+│  │   │   ├── neuralblitz_dyad: Dict[str, DyadData]            ← Architect dyad operations                      │     │   │
+│  │   │   └── neuralblitz_attestation: Dict[str, Attestation]  ← GoldenDAG verification proofs                  │     │   │
+│  │   │                                                                                                           │     │   │
+│  │   │   Shared States:                                                                                          │     │   │
+│  │   │   ├── coordination: Dict[str, Any]                     ← Cross-system coordination data                  │     │   │
+│  │   │   ├── synchronization: Dict[str, Any]                  ← Sync timestamps & version info                 │     │   │
+│  │   │   └── configuration: Dict[str, Any]                    │ Dynamic system configuration                   │     │   │
+│  │   │                                                                                                           │     │   │
+│  │   │   Metadata:                                                                                               │     │   │
+│  │   │   ├── last_updated: datetime.utcnow()                                                                     │     │   │
+│  │   │   └── version: int (incremented on every update)                                                          │     │   │
+│  │   └──────────────────────────────────────────────────────────────────────────────────────────────────────────┘     │   │
+│  │                                                                                                                     │   │
+│  │   StateEntry Structure:                                                                                             │   │
+│  │   ┌─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐                            │   │
+│  │   │     key     │    value    │    type     │  timestamp  │   version   │  checksum   │                            │   │
+│  │   │   (str)     │    (Any)    │  (StateType)│  (datetime) │    (int)    │   (sha256)  │                            │   │
+│  │   └─────────────┴─────────────┴─────────────┴─────────────┴─────────────┴─────────────┘                            │   │
+│  │                                                                                                                     │   │
+│  │   Conflict Resolution Strategies:                                                                                   │   │
+│  │   • LAST_WRITE_WINS (default): Newest timestamp overwrites existing                                                │   │
+│  │   • MERGE: Recursive dictionary merge for nested data                                                              │   │
+│  │   • CUSTOM: User-defined resolution function                                                                       │   │
+│  │   • IGNORE: Keep existing value, discard new                                                                       │   │
+│  │                                                                                                                     │   │
+│  └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+                │                                               │                                               │
+                ▼                                               ▼                                               ▼
+┌───────────────────────────────────────┐ ┌───────────────────────────────────────┐ ┌───────────────────────────────────────┐
+│   EPA (Emergent-Prompt-Architecture)  │ │         LRS-Agents (Active Inference) │ │       NBX-LRS (Core Database)         │
+│                                       │ │                                       │ │                                       │
+│  ┌─────────────────────────────────┐  │ │  ┌─────────────────────────────────┐  │ │  ┌─────────────────────────────────┐  │
+│  │   OntologicalLattice            │  │ │  │   SharedWorldState              │  │ │  │   NeuralBlitzDatabase             │  │
+│  │   (In-Memory Hypergraph)        │  │ │  │   (Multi-Agent Coordination)    │  │ │  │   (SQLite/MySQL)                  │  │
+│  │                                 │  │ │  │                                 │  │ │  │                                 │  │
+│  │  ┌───────────────────────────┐  │  │ │  │  ┌───────────────────────────┐  │  │ │  │  Tables:                        │  │
+│  │  │ ontons: Dict[str, Onton]  │  │  │ │  │  │ _state: Dict[str, Dict]   │  │  │ │  │  • intents (7 phi params)       │  │
+│  │  │ associations: Dict[Set]   │  │  │ │  │  │ _history: List[Updates]    │  │  │ │  │  • golden_dags (DAG chains)     │  │
+│  │  │ session_context: Dict     │  │  │ │  │  │ _subscribers: Dict[List]   │  │  │ │  │  • attestations (proofs)        │  │
+│  │  └───────────────────────────┘  │  │ │  │  └───────────────────────────┘  │  │ │  │  • cognitive_states             │  │
+│  │                                 │  │ │  │                                 │  │ │  │  • ml_models                    │  │
+│  │  Onton Structure:               │  │ │  │  Thread-safe with Lock          │  │ │  │  • analytics                    │  │
+│  │  • id: str                      │  │ │  │  Notification callbacks         │  │ │  │  • system_logs                  │  │
+│  │  • content: str                 │  │ │  │                                 │  │ │  │                                 │  │
+│  │  • type: OntonType              │  │ │  │  Views:                         │  │ │  │  Dataclasses:                   │  │
+│  │  • weight: float (0-1)          │  │ │  │  • agent_performance_summary    │  │ │  │  • IntentRecord                 │  │
+│  │  • decay_rate: float            │  │ │  │  • tool_reliability             │  │ │  │  • GoldenDAGRecord              │  │
+│  │  • associations: List[str]      │  │ │  │                                 │  │ │  │  • AttestationRecord            │  │
+│  │  • truth_probability: float     │  │ │  └─────────────────────────────────┘  │ │  └─────────────────────────────────┘  │
+│  │  • emotional_valence: float     │  │ │                                       │ │                                       │
+│  └─────────────────────────────────┘  │ │  ┌─────────────────────────────────┐  │ │  ┌─────────────────────────────────┐  │
+│                                       │ │  │   PostgreSQL (Docker)           │  │ │  │   LRS Bridge                    │  │
+│  Query Mechanism:                     │ │  │                                 │  │ │  │   (FastAPI + WebSocket)         │  │
+│  • Keyword extraction                 │ │  │  Tables:                        │  │ │  │                                 │  │
+│  • Activation scoring                 │ │  │  • agent_runs                   │  │ │  │  REST Endpoints:                │  │
+│  • BFS traversal                      │  │  │  • precision_history            │  │ │  │  • /lrs/bridge                  │  │
+│                                       │  │  │  • tool_executions              │  │ │  │  • /lrs/bridge/status           │  │
+│  Immutable Anchors:                   │  │  │  • adaptation_events            │  │ │  │  • /lrs/bridge/intent/submit    │  │
+│  • ROOT_ETHICS                        │  │  │  • benchmark_results            │  │ │  │  • /lrs/bridge/coherence/verify │  │
+│  • MATH_AXIOMS                        │  │  │  • coordination_logs            │  │ │  │                                 │  │
+│  • SAFETY_CORE                        │  │  │                                 │  │ │  │  Circuit Breaker Pattern        │  │
+│                                       │  │  │  CASCADE DELETE on agent_runs   │  │ │  │  HMAC-SHA256 Signatures         │  │
+└───────────────────────────────────────┘ │  └─────────────────────────────────┘  │ │  └─────────────────────────────────┘  │
+                                          │                                       │ └───────────────────────────────────────┘
+                                          └───────────────────────────────────────┘
+                │                                               │
+                └───────────────────────┬───────────────────────┘
+                                        │
+                                        ▼
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 4: CONTEXT & RESEARCH                                                                                                 │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                                             │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│  │                                    Advanced-Research Context System                                                 │   │
+│  │                                                                                                                     │   │
+│  │   ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐     │   │
+│  │   │                                     ContextInjector                                                         │     │   │
+│  │   │                                                                                                           │     │   │
+│  │   │   ContextBlock Storage:                                                                                   │     │   │
+│  │   │   ├── context_blocks: Dict[str, ContextBlock] (Priority queue)                                           │     │   │
+│  │   │   ├── max_context_size: int = 10000                                                                      │     │   │
+│  │   │   └── conversation_history: List[Dict] (Chat history)                                                    │     │   │
+│  │   │                                                                                                           │     │   │
+│  │   │   Priority Levels:                                                                                        │     │   │
+│  │   │   ├── CRITICAL (4): System alerts, errors                                                               │     │   │
+│  │   │   ├── HIGH (3): User intents, commands                                                                  │     │   │
+│  │   │   ├── MEDIUM (2): General context, facts                                                                │     │   │
+│  │   │   └── LOW (1): Background information                                                                   │     │   │
+│  │   │                                                                                                           │     │   │
+│  │   │   Features:                                                                                               │     │   │
+│  │   │   • Expiration handling (TTL)                                                                           │     │   │
+│  │   │   • Tag-based filtering                                                                                 │     │   │
+│  │   │   • Metadata attachment                                                                                 │     │   │
+│  │   │   • Automatic cleanup                                                                                   │     │   │
+│  │   └──────────────────────────────────────────────────────────────────────────────────────────────────────────┘     │   │
+│  │                                                                                                                     │   │
+│  │   ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐     │   │
+│  │   │                                   LRSContextInjector                                                        │     │   │
+│  │   │                                                                                                           │     │   │
+│  │   │   Learning Analytics Integration:                                                                         │     │   │
+│  │   │   ├── xAPI Statement Generation                                                                          │     │   │
+│  │   │   │   • actor: user_id                                                                                   │     │   │
+│  │   │   │   • verb: "communicated" / "accessed" / "created"                                                    │     │   │
+│  │   │   │   • object: context_reference                                                                       │     │   │
+│  │   │   │   • result: engagement metrics                                                                      │     │   │
+│  │   │   │                                                                                                     │     │   │
+│  │   │   ├── Async Recording (non-blocking)                                                                   │     │   │
+│  │   │   │   asyncio.create_task(record_context_interaction(...))                                              │     │   │
+│  │   │   │                                                                                                     │     │   │
+│  │   │   └── LRS Integration                                                                                   │     │   │
+│  │   │       └─→ PostgreSQL (learning_events table)                                                           │     │   │
+│  │   └──────────────────────────────────────────────────────────────────────────────────────────────────────────┘     │   │
+│  └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 5: CACHING & PERSISTENCE                                                                                              │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                                             │
+│   Cache Hierarchy:                                                                                                          │
+│                                                                                                                             │
+│   ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ L1: In-Memory (Fastest, Volatile)                                                                                  │   │
+│   │                                                                                                                     │   │
+│   │  • EPA OntologicalLattice        → ontons Dict, associations Dict                                                 │   │
+│   │  • ContextInjector               → context_blocks Dict                                                             │   │
+│   │  • SharedStateManager            → state_entries Dict, unified_state                                               │   │
+│   │  • UnifiedMessageBus             → _message_history Dict                                                           │   │
+│   │                                                                                                                     │   │
+│   │  Eviction: Manual (clear_all_states), Time-based (TTL), Size-based (max 1000)                                      │   │
+│   └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│   ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ L2: Message Queue (Hot Path)                                                                                       │   │
+│   │                                                                                                                     │   │
+│   │  • UnifiedMessageBus._message_queue  → asyncio.Queue (max 1000)                                                   │   │
+│   │  • Priority-based routing                                                                                          │   │
+│   │  • TTL support for automatic expiration                                                                            │   │
+│   │                                                                                                                     │   │
+│   │  Backpressure: Drop oldest non-critical messages when full                                                         │   │
+│   └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│   ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ L3: Persistent Storage (Durable)                                                                                   │   │
+│   │                                                                                                                     │   │
+│   │  ┌──────────────────────┐  ┌──────────────────────┐  ┌──────────────────────┐                                     │   │
+│   │  │ SQLite (NBX-LRS)     │  │ PostgreSQL (LRS)     │  │ JSON Files           │                                     │   │
+│   │  │ • intents            │  │ • agent_runs         │  │ • State exports      │                                     │   │
+│   │  │ • golden_dags        │  │ • precision_history  │  │ • Config files       │                                     │   │
+│   │  │ • attestations       │  │ • tool_executions    │  │ • Onton exports      │                                     │   │
+│   │  │ • cognitive_states   │  │ • adaptation_events  │  │                      │                                     │   │
+│   │  │ • ml_models          │  │ • coordination_logs  │  │                      │                                     │   │
+│   │  │ • analytics          │  │ • benchmark_results  │  │                      │                                     │   │
+│   │  └──────────────────────┘  └──────────────────────┘  └──────────────────────┘                                     │   │
+│   │                                                                                                                     │   │
+│   │  Write Strategies:                                                                                                  │   │
+│   │  • Write-Through: Critical data (intents, attestations)                                                            │   │
+│   │  • Write-Behind: Analytics (batch every 5s)                                                                        │   │
+│   │  • Read-Through: Cache miss populates from DB                                                                      │   │
+│   └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│   ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ L4: Cold Storage (Archive)                                                                                         │   │
+│   │                                                                                                                     │   │
+│   │  • Analytics > 30 days                                                                                             │   │
+│   │  • System logs > 90 days                                                                                           │   │
+│   │  • Completed agent_runs > 90 days                                                                                  │   │
+│   │  • GoldenDAG historical chains                                                                                     │   │
+│   │                                                                                                                     │   │
+│   │  Cleanup Function: cleanup_old_data(days_to_keep=90)                                                               │   │
+│   └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 6: DATA CONSUMERS (Outputs & Actions)                                                                                 │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                                             │
+│  ┌──────────────────────┐  ┌──────────────────────┐  ┌──────────────────────┐  ┌──────────────────────┐                     │
+│  │   Tool Execution     │  │   Response           │  │   Analytics          │  │   External APIs      │                     │
+│  │   • LLM calls        │  │   Generation         │  │   • Metrics          │  │   • Webhooks         │                     │
+│  │   • Code execution   │  │   • Natural language │  │   • Reports          │  │   • Notifications    │                     │
+│  │   • Data queries     │  │   • Structured data  │  │   • Dashboards       │  │   • Integrations     │                     │
+│  └──────────────────────┘  └──────────────────────┘  └──────────────────────┘  └──────────────────────┘                     │
+│                                                                                                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ CRITICAL DATA PATHS (Performance Optimized)                                                                                 │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                                             │
+│  Path 1: Intent Processing (Hot Path) ~200ms                                                                                │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│  │ User Input → ContextInjector (10ms) → OntologicalLattice.query (20ms) → Intent Vector (30ms)                       │   │
+│  │ → GoldenDAG Validation (40ms) → Active Inference (50ms) → Tool Selection (50ms)                                  │   │
+│  └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                                                             │
+│  Path 2: State Synchronization (Real-time) ~25ms                                                                            │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│  │ Agent State Change → LRSAdapter (2ms) → StateEntry (3ms) → UnifiedMessageBus (5ms)                               │   │
+│  │ → SharedStateManager (10ms) → Database (async) → Subscribers (5ms)                                               │   │
+│  └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                                                             │
+│  Path 3: Research Context Injection (Analytics) ~1s                                                                         │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│  │ Research Data → Context Block (100ms) → Learning Event (async) → xAPI Statement (200ms)                          │   │
+│  │ → LRS Database (500ms) → Context Activation (200ms)                                                              │   │
+│  └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ DATA CONSISTENCY & CONFLICT RESOLUTION                                                                                      │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                                             │
+│  Consistency Challenges:                                                                                                    │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   │
+│  │                                                                                                                     │   │
+│  │  1. Concurrent State Updates (LRS ↔ NBX)                                                                           │   │
+│  │     Detection: Version mismatch in StateEntry                                                                       │   │
+│  │     Resolution: LAST_WRITE_WINS or MERGE strategies                                                                 │   │
+│  │                                                                                                                     │   │
+│  │  2. Message Loss (Network partitions)                                                                              │   │
+│  │     Detection: Missing acknowledgment                                                                               │   │
+│  │     Mitigation: Retry mechanism (max 3), persistence                                                                │   │
+│  │                                                                                                                     │   │
+│  │  3. Clock Skew (Distributed systems)                                                                               │   │
+│  │     Mitigation: UTC timestamps, monotonic IDs, logical clocks                                                       │   │
+│  │                                                                                                                     │   │
+│  │  4. Database Lag (Async replication)                                                                               │   │
+│  │     Mitigation: Read-through caching, eventual consistency                                                          │   │
+│  │                                                                                                                     │   │
+│  │  5. Learning Event Duplication                                                                                     │   │
+│  │     Mitigation: Idempotent writes (UNIQUE constraint on actor+verb+object+timestamp)                                │   │
+│  │                                                                                                                     │   │
+│  └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                                                             │
+│  Conflict Resolution Matrix:                                                                                                │
+│  ┌────────────────────────┬────────────────────────┬────────────────────────────────────────────────────────────────┐   │
+│  │ Conflict Type          │ Resolution Strategy    │ Implementation                                                 │   │
+│  ├────────────────────────┼────────────────────────┼────────────────────────────────────────────────────────────────┤   │
+│  │ State version mismatch │ LAST_WRITE_WINS        │ Compare timestamps, keep newest                                │   │
+│  │ Nested dict updates    │ MERGE (recursive)      │ {**old, **new} for dicts                                       │   │
+│  │ Precision conflicts    │ CUSTOM (weighted avg)  │ (old + new) / 2                                                │   │
+│  │ Intent coherence       │ CECT projection        │ Pull toward ethical manifold                                   │   │
+│  │ Onton associations     │ Union of sets          │ set(old) | set(new)                                            │   │
+│  └────────────────────────┴────────────────────────┴────────────────────────────────────────────────────────────────┘   │
+│                                                                                                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+Legend:
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  ┌─────────────┐  = Component/Module                                                                                        │
+│  │   Content   │                                                                                                            │
+│  └─────────────┘                                                                                                            │
+│                                                                                                                             │
+│  ───→ = Synchronous flow (blocking)                                                                                        │
+│  ─ ─→ = Asynchronous flow (non-blocking)                                                                                   │
+│  ═══→ = Data transformation                                                                                                │
+│                                                                                                                             │
+│  L1/L2/L3/L4 = Cache layers (fastest to slowest)                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Document: DATA_FLOW_ARCHITECTURE_DIAGRAM.txt
+Version: 1.0
+Date: 2026-02-08
+Author: NeuralBlitz Architecture Team

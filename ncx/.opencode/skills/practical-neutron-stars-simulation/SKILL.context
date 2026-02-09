@@ -1,0 +1,97 @@
+{
+  "skill_metadata": {
+    "name": "practical-neutron-stars-simulation",
+    "domain": "astronomy",
+    "subdiscipline": "neutron-stars",
+    "version": "1.0.0",
+    "created": "2025",
+    "status": "production"
+  },
+  "prerequisites": {
+    "knowledge": [
+      "Fundamental understanding of astronomy",
+      "Familiarity with neutron-stars concepts",
+      "Mathematical proficiency appropriate to complexity level",
+      "Ability to interpret technical documentation"
+    ],
+    "skills": [
+      "Basic astronomy problem-solving",
+      "Critical thinking and analysis",
+      "Technical communication"
+    ],
+    "tools": [
+      "Access to appropriate computational resources",
+      "Relevant software and libraries",
+      "Documentation and reference materials"
+    ]
+  },
+  "learning_objectives": [
+    "Master neutron-stars techniques and methodologies",
+    "Apply theoretical knowledge to practical problems",
+    "Develop proficiency in relevant tools and software",
+    "Understand limitations and appropriate use cases",
+    "Communicate results effectively to technical audiences"
+  ],
+  "application_domains": [
+    "Academic research and publications",
+    "Industrial R&D and product development",
+    "Consulting and technical advisory",
+    "Educational and training contexts",
+    "Standards development and validation"
+  ],
+  "quality_standards": {
+    "accuracy": "Results validated against established benchmarks",
+    "reproducibility": "Methods documented for independent verification",
+    "documentation": "Comprehensive technical documentation provided",
+    "peer_review": "Approaches aligned with {domain} best practices",
+    "compliance": "Adherence to relevant standards and regulations"
+  },
+  "performance_metrics": {
+    "accuracy_threshold": "Problem-dependent, typically >95% for numerical tasks",
+    "completion_time": "Scales with problem complexity",
+    "resource_usage": "Optimized for available computational resources",
+    "scalability": "Tested on problems of varying size and complexity"
+  },
+  "references": [
+    "Standard textbooks in neutron-stars",
+    "Peer-reviewed journal articles in astronomy",
+    "Technical documentation for relevant tools",
+    "Professional society guidelines and standards",
+    "Recent research papers and reviews"
+  ],
+  "examples": {
+    "basic": "Simple neutron-stars problem with known solution",
+    "intermediate": "Real-world astronomy application with moderate complexity",
+    "advanced": "Research-level neutron-stars challenge requiring novel approaches"
+  },
+  "common_pitfalls": [
+    "Insufficient validation of input data",
+    "Overlooking boundary conditions or edge cases",
+    "Misapplying methods outside their valid range",
+    "Inadequate error propagation analysis",
+    "Poor documentation leading to non-reproducibility"
+  ],
+  "troubleshooting": {
+    "convergence_issues": "Check input validity, adjust parameters, try alternative methods",
+    "unexpected_results": "Verify assumptions, check for bugs, validate against simpler cases",
+    "performance_problems": "Profile code, optimize algorithms, consider parallelization",
+    "interpretation_difficulties": "Consult domain experts, review literature, seek peer feedback"
+  },
+  "integration": {
+    "compatible_with": [
+      "Other neutron-stars skills",
+      "Adjacent astronomy methodologies",
+      "Cross-disciplinary STEM approaches"
+    ],
+    "data_formats": [
+      "Standard file formats for {domain}",
+      "Interoperable data structures",
+      "Well-documented custom formats when necessary"
+    ],
+    "APIs": [
+      "Programmatic access to functionality",
+      "RESTful endpoints for remote execution",
+      "Command-line interfaces for automation"
+    ]
+  }
+}

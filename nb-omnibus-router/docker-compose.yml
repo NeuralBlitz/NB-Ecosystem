@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  nb-router:
+    build: .
+    container_name: neuralblitz-router
+    ports:
+      - "8000:8000"
+    environment:
+      - NB_ENVIRONMENT=production
+      - NB_DEBUG=false
+      - NB_LOG_LEVEL=INFO
+      - NB_PARTNERS_FILE=/config/partners.yaml
+    volumes:
+      - ./config/partners.yaml:/config/partners.yaml:ro
+      - ./logs:/app/logs
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - neuralblitz-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: neuralblitz-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./web:/usr/share/nginx/html:ro
+    depends_on:
+      - nb-router
+    restart: unless-stopped
+    networks:
+      - neuralblitz-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: neuralblitz-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    restart: unless-stopped
+    networks:
+      - neuralblitz-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: neuralblitz-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=neuralblitz_admin
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - neuralblitz-network
+
+networks:
+  neuralblitz-network:
+    driver: bridge
