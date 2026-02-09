@@ -1,0 +1,9 @@
+Port 2222
+PermitRootLogin no
+PasswordAuthentication yes
+ChrootDirectory %h
+ForceCommand internal-sftp
+AllowTcpForwarding no
+X11Forwarding no
+
+Subsystem sftp internal-sftp -f AUTHPRIV -l INFO

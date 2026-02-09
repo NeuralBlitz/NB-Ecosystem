@@ -1,0 +1,236 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "neuralblitz-performance",
+    "title": "NeuralBlitz - Performance Analytics",
+    "tags": ["neuralblitz", "performance", "analytics"],
+    "timezone": "utc",
+    "schemaVersion": 36,
+    "refresh": "5s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "templating": {
+      "list": [
+        {
+          "name": "route",
+          "type": "query",
+          "query": "label_values(neuralblitz_api_request_duration_seconds_bucket, route)",
+          "multi": true,
+          "includeAll": true
+        }
+      ]
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Request Rate",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_requests_total[5m]))",
+            "legendFormat": "Total"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "reqps"
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 }
+      },
+      {
+        "id": 2,
+        "title": "p50 Latency",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, sum(rate(neuralblitz_api_request_duration_seconds_bucket[5m])) by (le))",
+            "legendFormat": "p50"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "s"
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 }
+      },
+      {
+        "id": 3,
+        "title": "p95 Latency",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, sum(rate(neuralblitz_api_request_duration_seconds_bucket[5m])) by (le))",
+            "legendFormat": "p95"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "s"
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 }
+      },
+      {
+        "id": 4,
+        "title": "p99 Latency",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.99, sum(rate(neuralblitz_api_request_duration_seconds_bucket[5m])) by (le))",
+            "legendFormat": "p99"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "s"
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 }
+      },
+      {
+        "id": 5,
+        "title": "API Latency Distribution",
+        "type": "heatmap",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_request_duration_seconds_bucket{route=~\"$route\"}[5m])) by (le)",
+            "legendFormat": "{{le}}"
+          }
+        ],
+        "dataFormat": "tsbuckets",
+        "yBucketBound": "auto",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 }
+      },
+      {
+        "id": 6,
+        "title": "Latency by Route (p95)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, sum(rate(neuralblitz_api_request_duration_seconds_bucket{route=~\"$route\"}[5m])) by (le, route))",
+            "legendFormat": "{{route}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Latency (s)",
+            "unit": "s"
+          }
+        ],
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 }
+      },
+      {
+        "id": 7,
+        "title": "Request Rate by Route",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_requests_total{route=~\"$route\"}[5m])) by (route)",
+            "legendFormat": "{{route}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Requests/sec",
+            "unit": "reqps"
+          }
+        ],
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 12 }
+      },
+      {
+        "id": 8,
+        "title": "Request Rate by Status Code",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_requests_total[5m])) by (status_code)",
+            "legendFormat": "HTTP {{status_code}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Requests/sec",
+            "unit": "reqps"
+          }
+        ],
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 12 }
+      },
+      {
+        "id": 9,
+        "title": "Payload Size Distribution",
+        "type": "heatmap",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_payload_size_bytes_bucket[5m])) by (le, direction)",
+            "legendFormat": "{{direction}} - {{le}}"
+          }
+        ],
+        "dataFormat": "tsbuckets",
+        "yBucketBound": "auto",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 20 }
+      },
+      {
+        "id": 10,
+        "title": "Rate Limit Hits",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_rate_limit_hits_total[5m])) by (route)",
+            "legendFormat": "{{route}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Hits/sec",
+            "unit": "short"
+          }
+        ],
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 20 }
+      },
+      {
+        "id": 11,
+        "title": "Free Energy Calculation Performance",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, sum(rate(neuralblitz_free_energy_calculation_duration_seconds_bucket[5m])) by (le))",
+            "legendFormat": "p95"
+          },
+          {
+            "expr": "histogram_quantile(0.99, sum(rate(neuralblitz_free_energy_calculation_duration_seconds_bucket[5m])) by (le))",
+            "legendFormat": "p99"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Duration (s)",
+            "unit": "s"
+          }
+        ],
+        "gridPos": { "h": 6, "w": 12, "x": 0, "y": 28 }
+      },
+      {
+        "id": 12,
+        "title": "Energy Extraction Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "neuralblitz_energy_extraction_rate",
+            "legendFormat": "{{source}} - {{system_id}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Units/sec",
+            "unit": "short"
+          }
+        ],
+        "gridPos": { "h": 6, "w": 12, "x": 12, "y": 28 }
+      }
+    ]
+  }
+}

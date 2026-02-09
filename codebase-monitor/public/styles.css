@@ -1,0 +1,313 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: #1a1a2e;
+    color: #eee;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #2a2a4a;
+    border-radius: 20px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.status-dot.connected {
+    background: #4ade80;
+    box-shadow: 0 0 10px #4ade80;
+}
+
+.status-dot.disconnected {
+    background: #f87171;
+}
+
+.status-text {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #2a2a4a;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #333;
+}
+
+.stat-card h3 {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.live-feed {
+    background: #2a2a4a;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #333;
+}
+
+.live-feed h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.feed-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background: #3b82f6;
+    color: white;
+}
+
+.btn:hover {
+    background: #2563eb;
+}
+
+.btn.paused {
+    background: #22c55e;
+}
+
+.feed-container {
+    max-height: 400px;
+    overflow-y: auto;
+    background: #1a1a2e;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.empty-state {
+    text-align: center;
+    color: #666;
+    padding: 40px;
+}
+
+.change-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #2a2a4a;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.change-item.added {
+    border-left: 3px solid #4ade80;
+}
+
+.change-item.modified {
+    border-left: 3px solid #fbbf24;
+}
+
+.change-item.deleted {
+    border-left: 3px solid #f87171;
+}
+
+.change-type {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    min-width: 70px;
+    text-align: center;
+}
+
+.change-type.added {
+    background: #166534;
+    color: #4ade80;
+}
+
+.change-type.modified {
+    background: #854d0e;
+    color: #fbbf24;
+}
+
+.change-type.deleted {
+    background: #991b1b;
+    color: #f87171;
+}
+
+.change-file {
+    flex: 1;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 13px;
+    color: #ddd;
+    word-break: break-all;
+}
+
+.change-time {
+    font-size: 12px;
+    color: #666;
+}
+
+.git-section {
+    background: #2a2a4a;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #333;
+}
+
+.git-section h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.commits-container {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.commit-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #333;
+}
+
+.commit-item:last-child {
+    border-bottom: none;
+}
+
+.commit-hash {
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 12px;
+    color: #3b82f6;
+    background: #1a1a2e;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.commit-info {
+    flex: 1;
+}
+
+.commit-message {
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 5px;
+}
+
+.commit-meta {
+    font-size: 12px;
+    color: #666;
+}
+
+.loading {
+    text-align: center;
+    color: #666;
+    padding: 40px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+}

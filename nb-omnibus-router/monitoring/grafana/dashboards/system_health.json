@@ -1,0 +1,245 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "neuralblitz-system-health",
+    "title": "NeuralBlitz - System Health Overview",
+    "tags": ["neuralblitz", "system", "health"],
+    "timezone": "utc",
+    "schemaVersion": 36,
+    "refresh": "10s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "templating": {
+      "list": [
+        {
+          "name": "instance",
+          "type": "query",
+          "query": "label_values(neuralblitz_system_uptime_seconds, instance)",
+          "multi": true,
+          "includeAll": true
+        }
+      ]
+    },
+    "annotations": {
+      "list": [
+        {
+          "name": "Deployments",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "changes(neuralblitz_system_uptime_seconds[1m]) > 0",
+          "tagKeys": "deploy,version",
+          "textFormat": "Deployment: {{version}}"
+        }
+      ]
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "System Status",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "neuralblitz_service_health",
+            "legendFormat": "{{service_name}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [
+              {
+                "options": {
+                  "0": { "text": "Healthy", "color": "green" },
+                  "1": { "text": "Degraded", "color": "yellow" },
+                  "2": { "text": "Unhealthy", "color": "red" },
+                  "3": { "text": "Unknown", "color": "gray" }
+                },
+                "type": "value"
+              }
+            ]
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 }
+      },
+      {
+        "id": 2,
+        "title": "Uptime",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "neuralblitz_system_uptime_seconds{service_name=\"neuralblitz\"}",
+            "legendFormat": "Uptime"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "dtdurations"
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 }
+      },
+      {
+        "id": 3,
+        "title": "API Request Rate",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_requests_total[5m]))",
+            "legendFormat": "Requests/sec"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "reqps"
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 }
+      },
+      {
+        "id": 4,
+        "title": "Error Rate",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_errors_total[5m])) / sum(rate(neuralblitz_api_requests_total[5m])) * 100",
+            "legendFormat": "Error %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 1 },
+                { "color": "red", "value": 5 }
+              ]
+            }
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 }
+      },
+      {
+        "id": 5,
+        "title": "API Latency (p95)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, sum(rate(neuralblitz_api_request_duration_seconds_bucket[5m])) by (le, route))",
+            "legendFormat": "{{route}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Latency (s)",
+            "unit": "s"
+          }
+        ],
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 }
+      },
+      {
+        "id": 6,
+        "title": "Request Rate by Route",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_requests_total[5m])) by (route)",
+            "legendFormat": "{{route}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Requests/sec",
+            "unit": "reqps"
+          }
+        ],
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 }
+      },
+      {
+        "id": 7,
+        "title": "Circuit Breaker States",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "neuralblitz_circuit_breaker_state",
+            "format": "table",
+            "instant": true
+          }
+        ],
+        "gridPos": { "h": 6, "w": 12, "x": 0, "y": 12 }
+      },
+      {
+        "id": 8,
+        "title": "Active Connections",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "neuralblitz_api_active_connections",
+            "legendFormat": "{{route}}"
+          }
+        ],
+        "gridPos": { "h": 6, "w": 12, "x": 12, "y": 12 }
+      },
+      {
+        "id": 9,
+        "title": "Memory Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100",
+            "legendFormat": "Memory Usage %"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Usage %",
+            "unit": "percent",
+            "max": 100
+          }
+        ],
+        "gridPos": { "h": 6, "w": 8, "x": 0, "y": 18 }
+      },
+      {
+        "id": 10,
+        "title": "CPU Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "(1 - avg(rate(node_cpu_seconds_total{mode=\"idle\"}[5m]))) * 100",
+            "legendFormat": "CPU Usage %"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Usage %",
+            "unit": "percent",
+            "max": 100
+          }
+        ],
+        "gridPos": { "h": 6, "w": 8, "x": 8, "y": 18 }
+      },
+      {
+        "id": 11,
+        "title": "Disk Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "(1 - (node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"})) * 100",
+            "legendFormat": "Disk Usage %"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Usage %",
+            "unit": "percent",
+            "max": 100
+          }
+        ],
+        "gridPos": { "h": 6, "w": 8, "x": 16, "y": 18 }
+      }
+    ]
+  }
+}

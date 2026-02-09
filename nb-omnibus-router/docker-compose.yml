@@ -11,10 +11,15 @@ services:
       - NB_DEBUG=false
       - NB_LOG_LEVEL=INFO
       - NB_PARTNERS_FILE=/config/partners.yaml
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
     volumes:
       - ./config/partners.yaml:/config/partners.yaml:ro
       - ./logs:/app/logs
       - ./data:/app/data
+    depends_on:
+      - redis
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
@@ -72,6 +77,25 @@ services:
     networks:
       - neuralblitz-network
 
-networks:
+  redis:
+    image: redis:7-alpine
+    container_name: neuralblitz-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: redis-server /usr/local/etc/redis/redis.conf
+    restart: unless-stopped
+    networks:
+      - neuralblitz-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  redis-data:
   neuralblitz-network:
     driver: bridge

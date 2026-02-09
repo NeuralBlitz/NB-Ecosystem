@@ -15,6 +15,17 @@ from datetime import datetime
 import hashlib
 import json
 
+# Import shared utilities
+from .utils import (
+    generate_random_beta,
+    generate_sandbox_id,
+    generate_correlate_ref,
+    compute_sha256,
+    serialize_json,
+    to_dict_safe,
+    validate_dict,
+)
+
 
 class PerspectiveType(Enum):
     """Types of perspective-taking simulations."""
@@ -107,9 +118,7 @@ class QECKernel:
 
     def _generate_sandbox_id(self) -> str:
         """Generate unique sandbox identifier."""
-        return (
-            f"SBX-QEC-{hashlib.sha256(str(datetime.now()).encode()).hexdigest()[:12]}"
-        )
+        return f"SBX-QEC-{hashlib.sha256(str(datetime.now()).encode()).hexdigest()[:12]}"
 
     def simulate_perspective(
         self,
@@ -173,8 +182,7 @@ class QECKernel:
             engagement_metrics=engagement_metrics,
             uncertainty_range=uncertainty_range,
             sandbox_id=self.sandbox_id,
-            ttl_expiry=datetime.now()
-            + __import__("datetime").timedelta(days=self.ttl_days),
+            ttl_expiry=datetime.now() + __import__("datetime").timedelta(days=self.ttl_days),
         )
 
         # Store in history
@@ -216,9 +224,7 @@ class QECKernel:
                             "is sad",
                         ]
                     ):
-                        raise ValueError(
-                            f"Context contains unverifiable attribution: {full_path}"
-                        )
+                        raise ValueError(f"Context contains unverifiable attribution: {full_path}")
 
         check_dict(context)
 
@@ -289,12 +295,9 @@ class QECKernel:
             "labels": ["correlate", "sandboxed", "analogy", "scope:perspective-taking"],
             "situation_type": situation_type,
             "functional_mapping": {
-                "high_salience": correlate.functional_correlates["salience_detection"]
-                > 0.7,
-                "goal_disruption": correlate.functional_correlates["goal_alignment"]
-                < 0.4,
-                "attention_focused": correlate.functional_correlates["attention_focus"]
-                > 0.6,
+                "high_salience": correlate.functional_correlates["salience_detection"] > 0.7,
+                "goal_disruption": correlate.functional_correlates["goal_alignment"] < 0.4,
+                "attention_focused": correlate.functional_correlates["attention_focus"] > 0.6,
             },
             "analogy_description": (
                 f"Functional correlate suggests situation may warrant "
@@ -306,9 +309,7 @@ class QECKernel:
                 "NOT a claim of actual subjective experience."
             ),
             "sandbox_id": self.sandbox_id,
-            "correlate_ref": hashlib.sha256(
-                str(correlate.timestamp).encode()
-            ).hexdigest()[:16],
+            "correlate_ref": hashlib.sha256(str(correlate.timestamp).encode()).hexdigest()[:16],
         }
 
         return analog

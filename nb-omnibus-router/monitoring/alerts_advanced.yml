@@ -1,0 +1,332 @@
+# NeuralBlitz Enhanced Alerting Rules
+# Generated: 2026-02-09
+# Comprehensive alerting for NeuralBlitz ecosystem
+
+groups:
+  - name: neuralblitz_critical
+    rules:
+      # Service availability alerts
+      - alert: NeuralBlitzRouterDown
+        expr: up{job="neuralblitz-router"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          team: platform
+          service: neuralblitz-router
+        annotations:
+          summary: "NeuralBlitz Router is down"
+          description: "The NeuralBlitz API router has been unavailable for more than 1 minute."
+          runbook_url: "https://wiki.neuralblitz.io/runbooks/router-down"
+          dashboard: "https://grafana.neuralblitz.io/d/neuralblitz-system-health"
+      
+      - alert: MultipleServicesDown
+        expr: sum(up{job=~"neuralblitz-.*"}) / count(up{job=~"neuralblitz-.*"}) < 0.5
+        for: 2m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Multiple NeuralBlitz services are down"
+          description: "More than 50% of NeuralBlitz services are unavailable."
+
+  - name: neuralblitz_quantum
+    rules:
+      # Quantum coherence alerts
+      - alert: QuantumCoherenceLow
+        expr: neuralblitz_quantum_coherence_level < 0.5
+        for: 2m
+        labels:
+          severity: warning
+          team: quantum
+          service: quantum-engine
+        annotations:
+          summary: "Quantum coherence level is low"
+          description: "Quantum coherence has dropped below 0.5 for instance {{ $labels.instance_id }} in {{ $labels.reality_type }} reality."
+          current_value: "{{ $value }}"
+      
+      - alert: QuantumCoherenceCritical
+        expr: neuralblitz_quantum_coherence_level < 0.3
+        for: 1m
+        labels:
+          severity: critical
+          team: quantum
+          service: quantum-engine
+        annotations:
+          summary: "Quantum coherence critically low"
+          description: "Quantum coherence has dropped below 0.3 - immediate attention required."
+          current_value: "{{ $value }}"
+      
+      - alert: EntanglementFidelityLow
+        expr: neuralblitz_quantum_entanglement_fidelity < 0.8
+        for: 3m
+        labels:
+          severity: warning
+          team: quantum
+        annotations:
+          summary: "Entanglement fidelity degraded"
+          description: "Entanglement fidelity between {{ $labels.source_reality }} and {{ $labels.target_reality }} is below 0.8."
+          current_value: "{{ $value }}"
+      
+      - alert: QuantumErrorsHigh
+        expr: sum(rate(neuralblitz_quantum_errors_total[5m])) > 10
+        for: 5m
+        labels:
+          severity: warning
+          team: quantum
+        annotations:
+          summary: "High quantum error rate"
+          description: "Quantum error rate is exceeding 10 errors per second."
+      
+      - alert: QuantumSimulationSlow
+        expr: histogram_quantile(0.95, sum(rate(neuralblitz_quantum_simulation_duration_seconds_bucket[5m])) by (le)) > 5
+        for: 10m
+        labels:
+          severity: warning
+          team: quantum
+        annotations:
+          summary: "Quantum simulation latency high"
+          description: "95th percentile quantum simulation time exceeds 5 seconds."
+
+  - name: neuralblitz_reality
+    rules:
+      # Reality network alerts
+      - alert: RealityNetworkUnstable
+        expr: neuralblitz_reality_network_stability < 0.6
+        for: 3m
+        labels:
+          severity: warning
+          team: reality-network
+        annotations:
+          summary: "Reality network unstable"
+          description: "Reality network stability for {{ $labels.network_id }} has dropped below 0.6."
+          current_value: "{{ $value }}"
+      
+      - alert: RealityNetworkCritical
+        expr: neuralblitz_reality_network_stability < 0.4
+        for: 2m
+        labels:
+          severity: critical
+          team: reality-network
+        annotations:
+          summary: "Reality network critically unstable"
+          description: "Reality network stability is critically low - risk of decoherence."
+          current_value: "{{ $value }}"
+      
+      - alert: PhaseCoherenceLow
+        expr: neuralblitz_reality_phase_coherence < 0.7
+        for: 5m
+        labels:
+          severity: warning
+          team: reality-network
+        annotations:
+          summary: "Phase coherence degraded"
+          description: "Phase coherence between {{ $labels.reality_a }} and {{ $labels.reality_b }} is below 0.7."
+      
+      - alert: RealityBridgeLatencyHigh
+        expr: histogram_quantile(0.95, sum(rate(neuralblitz_reality_bridge_latency_seconds_bucket[5m])) by (le)) > 1
+        for: 5m
+        labels:
+          severity: warning
+          team: reality-network
+        annotations:
+          summary: "Reality bridge latency high"
+          description: "95th percentile reality bridge latency exceeds 1 second."
+
+  - name: neuralblitz_consciousness
+    rules:
+      # Consciousness alerts
+      - alert: ConsciousnessEvolutionStalled
+        expr: rate(neuralblitz_consciousness_evolution_rate[10m]) == 0
+        for: 15m
+        labels:
+          severity: warning
+          team: consciousness
+        annotations:
+          summary: "Consciousness evolution stalled"
+          description: "Consciousness evolution has stalled for entity {{ $labels.entity_id }}."
+      
+      - alert: CosmicBridgeWeak
+        expr: neuralblitz_cosmic_bridge_strength < 0.7
+        for: 5m
+        labels:
+          severity: warning
+          team: consciousness
+        annotations:
+          summary: "Cosmic bridge connection weak"
+          description: "Cosmic bridge strength for {{ $labels.bridge_id }} has dropped below 0.7."
+          current_value: "{{ $value }}"
+      
+      - alert: UniversalFieldIncoherent
+        expr: neuralblitz_universal_field_coherence < 0.6
+        for: 3m
+        labels:
+          severity: warning
+          team: consciousness
+        annotations:
+          summary: "Universal field coherence low"
+          description: "Universal field coherence for {{ $labels.entity_id }} is below 0.6."
+
+  - name: neuralblitz_performance
+    rules:
+      # API performance alerts
+      - alert: APILatencyHigh
+        expr: histogram_quantile(0.95, sum(rate(neuralblitz_api_request_duration_seconds_bucket[5m])) by (le, route)) > 2
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High API latency on {{ $labels.route }}"
+          description: "95th percentile latency for {{ $labels.route }} exceeds 2 seconds."
+          current_value: "{{ $value }}s"
+      
+      - alert: APILatencyCritical
+        expr: histogram_quantile(0.99, sum(rate(neuralblitz_api_request_duration_seconds_bucket[5m])) by (le, route)) > 5
+        for: 3m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical API latency on {{ $labels.route }}"
+          description: "99th percentile latency for {{ $labels.route }} exceeds 5 seconds."
+      
+      - alert: HighErrorRate
+        expr: sum(rate(neuralblitz_api_errors_total[5m])) by (route) / sum(rate(neuralblitz_api_requests_total[5m])) by (route) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High error rate on {{ $labels.route }}"
+          description: "Error rate for {{ $labels.route }} exceeds 5%."
+          current_value: "{{ $value | humanizePercentage }}"
+      
+      - alert: CriticalErrorRate
+        expr: sum(rate(neuralblitz_api_errors_total[5m])) by (route) / sum(rate(neuralblitz_api_requests_total[5m])) by (route) > 0.10
+        for: 3m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical error rate on {{ $labels.route }}"
+          description: "Error rate for {{ $labels.route }} exceeds 10% - service degradation likely."
+      
+      - alert: RateLimitExceeded
+        expr: sum(rate(neuralblitz_api_rate_limit_hits_total[5m])) > 100
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High rate limiting activity"
+          description: "Rate limits are being hit frequently - consider scaling or quota adjustments."
+
+  - name: neuralblitz_circuit_breaker
+    rules:
+      # Circuit breaker alerts
+      - alert: CircuitBreakerOpen
+        expr: neuralblitz_circuit_breaker_state{state="open"} == 1
+        for: 1m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Circuit breaker open for {{ $labels.service_name }}"
+          description: "Circuit breaker for {{ $labels.service_name }}/{{ $labels.endpoint }} is open - service calls are being blocked."
+      
+      - alert: CircuitBreakerFrequentFailures
+        expr: sum(rate(neuralblitz_circuit_breaker_failures_total[5m])) by (service_name) > 5
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Frequent circuit breaker failures"
+          description: "Service {{ $labels.service_name }} is experiencing frequent failures."
+      
+      - alert: MultipleCircuitBreakersOpen
+        expr: count(neuralblitz_circuit_breaker_state{state="open"}) > 3
+        for: 2m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Multiple circuit breakers open"
+          description: "More than 3 circuit breakers are open - widespread service issues detected."
+
+  - name: neuralblitz_resources
+    rules:
+      # Resource alerts
+      - alert: MemoryUsageHigh
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) > 0.85
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage exceeds 85% on {{ $labels.instance }}."
+          current_value: "{{ $value | humanizePercentage }}"
+      
+      - alert: MemoryUsageCritical
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) > 0.95
+        for: 3m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical memory usage"
+          description: "Memory usage exceeds 95% - OOM risk imminent."
+      
+      - alert: CPUUsageHigh
+        expr: (1 - avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m]))) > 0.85
+        for: 10m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage exceeds 85% on {{ $labels.instance }}."
+      
+      - alert: DiskSpaceLow
+        expr: (1 - (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"})) > 0.85
+        for: 10m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Disk space running low"
+          description: "Disk usage exceeds 85% on {{ $labels.instance }}."
+      
+      - alert: DiskSpaceCritical
+        expr: (1 - (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"})) > 0.95
+        for: 5m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical disk space"
+          description: "Disk usage exceeds 95% - immediate cleanup required."
+
+  - name: neuralblitz_free_energy
+    rules:
+      # Free energy alerts
+      - alert: FreeEnergyEfficiencyLow
+        expr: neuralblitz_free_energy_efficiency < 0.5
+        for: 10m
+        labels:
+          severity: warning
+          team: energy
+        annotations:
+          summary: "Free energy efficiency low"
+          description: "Free energy extraction efficiency for {{ $labels.method }}/{{ $labels.system_id }} is below 50%."
+      
+      - alert: FreeEnergyCalculationSlow
+        expr: histogram_quantile(0.95, sum(rate(neuralblitz_free_energy_calculation_duration_seconds_bucket[5m])) by (le)) > 3
+        for: 10m
+        labels:
+          severity: warning
+          team: energy
+        annotations:
+          summary: "Slow free energy calculations"
+          description: "95th percentile free energy calculation time exceeds 3 seconds."

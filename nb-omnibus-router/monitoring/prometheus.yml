@@ -78,3 +78,21 @@ groups:
         annotations:
           summary: "Partner quota running low"
           description: "Partner has less than 100 quota remaining."
+
+      - alert: CacheHitRateLow
+        expr: rate(neuralblitz_cache_hits_total[5m]) / (rate(neuralblitz_cache_hits_total[5m]) + rate(neuralblitz_cache_misses_total[5m])) < 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Cache hit rate is low"
+          description: "Cache hit rate has fallen below 50% in the last 5 minutes."
+
+      - alert: CacheConnectionFailed
+        expr: neuralblitz_cache_errors_total > 10
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Cache connection failures detected"
+          description: "More than 10 cache errors in the last minute. Redis may be unavailable."

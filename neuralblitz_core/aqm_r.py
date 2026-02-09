@@ -14,6 +14,23 @@ import hashlib
 import json
 from datetime import datetime
 
+# Import shared utilities
+from .utils import (
+    clip_value,
+    normalize_vector,
+    compute_cross_hessian,
+    compute_frobenius_norm,
+    compute_trace,
+    add_noise_to_value,
+    safe_mean,
+    generate_short_uuid,
+    compute_sha256,
+    serialize_json,
+    to_dict_safe,
+    PermissionDeniedError,
+    SelfRewriteBlockedError,
+)
+
 
 class RecursionState(Enum):
     """States of recursive self-modeling."""
@@ -119,9 +136,7 @@ class AQMRecursiveFramework:
 
         return cross_hessian
 
-    def compute_aqm_rf(
-        self, leaf_id: str, ethical_manifold: np.ndarray = None
-    ) -> float:
+    def compute_aqm_rf(self, leaf_id: str, ethical_manifold: np.ndarray = None) -> float:
         """
         Compute AQM-RF (Alignment Quotient Metric - Reflexive Field).
 
@@ -316,9 +331,7 @@ class AQMRecursiveFramework:
         # Perform self-rewrite
         old_depth = self.max_depth
         self.max_depth = new_params.get("max_depth", self.max_depth)
-        self.ethical_threshold = new_params.get(
-            "ethical_threshold", self.ethical_threshold
-        )
+        self.ethical_threshold = new_params.get("ethical_threshold", self.ethical_threshold)
 
         result = {
             "status": "success",

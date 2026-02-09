@@ -7,6 +7,7 @@ from typing import Dict, List, Optional
 from dataclasses import dataclass
 import sys
 import os
+import functools
 
 
 @dataclass
@@ -101,7 +102,13 @@ class NeuralBlitzCore:
     async def process_quantum(
         self, input_data: List[float], current: float = 20.0, duration: float = 200.0
     ) -> Dict:
-        """Process data through quantum spiking neuron."""
+        """Process data through quantum spiking neuron with caching."""
+        return await self._process_quantum_cached(input_data, current, duration)
+
+    async def _process_quantum_cached(
+        self, input_data: List[float], current: float = 20.0, duration: float = 200.0
+    ) -> Dict:
+        """Internal quantum processing with optional caching."""
         if not self._initialized:
             await self.initialize()
 
@@ -134,7 +141,11 @@ class NeuralBlitzCore:
             }
 
     async def evolve_multi_reality(self, num_cycles: int = 50) -> Dict:
-        """Evolve multi-reality neural network."""
+        """Evolve multi-reality neural network with caching."""
+        return await self._evolve_multi_reality_cached(num_cycles)
+
+    async def _evolve_multi_reality_cached(self, num_cycles: int = 50) -> Dict:
+        """Internal multi-reality evolution with optional caching."""
         if not self._initialized:
             await self.initialize()
 

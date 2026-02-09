@@ -13,6 +13,20 @@ import hashlib
 import json
 from datetime import datetime
 
+# Import shared utilities
+from .utils import (
+    compute_phase_difference,
+    apply_phase_shift,
+    generate_short_uuid,
+    generate_braid_id,
+    generate_transfer_id,
+    compute_sha256,
+    serialize_json,
+    to_dict_safe,
+    PermissionDeniedError,
+    TeletopologicalBlockedError,
+)
+
 
 class BraidOperation(Enum):
     """Valid topological operations on braids."""
@@ -234,9 +248,7 @@ class OQTBOSSystem:
             )
             strands.append(strand)
 
-        braid_id = hashlib.sha256(
-            json.dumps(ontologies, sort_keys=True).encode()
-        ).hexdigest()[:16]
+        braid_id = hashlib.sha256(json.dumps(ontologies, sort_keys=True).encode()).hexdigest()[:16]
 
         braid = Braid(
             id=braid_id,
@@ -280,9 +292,7 @@ class OQTBOSSystem:
         # Check privileged operations
         if operation in [BraidOperation.NON_LOCAL_REWRITE, BraidOperation.TELETOPO]:
             if not judex_quorum:
-                raise PermissionError(
-                    f"Operation {operation.value} requires Judex Quorum"
-                )
+                raise PermissionError(f"Operation {operation.value} requires Judex Quorum")
             if operation == BraidOperation.TELETOPO and not self.teletopo_enabled:
                 raise PermissionError("Teletopological transfers are blocked")
 
@@ -424,9 +434,7 @@ if __name__ == "__main__":
     # Try privileged operation without quorum (should fail)
     print(f"\n🔒 Testing privileged operation protection:")
     try:
-        oqt.apply_gate(
-            new_braid.id, BraidOperation.NON_LOCAL_REWRITE, {}, judex_quorum=False
-        )
+        oqt.apply_gate(new_braid.id, BraidOperation.NON_LOCAL_REWRITE, {}, judex_quorum=False)
     except PermissionError as e:
         print(f"   ✓ Correctly blocked: {e}")
 

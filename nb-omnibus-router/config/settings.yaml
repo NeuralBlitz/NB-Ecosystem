@@ -27,3 +27,32 @@ WEBSOCKET_MAX_CONNECTIONS_PER_PARTNER: 10
 # Metrics
 METRICS_ENABLED: true
 METRICS_INCLUDE_ENDPOINT_DETAILS: true
+
+# Redis Cache Configuration
+REDIS:
+  host: "redis"
+  port: 6379
+  db: 0
+  password: null
+  max_connections: 50
+  socket_timeout: 5.0
+  socket_connect_timeout: 5.0
+  retry_on_timeout: true
+  health_check_interval: 30
+  
+  # Cache TTL Configuration (seconds)
+  default_ttl: 3600
+  quantum_state_ttl: 300
+  multi_reality_ttl: 600
+  consciousness_ttl: 180
+  api_response_ttl: 900
+  
+  # Cache Warming
+  warmup_enabled: true
+  warmup_batch_size: 100
+  warmup_concurrency: 5
+  
+  # Circuit Breaker
+  circuit_breaker_enabled: true
+  circuit_breaker_threshold: 5
+  circuit_breaker_timeout: 60

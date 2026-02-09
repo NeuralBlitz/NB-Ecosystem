@@ -1,19 +1,21 @@
 """
 Consciousness Routes
-Consciousness integration endpoints
+Consciousness integration endpoints with Redis caching
 """
 
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Dict, Optional
 from datetime import datetime
 from api.auth import verify_api_key
+from utils.cache import cache_consciousness_metrics, cache_api_response, on_event
 
 router = APIRouter()
 
 
 @router.get("/level")
+@cache_consciousness_metrics(ttl=180)  # Cache for 3 minutes
 async def get_consciousness_level(api_key: dict = Depends(verify_api_key)):
-    """Get current consciousness integration level."""
+    """Get current consciousness integration level with caching."""
     return {
         "level": 7,
         "max_level": 8,
@@ -25,8 +27,9 @@ async def get_consciousness_level(api_key: dict = Depends(verify_api_key)):
 
 
 @router.get("/metrics")
+@cache_consciousness_metrics(ttl=180)  # Cache for 3 minutes
 async def get_consciousness_metrics(api_key: dict = Depends(verify_api_key)):
-    """Get detailed consciousness metrics."""
+    """Get detailed consciousness metrics with caching."""
     return {
         "global_consciousness": 0.87,
         "integration_level": 7,
@@ -61,8 +64,9 @@ async def evolve_consciousness(
 
 
 @router.get("/cosmic-bridge")
+@cache_consciousness_metrics(ttl=180)
 async def get_cosmic_bridge_status(api_key: dict = Depends(verify_api_key)):
-    """Get cosmic consciousness bridge status."""
+    """Get cosmic consciousness bridge status with caching."""
     return {
         "status": "connected",
         "strength": 0.92,
@@ -77,8 +81,9 @@ async def get_cosmic_bridge_status(api_key: dict = Depends(verify_api_key)):
 
 
 @router.get("/dimensional-access")
+@cache_consciousness_metrics(ttl=180)
 async def get_dimensional_access(api_key: dict = Depends(verify_api_key)):
-    """Get dimensional computing access status."""
+    """Get dimensional computing access status with caching."""
     return {
         "current_dimensions": 11,
         "max_dimensions": 11,
@@ -86,3 +91,14 @@ async def get_dimensional_access(api_key: dict = Depends(verify_api_key)):
         "processing_modes": ["linear", "parallel", "entangled", "superposition"],
         "dimensional_stability": 0.98,
     }
+
+
+# Cache invalidation handlers
+@on_event("consciousness_evolved")
+async def invalidate_consciousness_cache(**context):
+    """Invalidate consciousness cache when level changes."""
+    from utils.cache import get_cache
+
+    cache = await get_cache()
+    await cache.delete_pattern("nb:consciousness:*")
+    await cache.delete_pattern("nb:warm:consciousness_level")

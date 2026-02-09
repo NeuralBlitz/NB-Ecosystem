@@ -1,0 +1,283 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "neuralblitz-workspace"
+version = "2026.2.9"
+description = "NeuralBlitz Unified Workspace - A symbiotic AI ecosystem integrating LRS Agents, NeuralBlitz Core, and Advanced Research"
+authors = ["NeuralBlitz Team <dev@neuralblitz.ai>"]
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/NeuralBlitz/neuralblitz-workspace"
+homepage = "https://neuralblitz.ai"
+keywords = ["ai", "active-inference", "neural-networks", "quantum", "consciousness", "multi-reality"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+packages = [
+    { include = "lrs", from = "lrs-agents" },
+    { include = "neuralblitz_core", from = "neuralblitz-core/src" },
+    { include = "opencode_lrs_bridge", from = "lrs-agents/integration-bridge/src" },
+    { include = "advanced_research", from = "Advanced-Research/src" },
+    { include = "aetheria", from = "aetheria-project" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+# Core dependencies - shared across packages
+numpy = "^1.24.0"
+scipy = "^1.11.0"
+pydantic = "^2.5.0"
+typing-extensions = "^4.9.0"
+
+# AI/ML Frameworks
+torch = "^2.1.0"
+jax = { version = "^0.4.0", optional = true }
+flax = { version = "^0.7.0", optional = true }
+
+# LangChain ecosystem (lrs-agents)
+langchain = { version = "^0.1.0", optional = true }
+langchain-anthropic = { version = "^0.1.0", optional = true }
+langchain-openai = { version = "^0.0.5", optional = true }
+langchain-community = { version = "^0.0.20", optional = true }
+langgraph = { version = "^0.0.20", optional = true }
+
+# Web/API (integration-bridge)
+fastapi = { version = "^0.104.0", optional = true }
+uvicorn = { version = "^0.24.0", extras = ["standard"], optional = true }
+websockets = { version = "^12.0", optional = true }
+httpx = { version = "^0.25.0", optional = true }
+aiohttp = { version = "^3.9.0", optional = true }
+flask = { version = "^3.0.0", optional = true }
+flask-cors = { version = "^4.0.0", optional = true }
+gunicorn = { version = "^21.2.0", optional = true }
+
+# Authentication/Security
+python-jose = { version = "^3.3.0", extras = ["cryptography"], optional = true }
+passlib = { version = "^1.7.4", extras = ["bcrypt"], optional = true }
+cryptography = { version = "^41.0.0", optional = true }
+
+# Data & Visualization
+matplotlib = { version = "^3.5.0", optional = true }
+jupyter = { version = "^1.0.0", optional = true }
+plotly = { version = "^5.18.0", optional = true }
+
+# Utilities
+pyyaml = "^6.0"
+requests = "^2.28.0"
+typer = "^0.9.0"
+rich = "^13.0.0"
+click = "^8.1.0"
+python-dotenv = "^1.0.0"
+structlog = "^23.2.0"
+loguru = "^0.7.0"
+
+# Monitoring
+prometheus-client = { version = "^0.19.0", optional = true }
+
+[tool.poetry.group.dev.dependencies]
+# Testing
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pytest-asyncio = "^0.21.0"
+pytest-mock = "^3.12.0"
+
+# Code Quality - Unified across all packages
+black = "^23.0.0"
+ruff = "^0.1.0"
+mypy = "^1.7.0"
+bandit = "^1.7.0"
+pre-commit = "^3.5.0"
+
+# Documentation
+mkdocs = "^1.5.0"
+mkdocs-material = "^9.4.0"
+mkdocstrings = { version = "^0.23.0", extras = ["python"] }
+
+# Build tools
+poetry = "^1.7.0"
+setuptools = "^61.0"
+wheel = "^0.41.0"
+
+[tool.poetry.extras]
+# LRS Agents with all integrations
+lrs-agents = ["langchain", "langchain-anthropic", "langchain-openai", "langchain-community", "langgraph"]
+
+# NeuralBlitz Core with advanced features
+neuralblitz = ["jax", "flax", "matplotlib", "plotly"]
+
+# Integration Bridge for API/WebSocket
+bridge = ["fastapi", "uvicorn", "websockets", "httpx", "aiohttp", "flask", "flask-cors", "gunicorn"]
+
+# Advanced Research with all integrations
+research = ["matplotlib", "jupyter", "jax", "flax"]
+
+# Security & Authentication
+security = ["python-jose", "passlib", "cryptography"]
+
+# Monitoring
+monitoring = ["prometheus-client", "plotly"]
+
+# Everything
+all = [
+    "langchain", "langchain-anthropic", "langchain-openai", "langchain-community", "langgraph",
+    "fastapi", "uvicorn", "websockets", "httpx", "aiohttp", "flask", "flask-cors", "gunicorn",
+    "jax", "flax", "matplotlib", "jupyter", "plotly",
+    "python-jose", "passlib", "cryptography",
+    "prometheus-client"
+]
+
+[tool.poetry.scripts]
+# LRS Agents
+lrs = "lrs.cli:main"
+lrs-agents = "lrs.cli:main"
+
+# Integration Bridge
+opencode-lrs-bridge = "opencode_lrs_bridge.cli:main"
+
+# Advanced Research
+advanced-research = "advanced_research.cli:main"
+
+# Aetheria
+aetheria = "aetheria.cli:app"
+
+# NeuralBlitz Core (placeholder)
+neuralblitz = "neuralblitz_core.cli:main"
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | node_modules
+  | \.ruff_cache
+  | \.pytest_cache
+)/
+'''
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "T20", # flake8-print
+]
+ignore = [
+    "E501",  # line too long (handled by black)
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.ruff.isort]
+known-first-party = ["lrs", "neuralblitz_core", "opencode_lrs_bridge", "advanced_research", "aetheria"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+ignore_missing_imports = true
+exclude = [
+    "tests/",
+    "docs/",
+    ".venv/",
+    "build/",
+    "dist/",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "lrs-agents/tests", "neuralblitz-core/tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "-v",
+    "--tb=short",
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow-running tests",
+    "websocket: WebSocket tests",
+    "security: Security tests",
+]
+
+[tool.coverage.run]
+source = ["lrs", "neuralblitz_core", "opencode_lrs_bridge", "advanced_research"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+show_missing = true
+fail_under = 80
+
+[tool.bandit]
+exclude_dirs = ["tests"]
+skips = ["B101", "B601"]
+
+[tool.poetry-monorepo-dependency-plugin]
+type = "path"
+
+[tool.neuralblitz-workspace]
+version = "2026.2.9"
+packages = [
+    "lrs-agents",
+    "neuralblitz-core",
+    "lrs-agents/integration-bridge",
+    "Advanced-Research",
+    "aetheria-project"
+]

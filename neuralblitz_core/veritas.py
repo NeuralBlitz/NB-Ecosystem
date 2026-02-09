@@ -13,6 +13,18 @@ from datetime import datetime
 import hashlib
 import json
 
+# Import shared utilities
+from .utils import (
+    clip_value,
+    safe_mean,
+    compute_sha256,
+    compute_sha512,
+    generate_dag_node_hash,
+    generate_proof_id,
+    serialize_json,
+    to_dict_safe,
+)
+
 
 class ProofStatus(Enum):
     """Status of formal proofs."""
@@ -200,14 +212,12 @@ class VeritasSystem:
         capsule_id = f"VPROOF#{hashlib.sha256(theorem_name.encode()).hexdigest()[:8]}"
 
         # Compute evidence CID
-        evidence_cid = hashlib.sha256(
-            json.dumps(evidence, sort_keys=True).encode()
-        ).hexdigest()[:16]
+        evidence_cid = hashlib.sha256(json.dumps(evidence, sort_keys=True).encode()).hexdigest()[
+            :16
+        ]
 
         # Verify theorem (simplified)
-        verdict, confidence = self._verify_theorem(
-            theorem_name, theorem_statement, evidence
-        )
+        verdict, confidence = self._verify_theorem(theorem_name, theorem_statement, evidence)
 
         # Create proof
         proof = VeritasProof(
@@ -422,9 +432,7 @@ if __name__ == "__main__":
     vpce = veritas.compute_vpce(channels)
     print(f"   VPCE score: {vpce:.4f}")
     print(f"   Threshold: {veritas.coherence_threshold}")
-    print(
-        f"   Status: {'✅ PASS' if vpce >= veritas.coherence_threshold else '❌ FAIL'}"
-    )
+    print(f"   Status: {'✅ PASS' if vpce >= veritas.coherence_threshold else '❌ FAIL'}")
 
     # Create proofs
     print("\n📜 Creating formal proofs:")

@@ -1,0 +1,180 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "neuralblitz-reality",
+    "title": "NeuralBlitz - Reality Network",
+    "tags": ["neuralblitz", "reality", "network", "entanglement"],
+    "timezone": "utc",
+    "schemaVersion": 36,
+    "refresh": "5s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "templating": {
+      "list": [
+        {
+          "name": "network_id",
+          "type": "query",
+          "query": "label_values(neuralblitz_reality_network_stability, network_id)",
+          "multi": true,
+          "includeAll": true
+        }
+      ]
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Network Stability Index",
+        "type": "gauge",
+        "targets": [
+          {
+            "expr": "neuralblitz_reality_network_stability{network_id=~\"$network_id\"}",
+            "legendFormat": "{{network_id}} - {{reality_type}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percentunit",
+            "min": 0,
+            "max": 1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "red", "value": null },
+                { "color": "yellow", "value": 0.6 },
+                { "color": "green", "value": 0.85 }
+              ]
+            }
+          }
+        },
+        "gridPos": { "h": 6, "w": 8, "x": 0, "y": 0 }
+      },
+      {
+        "id": 2,
+        "title": "Phase Coherence",
+        "type": "gauge",
+        "targets": [
+          {
+            "expr": "neuralblitz_reality_phase_coherence",
+            "legendFormat": "{{reality_a}} ↔ {{reality_b}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percentunit",
+            "min": 0,
+            "max": 1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "red", "value": null },
+                { "color": "yellow", "value": 0.7 },
+                { "color": "green", "value": 0.9 }
+              ]
+            }
+          }
+        },
+        "gridPos": { "h": 6, "w": 8, "x": 8, "y": 0 }
+      },
+      {
+        "id": 3,
+        "title": "Active Entanglements",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(neuralblitz_reality_entanglement_pairs_active)",
+            "legendFormat": "Total Pairs"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short"
+          }
+        },
+        "gridPos": { "h": 6, "w": 8, "x": 16, "y": 0 }
+      },
+      {
+        "id": 4,
+        "title": "Network Stability Over Time",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "neuralblitz_reality_network_stability{network_id=~\"$network_id\"}",
+            "legendFormat": "{{network_id}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Stability",
+            "min": 0,
+            "max": 1
+          }
+        ],
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 6 }
+      },
+      {
+        "id": 5,
+        "title": "Reality Bridge Latency",
+        "type": "heatmap",
+        "targets": [
+          {
+            "expr": "rate(neuralblitz_reality_bridge_latency_seconds_bucket[5m])",
+            "legendFormat": "{{le}}"
+          }
+        ],
+        "dataFormat": "tsbuckets",
+        "yBucketBound": "auto",
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 6 }
+      },
+      {
+        "id": 6,
+        "title": "Synchronization Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "neuralblitz_reality_synchronization_rate",
+            "legendFormat": "{{sync_type}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Syncs/min",
+            "unit": "cpm"
+          }
+        ],
+        "gridPos": { "h": 6, "w": 12, "x": 0, "y": 14 }
+      },
+      {
+        "id": 7,
+        "title": "Entanglement Pairs by Reality",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "neuralblitz_reality_entanglement_pairs_active",
+            "legendFormat": "{{reality_combination}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Active Pairs",
+            "unit": "short"
+          }
+        ],
+        "gridPos": { "h": 6, "w": 12, "x": 12, "y": 14 }
+      },
+      {
+        "id": 8,
+        "title": "Cross-Reality Phase Coherence Matrix",
+        "type": "heatmap",
+        "targets": [
+          {
+            "expr": "neuralblitz_reality_phase_coherence",
+            "legendFormat": "{{reality_a}} - {{reality_b}}"
+          }
+        ],
+        "gridPos": { "h": 8, "w": 24, "x": 0, "y": 20 }
+      }
+    ]
+  }
+}

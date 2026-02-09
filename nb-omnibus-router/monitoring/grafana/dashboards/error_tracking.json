@@ -1,0 +1,282 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "neuralblitz-errors",
+    "title": "NeuralBlitz - Error Tracking",
+    "tags": ["neuralblitz", "errors", "tracking"],
+    "timezone": "utc",
+    "schemaVersion": 36,
+    "refresh": "5s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "templating": {
+      "list": [
+        {
+          "name": "error_type",
+          "type": "query",
+          "query": "label_values(neuralblitz_api_errors_total, error_type)",
+          "multi": true,
+          "includeAll": true
+        }
+      ]
+    },
+    "annotations": {
+      "list": [
+        {
+          "name": "Errors",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "increase(neuralblitz_api_errors_total[1m]) > 0",
+          "tagKeys": "error_type,route",
+          "textFormat": "Error: {{error_type}} on {{route}}"
+        }
+      ]
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Total Errors (1h)",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(increase(neuralblitz_api_errors_total[1h]))",
+            "legendFormat": "Total"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 10 },
+                { "color": "red", "value": 50 }
+              ]
+            }
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 }
+      },
+      {
+        "id": 2,
+        "title": "Error Rate",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_errors_total[5m])) / sum(rate(neuralblitz_api_requests_total[5m])) * 100",
+            "legendFormat": "Error Rate %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 1 },
+                { "color": "red", "value": 5 }
+              ]
+            }
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 }
+      },
+      {
+        "id": 3,
+        "title": "Circuit Breaker Failures",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_circuit_breaker_failures_total[5m]))",
+            "legendFormat": "Failures/sec"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 0.1 },
+                { "color": "red", "value": 1 }
+              ]
+            }
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 }
+      },
+      {
+        "id": 4,
+        "title": "Open Circuits",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "count(neuralblitz_circuit_breaker_state{state=\"open\"})",
+            "legendFormat": "Open Circuits"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 1 },
+                { "color": "red", "value": 3 }
+              ]
+            }
+          }
+        },
+        "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 }
+      },
+      {
+        "id": 5,
+        "title": "Error Rate Over Time",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_errors_total[5m])) by (error_type)",
+            "legendFormat": "{{error_type}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Errors/sec",
+            "unit": "short"
+          }
+        ],
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 }
+      },
+      {
+        "id": 6,
+        "title": "Error Rate by Route",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_api_errors_total[5m])) by (route) / sum(rate(neuralblitz_api_requests_total[5m])) by (route) * 100",
+            "legendFormat": "{{route}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Error %",
+            "unit": "percent"
+          }
+        ],
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 }
+      },
+      {
+        "id": 7,
+        "title": "Errors by Type",
+        "type": "piechart",
+        "targets": [
+          {
+            "expr": "sum(increase(neuralblitz_api_errors_total[1h])) by (error_type)",
+            "legendFormat": "{{error_type}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "pieType": "donut"
+            }
+          }
+        },
+        "gridPos": { "h": 8, "w": 8, "x": 0, "y": 12 }
+      },
+      {
+        "id": 8,
+        "title": "Errors by Route",
+        "type": "piechart",
+        "targets": [
+          {
+            "expr": "sum(increase(neuralblitz_api_errors_total[1h])) by (route)",
+            "legendFormat": "{{route}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "pieType": "donut"
+            }
+          }
+        },
+        "gridPos": { "h": 8, "w": 8, "x": 8, "y": 12 }
+      },
+      {
+        "id": 9,
+        "title": "Trace Errors",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_trace_errors_total[5m])) by (operation)",
+            "legendFormat": "{{operation}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Errors/sec",
+            "unit": "short"
+          }
+        ],
+        "gridPos": { "h": 8, "w": 8, "x": 16, "y": 12 }
+      },
+      {
+        "id": 10,
+        "title": "Circuit Breaker Failures by Service",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_circuit_breaker_failures_total[5m])) by (service_name)",
+            "legendFormat": "{{service_name}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Failures/sec",
+            "unit": "short"
+          }
+        ],
+        "gridPos": { "h": 6, "w": 12, "x": 0, "y": 20 }
+      },
+      {
+        "id": 11,
+        "title": "Quantum Errors",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(neuralblitz_quantum_errors_total[5m])) by (error_type)",
+            "legendFormat": "{{error_type}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Errors/sec",
+            "unit": "short"
+          }
+        ],
+        "gridPos": { "h": 6, "w": 12, "x": 12, "y": 20 }
+      },
+      {
+        "id": 12,
+        "title": "Error Details Table",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "sum(increase(neuralblitz_api_errors_total[1h])) by (route, error_type, status_code)",
+            "format": "table",
+            "instant": true
+          }
+        ],
+        "columns": [
+          { "text": "Route", "value": "route" },
+          { "text": "Error Type", "value": "error_type" },
+          { "text": "Status Code", "value": "status_code" },
+          { "text": "Count (1h)", "value": "Value" }
+        ],
+        "gridPos": { "h": 8, "w": 24, "x": 0, "y": 26 }
+      }
+    ]
+  }
+}

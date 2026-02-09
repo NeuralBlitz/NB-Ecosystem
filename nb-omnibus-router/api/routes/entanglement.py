@@ -1,23 +1,25 @@
 """
 Cross-Reality Routes
-Cross-reality entanglement endpoints
+Cross-reality entanglement endpoints with Redis caching
 """
 
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Dict, List, Optional
 from datetime import datetime
 from api.auth import verify_api_key
+from utils.cache import cache_multi_reality_evolution, cache_api_response
 
 router = APIRouter()
 
 
 @router.post("/entangle")
+@cache_multi_reality_evolution(ttl=600)  # Cache for 10 minutes
 async def create_entanglement(
     num_pairs: int = 2,
     reality_types: Optional[List[str]] = None,
     api_key: dict = Depends(verify_api_key),
 ):
-    """Create cross-reality entanglement."""
+    """Create cross-reality entanglement with caching."""
     return {
         "entanglement_id": f"ent_{hash(str(datetime.now())) % 100000}",
         "pairs": num_pairs,
@@ -30,8 +32,9 @@ async def create_entanglement(
 
 
 @router.get("/entanglements")
+@cache_multi_reality_evolution(ttl=300)  # Cache for 5 minutes
 async def list_entanglements(api_key: dict = Depends(verify_api_key)):
-    """List all active entanglements."""
+    """List all active entanglements with caching."""
     return {
         "entanglements": [
             {
@@ -74,8 +77,9 @@ async def reality_transfer(
 
 
 @router.get("/realities")
+@cache_api_response(ttl=3600)  # Cache for 1 hour - rarely changes
 async def list_reality_types(api_key: dict = Depends(verify_api_key)):
-    """List available reality types."""
+    """List available reality types with caching."""
     return {
         "realities": [
             {
@@ -115,10 +119,11 @@ async def list_reality_types(api_key: dict = Depends(verify_api_key)):
 
 
 @router.post("/synchronize")
+@cache_multi_reality_evolution(ttl=600)  # Cache for 10 minutes
 async def synchronize_realities(
     realities: List[str], api_key: dict = Depends(verify_api_key)
 ):
-    """Synchronize multiple realities."""
+    """Synchronize multiple realities with caching."""
     return {
         "synchronization_id": f"sync_{hash(str(datetime.now())) % 100000}",
         "realities": realities,
@@ -130,8 +135,9 @@ async def synchronize_realities(
 
 
 @router.get("/coherence")
+@cache_multi_reality_evolution(ttl=300)  # Cache for 5 minutes
 async def get_coherence_metrics(api_key: dict = Depends(verify_api_key)):
-    """Get cross-reality coherence metrics."""
+    """Get cross-reality coherence metrics with caching."""
     return {
         "global_coherence": 0.88,
         "reality_coherence": {
