@@ -1,0 +1,96 @@
+
+This schema is designed to be:
+
+Strict: It enforces data types and required fields.
+Descriptive: It includes annotations explaining the purpose of each field.
+Extensible: The metadata field allows for flexible, domain-specific information.
+Here is the JSON Schema file for an Onton.
+
+code
+Json name=Protocols/Onton_Schema.json
+
+
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neuralblitz.ai/schemas/oqt-bos/onton.json",
+  "title": "Onton",
+  "description": "The formal JSON Schema for an Ontological Unit (Onton), the fundamental unit of meaning in the OQT-BOS.",
+  "type": "object",
+  "properties": {
+    "uaid": {
+      "description": "The Unique Artifact ID for the Onton. Must conform to the NBX-ONT-* format.",
+      "type": "string",
+      "pattern": "^NBX-ONT-[A-Z0-9-]+$"
+    },
+    "goldenDAG": {
+      "description": "The BLAKE3 hash of the canonical Onton definition, ensuring its integrity and provenance.",
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "timestamp": {
+      "description": "The ISO 8601 UTC timestamp of the Onton's creation or last significant modification.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "symbol": {
+      "description": "The primary human-readable symbolic representation or name of the concept.",
+      "type": "string",
+      "minLength": 1
+    },
+    "vector": {
+      "description": "The numerical representation of the Onton in the Dynamic Representational Substrate (DRS). Used for calculating semantic resonance.",
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 1
+    },
+    "ethical_weight": {
+      "description": "A scalar value from 0.0 to 1.0 representing the Onton's intrinsic importance or constraint level within the NeuralBlitz ethical framework.",
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "metadata": {
+      "description": "An extensible object for storing additional, domain-specific attributes.",
+      "type": "object",
+      "properties": {
+        "domain": {
+          "description": "The primary knowledge domain (e.g., 'philosophy', 'physics', 'ethics').",
+          "type": "string"
+        },
+        "origin_codex": {
+          "description": "The Codex ID from which this Onton was first incepted.",
+          "type": "string"
+        },
+        "is_foundational": {
+          "description": "A boolean indicating if this Onton is part of the core axiomatic layer of The Weave.",
+          "type": "boolean"
+        },
+        "stability_index": {
+          "description": "A measure of the Onton's resistance to semantic drift.",
+          "type": "number"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "uaid",
+    "goldenDAG",
+    "timestamp",
+    "symbol",
+    "vector",
+    "ethical_weight",
+    "metadata"
+  ]
+}
+
+    }
+  },
+  "How This Schema is Used": [
+    "Validation: Before any module (like CodeForge or the DRS Engine) can inscribe a new Onton into The Weave, it must validate the Onton's JSON representation against this schema. If the uaid is malformed, the ethical_weight is out of bounds, or a required field is missing, the operation is rejected.""
+,"API Contracts: When building APIs that expose parts of The Weave, this schema serves as a formal contract for clients, telling them exactly what data to expect.""
+,"Automatic Code Generation: Tools can use this schema to automatically generate data classes or validation logic in different programming languages (like Python's pydantic or TypeScript interfaces), ensuring consistency across the entire NeuralBlitz ecosystem.""
+,"Documentation: The schema itself is a form of documentation, clearly and unambiguously defining the structure of the most fundamental object in the OQT-BOS.""
+ ]

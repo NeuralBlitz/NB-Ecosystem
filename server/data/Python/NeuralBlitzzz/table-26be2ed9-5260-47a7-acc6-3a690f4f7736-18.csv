@@ -1,0 +1,5 @@
+﻿Subcommand,Example,Function
+import,ark import docs.zip --tier cold,Store snapshots in ARK’s cold tier.
+pull,ark pull NBX-DOC-Φ3-UNE-MICRO --tier warm,Retrieve artifacts from ARK.
+verify,ark verify NBX-DOC-Φ4-REPO-BUILD,Check cryptographic integrity without pulling.
+list,ark list --tier cold,List stored snapshots.

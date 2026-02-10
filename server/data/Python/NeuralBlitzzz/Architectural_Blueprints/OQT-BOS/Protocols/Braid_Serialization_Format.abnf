@@ -1,0 +1,30 @@
+BSF/0.1
+UAID: NBX-BRD-JUSTICE-COMPASSION-001
+GoldenDAG: a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2
+Timestamp: 1672531200
+
+ONTON NBX-ONT-JUSTICE-A1F4
+{
+    symbol: "The concept of Justice"
+    vector: [0.9, 0.1, 0.5]
+    ethical_weight: 0.95
+    metadata: {"domain": "philosophy", "origin_codex": "C-OMNI-VOL1_GENESIS"}
+}
+
+ONTON NBX-ONT-COMPASSION-B3C1
+{
+    symbol: "The capacity for Compassion"
+    vector: [0.2, 0.8, 0.7]
+    ethical_weight: 0.98
+    metadata: {"domain": "ethics", "is_foundational": true}
+}
+
+BRAID NBX-BRD-JUSTICE-COMPASSION-001
+{
+    topology: "SOPES:Entangled_Pair"
+    ontons: [NBX-ONT-JUSTICE-A1F4, NBX-ONT-COMPASSION-B3C1]
+    weave: {
+        (NBX-ONT-JUSTICE-A1F4) --[RESONANCE]-> (NBX-ONT-COMPASSION-B3C1) {"strength": 0.88}
+        (NBX-ONT-COMPASSION-B3C1) --[DEPENDENCY]-> (NBX-ONT-JUSTICE-A1F4) {"comment": "Justice requires compassion to be humane."}
+    }
+}

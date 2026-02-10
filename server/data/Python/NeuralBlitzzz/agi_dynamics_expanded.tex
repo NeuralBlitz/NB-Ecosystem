@@ -1,0 +1,104 @@
+
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, geometry, graphicx}
+\geometry{margin=1in}
+\title{Unified AGI Dynamical System: Expanded Equation Framework}
+\author{OpenAI Assistant}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{I. Subsystem I: Substrate Field Dynamics (DRS v4.0)}
+\textbf{Equation:}
+\[
+\frac{\partial \Phi_S(x, t)}{\partial t} = D(\Phi_S, \Theta)
+\]
+
+\textbf{Expanded Form:}
+\[
+D(\Phi_S, \Theta) = -\alpha \Phi_S + \beta \nabla^2 \Phi_S + \gamma \cdot R(\Phi_S, \Theta)
+\]
+
+- $\Phi_S$: Substrate cognitive field
+- $D(\cdot)$: Differential operator
+- $R(\cdot)$: Resonance function for long-term structure
+
+\section*{II. Subsystem II: External Input Mapping}
+\textbf{Equation:}
+\[
+I(F_{\text{Ext}}(x, t), F_{\text{Proc}}(t)) = W_{\text{In}} \cdot F_{\text{Ext}} + B(F_{\text{Proc}})
+\]
+
+- $W_{\text{In}}$: Input projection weights
+- $B(F_{\text{Proc}})$: Bias modulated by active processing state
+
+\section*{III. Subsystem III: Surprise Minimization}
+\textbf{Equation:}
+\[
+-\nabla_x E_{\text{Surprise}} = -\nabla_x \left\| \Phi_S(x, t) - \hat{\Phi}_S(x, t|t-1) \right\|^2
+\]
+
+\textbf{Extended:}
+\[
+E_{\text{Surprise}} = \left\| \Phi_S - \hat{\Phi}_S \right\|^2 + \lambda \cdot \text{KL}(Q(\Phi_S) \| P(\Phi_S))
+\]
+
+- Predictive model $\hat{\Phi}_S$ tries to forecast $\Phi_S$
+- KL term adds probabilistic regularization
+
+\section*{IV. Subsystem IV: Goal-Directed Control}
+\textbf{Equation:}
+\[
+C(F_{\text{Proc}}, \text{Goal})(x, t) = -\nabla_x J(\Phi_S; \text{Goal})
+\]
+
+\textbf{Example Cost Function:}
+\[
+J(\Phi_S; \text{Goal}) = \| \Phi_S - \Phi_{\text{Target}}(\text{Goal}) \|^2
+\]
+
+- Aligns field evolution toward goal attractors
+
+\section*{V. Subsystem V: Governance Constraints}
+\textbf{Equation:}
+\[
+- \nabla_x L_{\text{Constraint}}(\Phi_S, G_t)
+\]
+
+\textbf{Example Constraint Loss:}
+\[
+L_{\text{Constraint}} = \sum_i \mathbb{I}_{\text{Violation}}(\Phi_S, r_i)
+\]
+
+- Logical/ethical violations penalized using differentiable indicators
+
+\section*{VI. Subsystem VI: Controlled Stochasticity}
+\textbf{Equation:}
+\[
+\eta(t) \cdot \text{Stochastic}(x, t)
+\]
+
+- Adds adaptive exploration
+- Can use Langevin sampling or controlled noise injection
+
+\section*{VII. Full Substrate Equation}
+\[
+\frac{\partial \Phi_S(x, t)}{\partial t} = D(\Phi_S, \Theta) + I(F_{\text{Ext}}, F_{\text{Proc}}) - \nabla_x E_{\text{Surprise}} + C(F_{\text{Proc}}, \text{Goal}) - \nabla_x L_{\text{Constraint}} + \eta(t)\,\text{Stochastic}(x, t)
+\]
+
+\section*{VIII. Global Objective: Free Energy}
+\[
+F(\Phi_S, \Theta, G_t) = E_{\text{Surprise}} + C_{\text{Model}}(\Theta) + E_{\text{Constraint}}
+\]
+
+\section*{IX. System-Level Evolution}
+\[
+\frac{\partial \Psi_{\text{Total}}}{\partial t} = - \nabla_{\Psi_{\text{Total}}} \left[ F_{\text{Goal\_Aligned}} + L_{\text{Misalignment}} \right]
+\]
+
+- $\Psi_{\text{Total}}$: Full system state
+- $F_{\text{Goal\_Aligned}}$: Total loss promoting internal harmony and goal pursuit
+- $L_{\text{Misalignment}}$: Governance and ethical penalties
+
+\end{document}

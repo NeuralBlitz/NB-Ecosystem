@@ -1,0 +1,5 @@
+﻿Term,Definition,UAID
+Causal Nexus,Directed acyclic causal graph layer in DRS v5.0.,NBX-DOC-Φ3-DRS-STOR
+Golden DAG,Cryptographically sealed DAG snapshot via AEGIS + ARK.,NBX-ENG-Φ3-DEE-WASI
+CKIP,Capability Kernel Interaction Protocol (gRPC-based).,NBX-API-Φ5-CKIP-4.1.abnf
+Flourishing Objective,Vector  F = w_p\Delta P + w_r\Delta R + w_w\Delta W + w_e\Delta E \geq \theta_0 .,NBX-DOC-Φ1-32DFFD11 §8.2

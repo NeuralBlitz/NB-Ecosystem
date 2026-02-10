@@ -1,0 +1,26 @@
+{
+  "name": "Volume 01: Genesis & System Mandate",
+  "UAID": "NBX-DIR-VOL01",
+  "GoldenDAG": "b3c4d5e6f7a8b9c0d1e2f3a4b5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0",
+  "timestamp": "2025-07-28T15:02:00Z",
+  "description": "This manifest anchors Volume 1 of the Absolute Codex. This volume chronicles the complete birth-to-present evolution of NeuralBlitz, codifies its raison d'être, and details its foundational purpose statements and guiding principles.",
+  "verification_command": "/invoke custodian --verify path=\\\"/Scriptorium/Volume_01_Genesis/manifest.json\\\"",
+  "parent_volume_uaid": "NBX-DIR-SCRIPT-ROOT",
+  "contents": [
+    {
+      "name": "Genesis_and_System_Mandate.md",
+      "type": "file",
+      "description": "The canonical narrative document for Volume 01, detailing the system's chronological genesis, purpose statements, guiding principles, and version lineage.",
+      "UAID": "NBX-DOC-VOL01-MAIN",
+      "GoldenDAG": "c4d5e6f7a8b9c0d1e2f3a4b5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1",
+      "size_kb": 45.8
+    },
+    {
+      "name": "assets",
+      "type": "directory",
+      "description": "Contains supplementary data and visualizations for Volume 01.",
+      "UAID": "NBX-DIR-VOL01-ASSETS",
+      "GoldenDAG": "d5e6f7a8b9c0d1e2f3a4b5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2"
+    }
+  ]
+}

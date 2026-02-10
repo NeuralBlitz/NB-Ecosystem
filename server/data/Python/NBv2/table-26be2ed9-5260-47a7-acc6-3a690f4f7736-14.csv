@@ -1,0 +1,6 @@
+﻿Subcommand,Example,Function
+load --shadow,custodian load --shadow sg_rules.bin,Load SentiaGuard rules in shadow mode.
+promote,custodian promote sg_rules.bin,Activate shadow rules.
+state,custodian state --json,"Show SAFE-MODE status, active policies, incidents."
+policy-compiler,policy-compiler rules.yaml --target 3 --out sg_rules_v3.bin,Compile YAML → DFSM bytecode.
+policy diff,policy-compiler diff v2.yaml v3.yaml --risk,Compare policy versions.

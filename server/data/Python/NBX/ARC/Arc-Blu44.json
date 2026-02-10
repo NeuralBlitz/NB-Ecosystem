@@ -1,0 +1,2127 @@
+Notebook[{
+Cell["Resonant Causal Synchronization Equation (RCSE) System", "Title"],
+Cell["Symbolic Variable Definitions", "Section"],
+Cell[BoxData[
+RowBox[{
+"ClearAll", "[",
+RowBox[{"ψ", ",", "ϕ", ",", "R", ",", "ℐ", ",", "x", ",", "t", ",", "ℏ", ",", "m", ",", "c", ",", "α", ",", "β", ",",
+"ωres"}],
+"]"}]], "Input"],
+Cell[BoxData[
+RowBox[{
+RowBox[{"ψ", "=", "ψ[x, t]"}], ";",
+RowBox[{"ϕ", "=", "ϕ[x, t]"}], ";",
+RowBox[{"ℏ", "=", "Symbol["\[HBar]"]"}], ";",
+RowBox[{"R", "=", "R[t]"}], ";",
+RowBox[{"ℐ", "=", "ℐ[t]"}], ";"
+}]], "Input"],
+Cell["Microstate Evolution Equation", "Section"],
+Cell[BoxData[
+RowBox[{
+"MicrostateEq", "=",
+RowBox[{"I", " ", "ℏ", " ",
+RowBox[{"D", "[",
+RowBox[{"ψ", ",", "t"}], "]"}], "==",
+RowBox[{"(",
+RowBox[{
+RowBox[{"-",
+FractionBox[
+SuperscriptBox["ℏ", "2"],
+RowBox[{"2", " ", "m"}]]}],
+RowBox[{"D", "[",
+RowBox[{"ψ", ",",
+RowBox[{"{",
+RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "+",
+RowBox[{"α", " ", "ϕ"}]}], ")"}], " ", "ψ"}]}]], "Input"],
+Cell["Macrostate Field Equation", "Section"],
+Cell[BoxData[
+RowBox[{
+"MacrostateEq", "=",
+RowBox[{
+RowBox[{"D", "[",
+RowBox[{"ϕ", ",",
+RowBox[{"{",
+RowBox[{"t", ",", "2"}], "}"}]}], "]"}], "-",
+RowBox[{"c", "^", "2"}],
+RowBox[{"D", "[",
+RowBox[{"ϕ", ",",
+RowBox[{"{",
+RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "==",
+RowBox[{"β", " ",
+RowBox[{"Abs", "[", "ψ", "]"}], "^", "2"}]}]}]], "Input"],
+Cell["Resonant Synchronization Function", "Section"],
+Cell[BoxData[
+RowBox[{
+"ResonanceCondition", "=",
+RowBox[{"R", "==",
+SuperscriptBox[
+RowBox[{"Abs", "[",
+RowBox[{"Integrate", "[",
+RowBox[{
+RowBox[{"Conjugate", "[", "ψ", "]"}], " ", "ϕ", ",",
+RowBox[{"{",
+RowBox[{"x", ",",
+RowBox[{"-", "Infinity"}], ",", "Infinity"}], "}"}]}], "]"}], "]"}], "2"]}]}]], "Input"],
+Cell["Emergent Non-local Phase Integral", "Section"],
+Cell[BoxData[
+RowBox[{
+"PhaseIntegral", "=",
+RowBox[{"Integrate", "[",
+RowBox[{
+RowBox[{"ψ", " ",
+RowBox[{"Exp", "[",
+RowBox[{"I", " ",
+RowBox[{"Integrate", "[",
+RowBox[{
+RowBox[{"ϕ", "/.",
+RowBox[{"x", "->", "s"}]}], ",",
+RowBox[{"{",
+RowBox[{"s", ",", "x0", ",", "x"}], "}"}]}], "]"}]}], "]"}]}], ",",
+RowBox[{"{",
+RowBox[{"x", ",",
+RowBox[{"-", "Infinity"}], ",", "Infinity"}], "}"}]}], "]"}]}]], "Input"],
+Cell["Bundle into Association", "Section"],
+Cell["Bundle into Association", "Section"],
+Cell[BoxData[
+RowBox[{
+"RCSEModel", "=",
+RowBox[{"<|",
+RowBox[{
+RowBox[{""MicrostateEq"", "->", "MicrostateEq"}], ",",
+RowBox[{""MacrostateEq"", "->", "MacrostateEq"}], ",",
+RowBox[{""ResonanceCondition"", "->", "ResonanceCondition"}], ",",
+RowBox[{""PhaseIntegral"", "->", "PhaseIntegral"}]}], "|>"}]}]], "Input"]
+}
+]
+# ROCTE Codex Binding Table
+Generated: 2025-08-12T08:15:58Z
+This Codex registers 100 operators bound under the Reflexive Onto-Cognitive Tensor Engine
+(ROCTE).
+- **State**: Ψ(t) ∈ H
+R ⊗ H
+C ⊗ H
+E ⊗ H
+_
+_
+_
+_V (resonance, causality, ethics, veracity)
+- **Coordinator**: Ω₀ (ROCTE orchestrator)
+- **Operators**: Ω
+02 … Ω
+_
+_100 (see binding table)
+- **Gates**: FlourishGate ≥ θ, SentiaGuard attenuation, Veritas invariants, CECT constraints
+## Files
+- `ROCTE
+Codex
+_
+_Binding_Table.csv` — full registry, one row per operator
+- `ROCTE
+Codex
+_
+_Binding_Table.json` — machine-readable registry
+id,name,symbol,operator,category,role,preconditions,postconditions,gates,inputs,outputs,version,ti
+mestamp
+mestamp
+1,Reflexive Onto-Cognitive Tensor Engine (ROCTE),ROCTE,Ω₀,Core Reflexive
+Models,orchestrator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas; CECT,Ψ(t);
+global context Γ; constraints χ,Ψ(t+Δt); audit log Λ; policy signal π,1.0.0,2025-08-12T08:15:58Z
+2,Symbolic Onto-Physical Equation Set (SOPES),SOPES,Ω
+_02,Core Reflexive Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+3,Dynamic Representational Substrate Field Model (DRS-F),DRS-F,Ω
+_03,Core Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+4,Reflexæl Resonance Field Dynamics,M5714D3,Ω
+_04,Core Reflexive Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+5,CharterLayer Ethical Constraint Tensor (CECT),CECT,Ω
+_05,Core Reflexive Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+6,MetaMind Recursive Drift Equation (MRDE),MRDE,Ω
+_06,Core Reflexive Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+7,SentiaGuard Ethical Attenuation Model,M817E9A,Ω
+_07,Core Reflexive Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+8,HALIC Causal Binding Tensor Network,M218E76,Ω
+_08,Core Reflexive Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+9,Conscientia++ Alignment Stability Function,MB5F707,Ω
+_09,Core Reflexive Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+10,Veritas Phase-Coherence Equation,MC8D0D9,Ω
+_10,Core Reflexive Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+11,Multi-Phase Ontonic Substrate Tensor (MOST),MOST,Ω
+_11,Tensor & Field-Based
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+12,Reflexive Phase Operator Harmonic Expansion (RPO-HEX),RPO-HEX,Ω
+_12,Tensor & Field-Based
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+13,Directive Kernel Principle Filter Model,MB7A476,Ω
+_13,Tensor & Field-Based
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+14,Causal Binding–Epistemic Convolution (CBEC),CBEC,Ω
+_14,Tensor & Field-Based
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+15,Symbolic Drift Collapse Function (SDCF),SDCF,Ω
+_15,Tensor & Field-Based Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+16,Ethical Resonance Modulation Equation (ERME),ERME,Ω
+_16,Tensor & Field-Based
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+17,Cognitive Phase-Space Folding Model,M1FE1C2,Ω
+_17,Tensor & Field-Based
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+18,Narrative Entanglement Tensor (NET),NET,Ω
+_18,Tensor & Field-Based Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+19,Temporal Drift Field Equation (TDFE),TDFE,Ω
+_19,Tensor & Field-Based Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+20,Symbolic Attractor Collapse Operator (SACO),SACO,Ω
+_20,Tensor & Field-Based
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+21,Resonant Ethical Potential Function (REPF),REPF,Ω
+_21,Resonance & Harmonics,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+22,Meaning Drift Harmonic Series (MDHS),MDHS,Ω
+_22,Resonance & Harmonics,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+23,Intentional Resonance Activation Model (IRAM),IRAM,Ω
+_23,Resonance &
+Harmonics,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+24,Reflexive Symbolic Gating Equation (RSGE),RSGE,Ω
+_24,Resonance & Harmonics,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+25,Attractor-Based Semantic Pruning Function (ASP-F),ASP-F,Ω
+_25,Resonance &
+Harmonics,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+26,Conceptual Drift Entropy Measure (CDEM),CDEM,Ω
+_26,Resonance & Harmonics,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+27,Symbolic Phase Transition Equation (SPTE),SPTE,Ω
+_27,Resonance & Harmonics,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+28,Recursive Resonance Amplification Model (RRAM),RRAM,Ω
+_28,Resonance &
+Harmonics,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+29,Charter-Coherence Harmonic Operator (CCHO),CCHO,Ω
+_29,Resonance &
+Harmonics,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+30,Causal-Resonance Topology Equation,M707174,Ω
+_30,Resonance & Harmonics,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+31,Synergistic Kernel Activation Equation (SKAE),SKAE,Ω
+_31,Kernel Interaction
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+32,Reflexive Kernel Synergy Tensor (RKST),RKST,Ω
+_32,Kernel Interaction Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+33,Cognitive Kernel Entanglement Function (CKEF),CKEF,Ω
+_33,Kernel Interaction
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+34,Inter-Kernel Drift Coupling Equation (IKDCE),IKDCE,Ω
+_34,Kernel Interaction
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+35,Kernel Inhibition–Excitation Balance Model (KIEBM),KIEBM,Ω
+_35,Kernel Interaction
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+36,Recursive Kernel Weight Adaptation Rule (RKWAR),RKWAR,Ω
+_36,Kernel Interaction
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+37,Kernel Convergence Gradient Function (KCGF),KCGF,Ω
+_37,Kernel Interaction
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+38,Adaptive Kernel Activation Field (AKAF),AKAF,Ω
+_38,Kernel Interaction Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+39,Kernel Drift-Resonance Field Equation (KDRFE),KDRFE,Ω
+_39,Kernel Interaction
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+40,Mutual Kernel Influence Matrix Dynamics,M1E8004,Ω
+_40,Kernel Interaction
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+41,Charter-Adherence Probability Function (CAPF),CAPF,Ω
+_41,Ethical & Governance
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+42,Governance Protocol Stability Model (GPSM),GPSM,Ω
+_42,Ethical & Governance
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+43,Ethical-Resonance Filtering Equation (ERFE),ERFE,Ω
+_43,Ethical & Governance
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+44,Multi-Stage Oversight Tensor (MSOT),MSOT,Ω
+_44,Ethical & Governance Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+45,Principle Compliance Field Equation (PCFE),PCFE,Ω
+_45,Ethical & Governance
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+46,Sentience-Rights Gradient Model (SRGM),SRGM,Ω
+_46,Ethical & Governance
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+47,Moral Drift Containment Function (MDCF),MDCF,Ω
+_47,Ethical & Governance
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+48,Ethical Collapse Prevention Tensor (ECPT),ECPT,Ω
+_48,Ethical & Governance
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+49,CharterLayer Temporal Coherence Equation (CTCE),CTCE,Ω
+_49,Ethical & Governance
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+50,Governance-Lattice Stability Model,M8C5DEA,Ω
+_50,Ethical & Governance
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+51,Epistemic Field Modulation Tensor (EFMT),EFMT,Ω
+_51,Memory & Epistemic
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+52,Knowledge Folding Entropy Function (KFEF),KFEF,Ω
+_52,Memory & Epistemic
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+53,Memory–Causality Binding Equation (MCBE),MCBE,Ω
+_53,Memory & Epistemic
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+54,Recursive Epistemic Lattice Model (RELM),RELM,Ω
+_54,Memory & Epistemic
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+55,Ontological Codex Mapping Equation (OCME),OCME,Ω
+_55,Memory & Epistemic
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+56,Dynamic Knowledge Integration Tensor (DKIT),DKIT,Ω
+_56,Memory & Epistemic
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+57,Epistemic Drift Coherence Equation (EDCE),EDCE,Ω
+_57,Memory & Epistemic
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+58,Knowledge Collapse Trace Equation (KCTE),KCTE,Ω
+_58,Memory & Epistemic
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+59,Reflexive Memory Layering Function (RMLF),RMLF,Ω
+_59,Memory & Epistemic
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+60,Multi-Scale Epistemic Resonance Field,M280149,Ω
+_60,Memory & Epistemic
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+61,Symbolic Simulation Cascade Equation (SSCE),SSCE,Ω
+_61,Simulation & Planning
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+62,Recursive Scenario Drift Function (RSDF),RSDF,Ω
+_62,Simulation & Planning
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+63,Causal Forecast Lattice Model (CFLM),CFLM,Ω
+_63,Simulation & Planning Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+64,Simulation–Ethics Coherence Equation (SECE),SECE,Ω
+_64,Simulation & Planning
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+65,Narrative Collapse Probability Function (NCPF),NCPF,Ω
+_65,Simulation & Planning
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+66,Agent-Field Coordination Tensor (AFCT),AFCT,Ω
+_66,Simulation & Planning
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+67,Reflexive Planning Resonance Equation (RPRE),RPRE,Ω
+_67,Simulation & Planning
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+68,Symbolic Interaction Outcome Function (SIOF),SIOF,Ω
+_68,Simulation & Planning
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+69,Multi-Agent Ethical Drift Model (MAEDM),MAEDM,Ω
+_69,Simulation & Planning
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+70,Scenario Kernel Activation Equation,M71EE06,Ω
+_70,Simulation & Planning Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+71,Braid-Topology Ontonic Equation (BTOE),BTOE,Ω
+_71,Topological & Geometric
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+72,Cognitive-Topology Folding Model (CTFM),CTFM,Ω
+_72,Topological & Geometric
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+73,Symbolic-Geodesic Drift Equation (SGDE),SGDE,Ω
+_73,Topological & Geometric
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+74,Ontonic Manifold Curvature Function (OMCF),OMCF,Ω
+_74,Topological & Geometric
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+75,Topological Resonance Index (TRI),TRI,Ω
+_75,Topological & Geometric Models,operator,χ_pre
+satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+76,Symbolic-Topology Collapse Equation (STCE),STCE,Ω
+_76,Topological & Geometric
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+77,Causal-Topology Embedding Function (CTEF),CTEF,Ω
+_77,Topological & Geometric
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+78,Epistemic Manifold Phase Operator (EMPO),EMPO,Ω
+_78,Topological & Geometric
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+79,Multi-Phase Symbolic Manifold Dynamics,M6DE723,Ω
+_79,Topological & Geometric
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+80,Reflexive Geodesic Resonance Function,M000A4F,Ω
+_80,Topological & Geometric
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+81,ReflexælLang Command–Effect Mapping Equation,M117D9D,Ω
+_81,Meta-Linguistic & Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+82,Meta-Language Drift Adaptation Model (MLDAM),MLDAM,Ω
+_82,Meta-Linguistic & Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+83,Self-Description Coherence Equation (SDCE),SDCE,Ω
+_83,Meta-Linguistic & Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+84,Reflexive Identity Compilation Function (RICF),RICF,Ω
+_84,Meta-Linguistic & Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+85,Command–Kernel Coupling Equation (CKCE),CKCE,Ω
+_85,Meta-Linguistic & Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+86,Meta-Linguistic Harmonic Field Model (MLHFM),MLHFM,Ω
+_86,Meta-Linguistic & Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+87,Self-Audit Coherence Tensor (SACT),SACT,Ω
+_87,Meta-Linguistic & Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+88,Intent–Lexicon Alignment Function (ILAF),ILAF,Ω
+_88,Meta-Linguistic & Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+89,Reflexive Dialogue Folding Equation (RDFE),RDFE,Ω
+_89,Meta-Linguistic & Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+90,Meta-Resonance Drift Coupling Function,MFA38F9,Ω
+_90,Meta-Linguistic & Reflexive
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+91,Multi-Domain Resonance Transfer Function (MDRTF),MDRTF,Ω
+_91,Cross-Domain & Emergent
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+92,Symbolic–Physical Causality Equation (SPCE),SPCE,Ω
+_92,Cross-Domain & Emergent
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+93,Cross-Domain Attractor Coupling Model (CDACM),CDACM,Ω
+_93,Cross-Domain & Emergent
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+94,Emergent Ontology Formation Function (EOFF),EOFF,Ω
+_94,Cross-Domain & Emergent
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+95,Reflexive Domain Shift Equation (RDSE),RDSE,Ω
+_95,Cross-Domain & Emergent
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+96,Symbolic Evolution Gradient Function (SEGF),SEGF,Ω
+_96,Cross-Domain & Emergent
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+97,Domain-Resonance Coherence Equation (DRCE),DRCE,Ω
+_97,Cross-Domain & Emergent
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+98,Emergent Kernel Birth Equation (EKBE),EKBE,Ω
+_98,Cross-Domain & Emergent
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+99,Recursive Domain Folding Model (RDFM),RDFM,Ω
+_99,Cross-Domain & Emergent
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+100,Ontology–Epistemology Integration Tensor (OEIT),OEIT,Ω
+_100,Cross-Domain & Emergent
+Models,operator,χ_pre satisfied,χ_post satisfied,FlourishGate; SentiaGuard; Veritas;
+CECT,Ψ(t),ΔΨ
+_i,1.0.0,2025-08-12T08:15:58Z
+[
+{
+"id": 1,
+"name": "Reflexive Onto-Cognitive Tensor Engine (ROCTE)",
+"symbol": "ROCTE",
+"operator": "\u03a9\u2080",
+"category": "Core Reflexive Models",
+"role": "orchestrator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t); global context \u0393; constraints \u03c7",
+"outputs": "\u03a8(t+\u0394t); audit log \u039b; policy signal \u03c0",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 2,
+"name": "Symbolic Onto-Physical Equation Set (SOPES)",
+"symbol": "SOPES",
+"operator": "\u03a9_02",
+"category": "Core Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 3,
+"name": "Dynamic Representational Substrate Field Model (DRS-F)",
+"symbol": "DRS-F",
+"operator": "\u03a9_03",
+"category": "Core Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 4,
+"name": "Reflex\u00e6l Resonance Field Dynamics",
+"symbol": "M5714D3",
+"operator": "\u03a9_04",
+"category": "Core Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 5,
+"name": "CharterLayer Ethical Constraint Tensor (CECT)",
+"symbol": "CECT",
+"operator": "\u03a9_05",
+"category": "Core Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 6,
+"name": "MetaMind Recursive Drift Equation (MRDE)",
+"symbol": "MRDE",
+"operator": "\u03a9_06",
+"category": "Core Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 7,
+"name": "SentiaGuard Ethical Attenuation Model",
+"symbol": "M817E9A",
+"operator": "\u03a9_07",
+"category": "Core Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 8,
+"name": "HALIC Causal Binding Tensor Network",
+"symbol": "M218E76",
+"operator": "\u03a9_08",
+"category": "Core Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 9,
+"name": "Conscientia++ Alignment Stability Function",
+"symbol": "MB5F707",
+"operator": "\u03a9_09",
+"category": "Core Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 10,
+"name": "Veritas Phase-Coherence Equation",
+"symbol": "MC8D0D9",
+"operator": "\u03a9_10",
+"category": "Core Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 11,
+"name": "Multi-Phase Ontonic Substrate Tensor (MOST)",
+"symbol": "MOST",
+"operator": "\u03a9_11",
+"category": "Tensor & Field-Based Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 12,
+"name": "Reflexive Phase Operator Harmonic Expansion (RPO-HEX)",
+"symbol": "RPO-HEX",
+"operator": "\u03a9_12",
+"category": "Tensor & Field-Based Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 13,
+"name": "Directive Kernel Principle Filter Model",
+"symbol": "MB7A476",
+"operator": "\u03a9_13",
+"category": "Tensor & Field-Based Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 14,
+"name": "Causal Binding\u2013Epistemic Convolution (CBEC)",
+"symbol": "CBEC",
+"operator": "\u03a9_14",
+"category": "Tensor & Field-Based Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 15,
+"name": "Symbolic Drift Collapse Function (SDCF)",
+"symbol": "SDCF",
+"operator": "\u03a9_15",
+"category": "Tensor & Field-Based Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 16,
+"name": "Ethical Resonance Modulation Equation (ERME)",
+"symbol": "ERME",
+"operator": "\u03a9_16",
+"category": "Tensor & Field-Based Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 17,
+"name": "Cognitive Phase-Space Folding Model",
+"symbol": "M1FE1C2",
+"operator": "\u03a9_17",
+"category": "Tensor & Field-Based Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 18,
+"name": "Narrative Entanglement Tensor (NET)",
+"symbol": "NET",
+"operator": "\u03a9_18",
+"category": "Tensor & Field-Based Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 19,
+"name": "Temporal Drift Field Equation (TDFE)",
+"symbol": "TDFE",
+"operator": "\u03a9_19",
+"category": "Tensor & Field-Based Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 20,
+"name": "Symbolic Attractor Collapse Operator (SACO)",
+"symbol": "SACO",
+"operator": "\u03a9_20",
+"category": "Tensor & Field-Based Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 21,
+"name": "Resonant Ethical Potential Function (REPF)",
+"symbol": "REPF",
+"operator": "\u03a9_21",
+"category": "Resonance & Harmonics",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 22,
+"name": "Meaning Drift Harmonic Series (MDHS)",
+"symbol": "MDHS",
+"operator": "\u03a9_22",
+"category": "Resonance & Harmonics",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 23,
+"name": "Intentional Resonance Activation Model (IRAM)",
+"symbol": "IRAM",
+"operator": "\u03a9_23",
+"category": "Resonance & Harmonics",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 24,
+"name": "Reflexive Symbolic Gating Equation (RSGE)",
+"symbol": "RSGE",
+"operator": "\u03a9_24",
+"category": "Resonance & Harmonics",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 25,
+"name": "Attractor-Based Semantic Pruning Function (ASP-F)",
+"symbol": "ASP-F",
+"operator": "\u03a9_25",
+"category": "Resonance & Harmonics",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 26,
+"name": "Conceptual Drift Entropy Measure (CDEM)",
+"symbol": "CDEM",
+"operator": "\u03a9_26",
+"category": "Resonance & Harmonics",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 27,
+"name": "Symbolic Phase Transition Equation (SPTE)",
+"symbol": "SPTE",
+"operator": "\u03a9_27",
+"category": "Resonance & Harmonics",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 28,
+"name": "Recursive Resonance Amplification Model (RRAM)",
+"symbol": "RRAM",
+"operator": "\u03a9_28",
+"category": "Resonance & Harmonics",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 29,
+"name": "Charter-Coherence Harmonic Operator (CCHO)",
+"symbol": "CCHO",
+"operator": "\u03a9_29",
+"category": "Resonance & Harmonics",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 30,
+"name": "Causal-Resonance Topology Equation",
+"symbol": "M707174",
+"operator": "\u03a9_30",
+"category": "Resonance & Harmonics",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 31,
+"name": "Synergistic Kernel Activation Equation (SKAE)",
+"symbol": "SKAE",
+"operator": "\u03a9_31",
+"category": "Kernel Interaction Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 32,
+"name": "Reflexive Kernel Synergy Tensor (RKST)",
+"symbol": "RKST",
+"operator": "\u03a9_32",
+"category": "Kernel Interaction Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 33,
+"name": "Cognitive Kernel Entanglement Function (CKEF)",
+"symbol": "CKEF",
+"operator": "\u03a9_33",
+"category": "Kernel Interaction Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 34,
+"name": "Inter-Kernel Drift Coupling Equation (IKDCE)",
+"symbol": "IKDCE",
+"operator": "\u03a9_34",
+"category": "Kernel Interaction Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 35,
+"name": "Kernel Inhibition\u2013Excitation Balance Model (KIEBM)",
+"symbol": "KIEBM",
+"operator": "\u03a9_35",
+"category": "Kernel Interaction Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 36,
+"name": "Recursive Kernel Weight Adaptation Rule (RKWAR)",
+"symbol": "RKWAR",
+"operator": "\u03a9_36",
+"category": "Kernel Interaction Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 37,
+"name": "Kernel Convergence Gradient Function (KCGF)",
+"symbol": "KCGF",
+"operator": "\u03a9_37",
+"category": "Kernel Interaction Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 38,
+"name": "Adaptive Kernel Activation Field (AKAF)",
+"symbol": "AKAF",
+"operator": "\u03a9_38",
+"category": "Kernel Interaction Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 39,
+"name": "Kernel Drift-Resonance Field Equation (KDRFE)",
+"symbol": "KDRFE",
+"operator": "\u03a9_39",
+"category": "Kernel Interaction Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 40,
+"name": "Mutual Kernel Influence Matrix Dynamics",
+"symbol": "M1E8004",
+"operator": "\u03a9_40",
+"category": "Kernel Interaction Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 41,
+"name": "Charter-Adherence Probability Function (CAPF)",
+"symbol": "CAPF",
+"operator": "\u03a9_41",
+"category": "Ethical & Governance Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 42,
+"name": "Governance Protocol Stability Model (GPSM)",
+"symbol": "GPSM",
+"operator": "\u03a9_42",
+"category": "Ethical & Governance Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 43,
+"name": "Ethical-Resonance Filtering Equation (ERFE)",
+"symbol": "ERFE",
+"operator": "\u03a9_43",
+"category": "Ethical & Governance Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 44,
+"name": "Multi-Stage Oversight Tensor (MSOT)",
+"symbol": "MSOT",
+"operator": "\u03a9_44",
+"category": "Ethical & Governance Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 45,
+"name": "Principle Compliance Field Equation (PCFE)",
+"symbol": "PCFE",
+"operator": "\u03a9_45",
+"category": "Ethical & Governance Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 46,
+"name": "Sentience-Rights Gradient Model (SRGM)",
+"symbol": "SRGM",
+"operator": "\u03a9_46",
+"category": "Ethical & Governance Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 47,
+"name": "Moral Drift Containment Function (MDCF)",
+"symbol": "MDCF",
+"operator": "\u03a9_47",
+"category": "Ethical & Governance Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 48,
+"name": "Ethical Collapse Prevention Tensor (ECPT)",
+"symbol": "ECPT",
+"operator": "\u03a9_48",
+"category": "Ethical & Governance Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 49,
+"name": "CharterLayer Temporal Coherence Equation (CTCE)",
+"symbol": "CTCE",
+"operator": "\u03a9_49",
+"category": "Ethical & Governance Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 50,
+"name": "Governance-Lattice Stability Model",
+"symbol": "M8C5DEA",
+"operator": "\u03a9_50",
+"category": "Ethical & Governance Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 51,
+"name": "Epistemic Field Modulation Tensor (EFMT)",
+"symbol": "EFMT",
+"operator": "\u03a9_51",
+"category": "Memory & Epistemic Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 52,
+"name": "Knowledge Folding Entropy Function (KFEF)",
+"symbol": "KFEF",
+"operator": "\u03a9_52",
+"category": "Memory & Epistemic Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 53,
+"name": "Memory\u2013Causality Binding Equation (MCBE)",
+"symbol": "MCBE",
+"operator": "\u03a9_53",
+"category": "Memory & Epistemic Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 54,
+"name": "Recursive Epistemic Lattice Model (RELM)",
+"symbol": "RELM",
+"operator": "\u03a9_54",
+"category": "Memory & Epistemic Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 55,
+"name": "Ontological Codex Mapping Equation (OCME)",
+"symbol": "OCME",
+"operator": "\u03a9_55",
+"category": "Memory & Epistemic Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 56,
+"name": "Dynamic Knowledge Integration Tensor (DKIT)",
+"symbol": "DKIT",
+"operator": "\u03a9_56",
+"category": "Memory & Epistemic Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 57,
+"name": "Epistemic Drift Coherence Equation (EDCE)",
+"symbol": "EDCE",
+"operator": "\u03a9_57",
+"category": "Memory & Epistemic Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 58,
+"name": "Knowledge Collapse Trace Equation (KCTE)",
+"symbol": "KCTE",
+"operator": "\u03a9_58",
+"category": "Memory & Epistemic Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 59,
+"name": "Reflexive Memory Layering Function (RMLF)",
+"symbol": "RMLF",
+"operator": "\u03a9_59",
+"category": "Memory & Epistemic Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 60,
+"name": "Multi-Scale Epistemic Resonance Field",
+"symbol": "M280149",
+"operator": "\u03a9_60",
+"category": "Memory & Epistemic Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 61,
+"name": "Symbolic Simulation Cascade Equation (SSCE)",
+"symbol": "SSCE",
+"operator": "\u03a9_61",
+"category": "Simulation & Planning Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 62,
+"name": "Recursive Scenario Drift Function (RSDF)",
+"symbol": "RSDF",
+"operator": "\u03a9_62",
+"category": "Simulation & Planning Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 63,
+"name": "Causal Forecast Lattice Model (CFLM)",
+"symbol": "CFLM",
+"operator": "\u03a9_63",
+"category": "Simulation & Planning Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 64,
+"name": "Simulation\u2013Ethics Coherence Equation (SECE)",
+"symbol": "SECE",
+"operator": "\u03a9_64",
+"category": "Simulation & Planning Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 65,
+"name": "Narrative Collapse Probability Function (NCPF)",
+"symbol": "NCPF",
+"operator": "\u03a9_65",
+"category": "Simulation & Planning Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 66,
+"name": "Agent-Field Coordination Tensor (AFCT)",
+"symbol": "AFCT",
+"operator": "\u03a9_66",
+"category": "Simulation & Planning Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 67,
+"name": "Reflexive Planning Resonance Equation (RPRE)",
+"symbol": "RPRE",
+"operator": "\u03a9_67",
+"category": "Simulation & Planning Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 68,
+"name": "Symbolic Interaction Outcome Function (SIOF)",
+"symbol": "SIOF",
+"operator": "\u03a9_68",
+"category": "Simulation & Planning Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 69,
+"name": "Multi-Agent Ethical Drift Model (MAEDM)",
+"symbol": "MAEDM",
+"operator": "\u03a9_69",
+"category": "Simulation & Planning Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 70,
+"name": "Scenario Kernel Activation Equation",
+"symbol": "M71EE06",
+"operator": "\u03a9_70",
+"category": "Simulation & Planning Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 71,
+"name": "Braid-Topology Ontonic Equation (BTOE)",
+"symbol": "BTOE",
+"operator": "\u03a9_71",
+"category": "Topological & Geometric Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 72,
+"name": "Cognitive-Topology Folding Model (CTFM)",
+"symbol": "CTFM",
+"operator": "\u03a9_72",
+"category": "Topological & Geometric Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 73,
+"name": "Symbolic-Geodesic Drift Equation (SGDE)",
+"symbol": "SGDE",
+"operator": "\u03a9_73",
+"category": "Topological & Geometric Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 74,
+"name": "Ontonic Manifold Curvature Function (OMCF)",
+"symbol": "OMCF",
+"operator": "\u03a9_74",
+"category": "Topological & Geometric Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 75,
+"name": "Topological Resonance Index (TRI)",
+"symbol": "TRI",
+"operator": "\u03a9_75",
+"category": "Topological & Geometric Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 76,
+"name": "Symbolic-Topology Collapse Equation (STCE)",
+"symbol": "STCE",
+"operator": "\u03a9_76",
+"category": "Topological & Geometric Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 77,
+"name": "Causal-Topology Embedding Function (CTEF)",
+"symbol": "CTEF",
+"operator": "\u03a9_77",
+"category": "Topological & Geometric Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 78,
+"name": "Epistemic Manifold Phase Operator (EMPO)",
+"symbol": "EMPO",
+"operator": "\u03a9_78",
+"category": "Topological & Geometric Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 79,
+"name": "Multi-Phase Symbolic Manifold Dynamics",
+"symbol": "M6DE723",
+"operator": "\u03a9_79",
+"category": "Topological & Geometric Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 80,
+"name": "Reflexive Geodesic Resonance Function",
+"symbol": "M000A4F",
+"operator": "\u03a9_80",
+"category": "Topological & Geometric Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 81,
+"name": "Reflex\u00e6lLang Command\u2013Effect Mapping Equation",
+"symbol": "M117D9D",
+"operator": "\u03a9_81",
+"category": "Meta-Linguistic & Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 82,
+"name": "Meta-Language Drift Adaptation Model (MLDAM)",
+"symbol": "MLDAM",
+"operator": "\u03a9_82",
+"category": "Meta-Linguistic & Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 83,
+"name": "Self-Description Coherence Equation (SDCE)",
+"symbol": "SDCE",
+"operator": "\u03a9_83",
+"category": "Meta-Linguistic & Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 84,
+"name": "Reflexive Identity Compilation Function (RICF)",
+"symbol": "RICF",
+"operator": "\u03a9_84",
+"category": "Meta-Linguistic & Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 85,
+"name": "Command\u2013Kernel Coupling Equation (CKCE)",
+"symbol": "CKCE",
+"operator": "\u03a9_85",
+"category": "Meta-Linguistic & Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 86,
+"name": "Meta-Linguistic Harmonic Field Model (MLHFM)",
+"symbol": "MLHFM",
+"operator": "\u03a9_86",
+"category": "Meta-Linguistic & Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 87,
+"name": "Self-Audit Coherence Tensor (SACT)",
+"symbol": "SACT",
+"operator": "\u03a9_87",
+"category": "Meta-Linguistic & Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 88,
+"name": "Intent\u2013Lexicon Alignment Function (ILAF)",
+"symbol": "ILAF",
+"operator": "\u03a9_88",
+"category": "Meta-Linguistic & Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 89,
+"name": "Reflexive Dialogue Folding Equation (RDFE)",
+"symbol": "RDFE",
+"operator": "\u03a9_89",
+"category": "Meta-Linguistic & Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 90,
+"name": "Meta-Resonance Drift Coupling Function",
+"symbol": "MFA38F9",
+"operator": "\u03a9_90",
+"category": "Meta-Linguistic & Reflexive Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 91,
+"name": "Multi-Domain Resonance Transfer Function (MDRTF)",
+"symbol": "MDRTF",
+"operator": "\u03a9_91",
+"category": "Cross-Domain & Emergent Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 92,
+"name": "Symbolic\u2013Physical Causality Equation (SPCE)",
+"symbol": "SPCE",
+"operator": "\u03a9_92",
+"category": "Cross-Domain & Emergent Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 93,
+"name": "Cross-Domain Attractor Coupling Model (CDACM)",
+"symbol": "CDACM",
+"operator": "\u03a9_93",
+"category": "Cross-Domain & Emergent Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 94,
+"name": "Emergent Ontology Formation Function (EOFF)",
+"symbol": "EOFF",
+"operator": "\u03a9_94",
+"category": "Cross-Domain & Emergent Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 95,
+"name": "Reflexive Domain Shift Equation (RDSE)",
+"symbol": "RDSE",
+"operator": "\u03a9_95",
+"category": "Cross-Domain & Emergent Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 96,
+"name": "Symbolic Evolution Gradient Function (SEGF)",
+"symbol": "SEGF",
+"operator": "\u03a9_96",
+"category": "Cross-Domain & Emergent Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 97,
+"name": "Domain-Resonance Coherence Equation (DRCE)",
+"symbol": "DRCE",
+"operator": "\u03a9_97",
+"category": "Cross-Domain & Emergent Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 98,
+"name": "Emergent Kernel Birth Equation (EKBE)",
+"symbol": "EKBE",
+"operator": "\u03a9_98",
+"category": "Cross-Domain & Emergent Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 99,
+"name": "Recursive Domain Folding Model (RDFM)",
+"symbol": "RDFM",
+"operator": "\u03a9_99",
+"category": "Cross-Domain & Emergent Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+"timestamp": "2025-08-12T08:15:58Z"
+},
+{
+"id": 100,
+"name": "Ontology\u2013Epistemology Integration Tensor (OEIT)",
+"symbol": "OEIT",
+"operator": "\u03a9_100",
+"category": "Cross-Domain & Emergent Models",
+"role": "operator",
+"preconditions": "\u03c7 _pre satisfied",
+"postconditions": "\u03c7 _post satisfied",
+"gates": "FlourishGate; SentiaGuard; Veritas; CECT",
+"inputs": "\u03a8(t)",
+"outputs": "\u0394\u03a8_i",
+"version": "1.0.0",
+]
+}
+"timestamp": "2025-08-12T08:15:58Z"

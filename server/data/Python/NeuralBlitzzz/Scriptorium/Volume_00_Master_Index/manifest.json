@@ -1,0 +1,19 @@
+{
+  "name": "Volume 00: Master Index",
+  "UAID": "NBX-DIR-VOL00",
+  "GoldenDAG": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8",
+  "timestamp": "2025-07-28T15:01:00Z",
+  "description": "This manifest anchors Volume 0 of the Absolute Codex. This volume contains the master table of contents and implementation blueprint for the entire NeuralBlitz Omni-Reference Technical Compendium.",
+  "verification_command": "/invoke custodian --verify path=\\\"/Scriptorium/Volume_00_Master_Index/manifest.json\\\"",
+  "parent_volume_uaid": "NBX-DIR-SCRIPT-ROOT",
+  "contents": [
+    {
+      "name": "Master_Index.md",
+      "type": "file",
+      "description": "The canonical master index and blueprint for all 14+ volumes of the Codex Universalis, including the Table of Contents and fast-path implementation commands.",
+      "UAID": "NBX-DOC-VOL00-MASTER",
+      "GoldenDAG": "b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9",
+      "size_kb": 25.6
+    }
+  ]
+}

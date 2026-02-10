@@ -1,0 +1,135 @@
+{
+  "agent_summary": {
+    "total_agents": 5000,
+    "agent_types": 19,
+    "clusters": 20,
+    "teams": 125,
+    "sample_agents": [
+      {
+        "agent_id": "agent_quantum_spiking_neurons_0000_fe5164d6",
+        "agent_type": "AgentType.QUANTUM_SPIKING_NEURONS",
+        "cluster_id": 0,
+        "team_id": 0,
+        "task_id": "task_quantum_spiking_neurons_000",
+        "success_criteria": {
+          "step_time_microseconds": 10.0,
+          "ops_per_sec": 100000,
+          "accuracy_threshold": 0.999,
+          "memory_per_neuron_kb": 1.0
+        },
+        "metrics": {
+          "current_performance": 95000.0,
+          "target_performance": 100000.0,
+          "efficiency_score": 0.95
+        },
+        "deliverables": [
+          "performance_validation_report",
+          "quantum_accuracy_validation",
+          "batch_optimization_recommendations",
+          "jit_optimization_report",
+          "memory_optimization_strategies"
+        ]
+      },
+      {
+        "agent_id": "agent_quantum_spiking_neurons_0001_7edacc13",
+        "agent_type": "AgentType.QUANTUM_SPIKING_NEURONS",
+        "cluster_id": 0,
+        "team_id": 0,
+        "task_id": "task_quantum_spiking_neurons_001",
+        "success_criteria": {
+          "step_time_microseconds": 10.0,
+          "ops_per_sec": 100000,
+          "accuracy_threshold": 0.999,
+          "memory_per_neuron_kb": 1.0
+        },
+        "metrics": {
+          "current_performance": 95000.0,
+          "target_performance": 100000.0,
+          "efficiency_score": 0.95
+        },
+        "deliverables": [
+          "performance_validation_report",
+          "quantum_accuracy_validation",
+          "batch_optimization_recommendations",
+          "jit_optimization_report",
+          "memory_optimization_strategies"
+        ]
+      },
+      {
+        "agent_id": "agent_quantum_spiking_neurons_0002_92896d08",
+        "agent_type": "AgentType.QUANTUM_SPIKING_NEURONS",
+        "cluster_id": 0,
+        "team_id": 0,
+        "task_id": "task_quantum_spiking_neurons_002",
+        "success_criteria": {
+          "step_time_microseconds": 10.0,
+          "ops_per_sec": 100000,
+          "accuracy_threshold": 0.999,
+          "memory_per_neuron_kb": 1.0
+        },
+        "metrics": {
+          "current_performance": 95000.0,
+          "target_performance": 100000.0,
+          "efficiency_score": 0.95
+        },
+        "deliverables": [
+          "performance_validation_report",
+          "quantum_accuracy_validation",
+          "batch_optimization_recommendations",
+          "jit_optimization_report",
+          "memory_optimization_strategies"
+        ]
+      },
+      {
+        "agent_id": "agent_quantum_spiking_neurons_0003_c68a3ad2",
+        "agent_type": "AgentType.QUANTUM_SPIKING_NEURONS",
+        "cluster_id": 0,
+        "team_id": 0,
+        "task_id": "task_quantum_spiking_neurons_003",
+        "success_criteria": {
+          "step_time_microseconds": 10.0,
+          "ops_per_sec": 100000,
+          "accuracy_threshold": 0.999,
+          "memory_per_neuron_kb": 1.0
+        },
+        "metrics": {
+          "current_performance": 95000.0,
+          "target_performance": 100000.0,
+          "efficiency_score": 0.95
+        },
+        "deliverables": [
+          "performance_validation_report",
+          "quantum_accuracy_validation",
+          "batch_optimization_recommendations",
+          "jit_optimization_report",
+          "memory_optimization_strategies"
+        ]
+      },
+      {
+        "agent_id": "agent_quantum_spiking_neurons_0004_6586ba16",
+        "agent_type": "AgentType.QUANTUM_SPIKING_NEURONS",
+        "cluster_id": 0,
+        "team_id": 0,
+        "task_id": "task_quantum_spiking_neurons_004",
+        "success_criteria": {
+          "step_time_microseconds": 10.0,
+          "ops_per_sec": 100000,
+          "accuracy_threshold": 0.999,
+          "memory_per_neuron_kb": 1.0
+        },
+        "metrics": {
+          "current_performance": 95000.0,
+          "target_performance": 100000.0,
+          "efficiency_score": 0.95
+        },
+        "deliverables": [
+          "performance_validation_report",
+          "quantum_accuracy_validation",
+          "batch_optimization_recommendations",
+          "jit_optimization_report",
+          "memory_optimization_strategies"
+        ]
+      }
+    ]
+  }
+}

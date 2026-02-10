@@ -1,0 +1,5 @@
+﻿Subcommand,Example,Function
+list,hasctl list --filter &quot;gpu&gt;=16GB&quot; --free,List available compute islands.
+run,hasctl run QuantumPathCK --constraint carbon_green,Pin CKs to green energy zones.
+chaos,hasctl chaos --node gpu-pod-a7 --type power_off,Simulate node failures.
+stream,hasctl stream --metric latency --zone EDGE_US,Watch real-time telemetry.

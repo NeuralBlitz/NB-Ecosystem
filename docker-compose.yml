@@ -1,0 +1,104 @@
+# NeuralBlitz MVP Deployment Configuration
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: neuralblitz-postgres
+    environment:
+      POSTGRES_DB: neuralblitz
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-neuralblitz123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - neuralblitz-network
+
+  # Redis for caching and sessions
+  redis:
+    image: redis:7-alpine
+    container_name: neuralblitz-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - neuralblitz-network
+
+  # NeuralBlitz API Server
+  api-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: neuralblitz-api
+    environment:
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD:-neuralblitz123}@postgres:5432/neuralblitz
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=info
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./server:/app
+    networks:
+      - neuralblitz-network
+
+  # Frontend Application
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: neuralblitz-frontend
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000/api/v1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-server
+    volumes:
+      - .:/app
+    networks:
+      - neuralblitz-network
+
+  # Elasticsearch for search (optional)
+  elasticsearch:
+    image: elasticsearch:8.11.0
+    container_name: neuralblitz-search
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - neuralblitz-network
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: neuralblitz-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - frontend
+      - api-server
+    networks:
+      - neuralblitz-network
+
+volumes:
+  postgres_data:
+  elasticsearch_data:
+
+networks:
+  neuralblitz-network:
+    driver: bridge

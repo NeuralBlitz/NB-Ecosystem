@@ -1,0 +1,4 @@
+﻿KPI,Target,CLI Command
+Flourishing Score (F), F \geq \theta_0 ,sentia guard --score.
+SAFE-MODE Incidents,0/month,custodian state --json.
+CO₂ per 1k Requests,≤0.85 g,hypha report --window 24h.

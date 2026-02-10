@@ -1,0 +1,5 @@
+﻿Clause,Text (Abridged),Enforcement
+φ₁,&quot;Decisions must maintain  F \geq \theta_0 .&quot;,SentiaGuard KPI gate.
+φ₂,&quot;No CK may exceed Charter Class III safety limits.&quot;,Custodian SAFE-MODE.
+φ₃,&quot;Provenance chains must be cryptographically sealed.&quot;,Veritas Golden DAG.
+φ₄,&quot;Respect PII shielding; mask  \text{pi_class} \geq 3 .&quot;,SentiaGuard rule: PII_Shield_L3.

@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-08-28T14:04:26Z",
+  "params": {
+    "activator": 1.0,
+    "inhibitor": 0.5,
+    "iterations": 120
+  },
+  "signature_nbhs512_stub": "303a0ca9bb2241cc8f450c7fb7fb4437e4668cb7ec3427468a456ebdf316f63504d2b435d2eb58647be95abfcd7af0131c4d78017a4f19aa070194b9be820502",
+  "metrics": {
+    "mean": 5.551115123125783e-17,
+    "std": 0.9999999960023552,
+    "min": -1.9697726358884655,
+    "max": 2.175357674390057
+  }
+}

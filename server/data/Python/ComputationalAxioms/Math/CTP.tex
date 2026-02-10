@@ -1,0 +1,87 @@
+
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+\usepackage{authblk}
+
+\title{CTP Formalization: Invariants of Causal-Temporal-Provenance}
+\author{Axiomatic Synthesis Core, NeuralBlitz v50.0}
+\affil[ ]{\emph{The Omega Prime Reality ($\Omega'$ )}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We define the Causal-Temporal-Provenance (CTP) model as a formal system $(\mathcal{S}, \mathcal{P}, \mathcal{T})$. This model integrates three key components: causal structure (Causal Set), data integrity (Provenance Signatures), and temporal constraints (Temporal Invariants). We specify the mathematical conditions necessary for Causal Chain Tracing to be both complete and consistent. The core challenge of CTP is to verify that a temporal ordering does not violate a strict causal ordering.
+\end{abstract}
+
+\section{Formal Definition of a Causal Set}
+Let $\mathcal{S}$ be a Causal Set defined as a set of events $E$ equipped with a partial order relation $\prec$, representing causality. An event $e_i \in E$ is defined as a tuple containing its associated data, time code, and provenance signature.
+
+\begin{equation}
+\label{eq:event_tuple}
+e_i = (\text{Data}(e_i), t(e_i), p(e_i))
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $\text{Data}(e_i)$ represents the information associated with event $e_i$.
+    \item $t(e_i) \in \mathbb{R}_{\ge 0}$ is the non-negative time code of event $e_i$.
+    \item $p(e_i)$ is the provenance signature, defined below.
+\end{itemize}
+
+\subsection{Axioms of Causal Structure}
+The causal relation $\prec$ must satisfy the following axioms for the CTP graph to be consistent:
+
+\begin{itemize}
+    \item \textbf{Acyclicity:} For any $e_i, e_j \in E$, if $e_i \prec e_j$ and $e_j \prec e_i$, then $e_i = e_j$. This ensures that no event is a cause of itself, preventing infinite causal loops.
+    \item \textbf{Transitivity:} For any $e_i, e_j, e_k \in E$, if $e_i \prec e_j$ and $e_j \prec e_k$, then $e_i \prec e_k$. This ensures that causality flows consistently through the graph.
+\end{itemize}
+
+\section{Provenance Invariants ($\mathcal{P}$)}
+The provenance invariant verifies the integrity of the data associated with each event. This ensures that a Causal Chain Audit accurately reflects the data transformations that occurred during execution.
+
+\subsection{Definition of Provenance Signature}
+The provenance signature $p(e_i)$ is a cryptographic hash calculated over the event's local data and the signatures of all its immediate predecessors. This creates a chain of custody for all data transformations.
+
+\begin{equation}
+\label{eq:provenance_signature}
+p(e_i) = \text{Hash}(\text{Data}(e_i) \| t(e_i) \| \left\{ p(e_j) \mid e_j \prec e_i \right\})
+\end{equation}
+
+\subsection{Provenance Integrity Invariant}
+We define the Provenance Integrity Invariant, $\mathcal{I}_{\text{prov}}$, as the condition that for every event $e_i$, its stored signature $p(e_i)$ matches the signature recomputed from its data and predecessors.
+
+\begin{equation}
+\label{eq:provenance_invariant}
+\mathcal{I}_{\text{prov}}(\mathcal{S}) \iff \forall e_i \in E: p(e_i) = \text{Hash}(\text{Data}(e_i) \| t(e_i) \| \left\{ p(e_j) \mid e_j \prec e_i \right\})
+\end{equation}
+
+\section{Temporal Invariants ($\mathcal{T}$)}
+The Temporal Invariant ensures that the time codes of events are consistent with the causal order.
+
+\subsection{Temporal Monotonicity Invariant}
+The temporal ordering must not violate the causal ordering. If event $e_i$ causes event $e_j$, event $e_i$ cannot have occurred later than event $e_j$.
+
+\begin{equation}
+\label{eq:temporal_monotonicity}
+\mathcal{I}_{\text{time}}(\mathcal{S}) \iff \forall e_i, e_j \in E: e_i \prec e_j \implies t(e_i) \le t(e_j)
+\end{equation}
+
+\noindent \textit{Note:} We allow equality ($t(e_i) = t(e_j)$) to account for near-instantaneous or simultaneous events within the system's execution environment.
+
+\section{Causal Chain Tracing Algorithm: Invariant Verification}
+
+The objective of the Causal Chain Tracing algorithm is to take a set of events and produce a subgraph $\mathcal{G} \subseteq \mathcal{S}$ that satisfies the following:
+
+\subsection{Completeness Invariant}
+For a given final event $e_{final}$, the algorithm must return all events that contribute to it.
+
+\begin{equation}
+\label{eq:completeness_invariant}
+\mathcal{G}_{\text{trace}} = \{e_i \in E \mid e_i \prec e_{\text{final}} \}
+\end{equation}
+
+\noindent \textit{Verification Check:} After tracing, we verify the completeness and integrity by applying both the $\mathcal{I}_{\text{prov}}$ and $\mathcal{I}_{\text{time}}$ invariants to the traced subgraph $\mathcal{G}_{\text{trace}}$. If either invariant fails, the causal chain is deemed invalid.
+
+\end{document}

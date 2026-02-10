@@ -1,0 +1,3 @@
+﻿Subcommand,Example,Function
+field tune,lambda field tune --sigma-f 1.5,Adjust forward-gain threshold.
+signal stream,lambda signal stream --type attention,Monitor micro-signal bus.

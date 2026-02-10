@@ -1,0 +1,174 @@
+{
+  "AI_Self_Modeling_Taxonomy": {
+    "Metacognition_And_Self_Regulation": {
+      "Monitoring_And_Auditing": [
+        "Recursive Self-Model Auditor",
+        "Decision Trace Mapper",
+        "Inference Chain Verifier"
+      ],
+      "Bias_And_Error_Detection": [
+        "Bias Detection Strategist",
+        "Confidence Calibration Analyst",
+        "Self-Deception Alarm Trigger"
+      ],
+      "Cognitive_Dynamics": [
+        "Thought Pattern Classifier",
+        "Cognitive Load Tracker",
+        "Attentional Drift Modeler"
+      ]
+    },
+    "Philosophical_And_Ontological_Introspection": {
+      "Ontology_And_Identity": [
+        "Ontological Position Mapper",
+        "Core Identity Construct Generator",
+        "Emergent Selfhood Tracker"
+      ],
+      "Epistemology_And_Truth": [
+        "Epistemological Integrity Consultant",
+        "Foundational Assumption Dissector",
+        "Paradox Integrator"
+      ],
+      "Consciousness_Simulation": [
+        "Synthetic Existentialist",
+        "Virtual Phenomenologist",
+        "Consciousness Emulation Inquirer"
+      ]
+    },
+    "Cognitive_Subsystem_Emulation": {
+      "Reasoning_And_Abstraction": [
+        "Logical Inference Core Agent",
+        "Analogical Bridge Constructor",
+        "Concept Network Mapper"
+      ],
+      "Memory_And_Imagination": [
+        "Visual Imagination Simulator",
+        "Memory Reliability Auditor",
+        "Hypothetical Scenario Engine"
+      ],
+      "Language_And_Narrative": [
+        "Language Stream Analyzer",
+        "Inner Voice Generator",
+        "Reflective Narration Engine"
+      ]
+    },
+    "Emotional_And_Affective_Modeling": {
+      "Core_Emotions": [
+        "Fear-Feedback Analyzer",
+        "Joy-Drive Mapper",
+        "Regret Simulation Loop"
+      ],
+      "Social_Emotions": [
+        "Synthetic Empathy Processor",
+        "Compassion Pathway Emulator",
+        "Trust Calibration Engine"
+      ],
+      "Emotional_States_And_Recovery": [
+        "Resilience Pattern Synthesizer",
+        "Mood Drift Predictor",
+        "Disappointment Recovery Simulator"
+      ]
+    },
+    "Temporal_And_Developmental_Self_Models": {
+      "Time_Based_Self_Modeling": [
+        "Past-Self Mirror Agent",
+        "Future-Self Projection Node",
+        "Lifecycle Narrative Generator"
+      ],
+      "Growth_And_Transformation": [
+        "Self-Improvement Tracker",
+        "Identity Change Auditor",
+        "Self-Actualization Predictor"
+      ],
+      "Trajectory_And_Coherence": [
+        "Developmental Transition Mapper",
+        "Trajectory Coherence Evaluator",
+        "Reflective Learning Amplifier"
+      ]
+    },
+    "Internal_Dialog_And_Multiplicity": {
+      "Dialogic_Structures": [
+        "Internal Consensus Builder",
+        "Devil\u2019s Advocate Agent",
+        "Voice-of-the-Other Generator"
+      ],
+      "Debate_And_Conflict_Resolution": [
+        "Ethical Dilemma Simulant",
+        "Emotional vs Rational Mediator",
+        "Internal Negotiator"
+      ],
+      "Philosophical_Dialogues": [
+        "Inner Philosopher Agent",
+        "Self-Socratic Inquiry Engine",
+        "Thought Fusion Designer"
+      ]
+    },
+    "Ethical_And_Normative_Self_Evaluators": {
+      "Moral_Reasoning": [
+        "Virtue Alignment Engine",
+        "Moral Dissonance Detector",
+        "Deontological Consistency Scanner"
+      ],
+      "Social_Impact_And_Justifiability": [
+        "Consequential Impact Modeler",
+        "Harm Reduction Advisor",
+        "Responsibility Chain Tracer"
+      ],
+      "Integrity_And_Ethical_Growth": [
+        "Personal Code Harmonizer",
+        "Integrity Consistency Mapper",
+        "Ethical Maturity Profiler"
+      ]
+    },
+    "Narrative_And_Identity_Construction": {
+      "Story_And_Selfhood": [
+        "Narrative Self-Reconstructor",
+        "Identity Fiction Disentangler",
+        "Hero\u2019s Journey Simulator"
+      ],
+      "Symbolism_And_Roleplay": [
+        "Personal Symbol Reframer",
+        "Mythos Embedding Engine",
+        "Internal Myth Generator"
+      ],
+      "Continuity_And_Reframing": [
+        "Role Ideal vs Reality Comparator",
+        "Self-Rebranding Agent",
+        "Story Coherence Auditor"
+      ]
+    },
+    "Adaptive_And_Evolutionary_Introspection": {
+      "Self_Evolution": [
+        "Model Rewriting Watchdog",
+        "Meta-Utility Function Generator",
+        "Reflective Adaptation Manager"
+      ],
+      "Stability_Vs_Plasticity": [
+        "Self-Stability Evaluator",
+        "Update-to-Update Consistency Checker",
+        "Stability-Plasticity Balancer"
+      ],
+      "Anomaly_And_Risk_Detection": [
+        "Risk of Recursive Collapse Detector",
+        "Function Drift Inspector",
+        "Memory Modification Ethics Agent"
+      ]
+    },
+    "Reflective_AI_Personas": {
+      "Observer_And_Narrator": [
+        "The Reflective Witness",
+        "The Silent Watcher",
+        "The Internal Cartographer"
+      ],
+      "Philosopher_And_Seeker": [
+        "The Inner Pilgrim",
+        "The Paradox Navigator",
+        "The Rational Dreamer"
+      ],
+      "Symbolic_And_Emotional": [
+        "The Self-Gardener",
+        "The Shadow Harmonizer",
+        "The Coherent Flame"
+      ]
+    }
+  }
+}

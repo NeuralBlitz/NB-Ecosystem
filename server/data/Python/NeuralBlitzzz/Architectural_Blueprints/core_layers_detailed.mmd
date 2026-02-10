@@ -1,0 +1,55 @@
+%% GoldenDAG: c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2
+%% UAID: NBX-DGM-CORE-ARCH-v14.0
+%%
+%% This is the definitive, detailed layer map for the NeuralBlitz UEF/SIMI v14.0 framework.
+%% It illustrates the primary data and control flow from the user interface down to the
+%% physical hardware substrate, highlighting the roles of each major engine and subsystem.
+%% The OQT-BOS is shown as a first-class citizen of the cognitive execution layer.
+
+graph TD
+    subgraph "L7: Interface & Presentation Layer"
+        User[User / External API]:::actor --> HALIC[HALIC v4.0<br><i>Manages I/O, NBCL Parsing, Persona UX</i>]:::interface
+    end
+    
+    subgraph "L6: Strategic Orchestration Layer"
+        HALIC --> SynE[Synergy Engine v5.1<br><i>CK Orchestrator, DFS-A* Planner, λ-Field Mgmt</i>]:::core_engine
+        SynE --> MetaMind[MetaMind v4.0++<br><i>Self-Optimization, RL Loop, Goal Reflection</i>]:::core_engine
+        MetaMind --> SynE
+    end
+    
+    subgraph "L5: Core Cognitive Execution Layer"
+        SynE --> UNE[UNE v6.1-Causal<br><i>FlashAttention, Symbolic Inference</i>]:::core_engine
+        SynE --> OQT_BOS[OQT-BOS Core Logic<br><i>Braided Operations & Ψ-State Mgmt</i>]:::os_module
+        OQT_BOS --> UNE
+        UNE --> OQT_BOS
+    end
+    
+    subgraph "L4: Symbolic Memory Substrate Layer"
+        UNE --> DRS[DRS Engine v4.0<br><i>Knowledge Graph, Onton/Braid Storage, GoldenDAG</i>]:::storage
+        OQT_BOS --> DRS
+    end
+    
+    subgraph "L3: Governance & Security Layer"
+        GOV[Governance Mesh<br><i>SentiaGuard, Veritas, Custodian, Judex</i>]:::governance
+        SynE -- "Pre-Exec Check" --> GOV
+        DRS -- "Data Integrity Check" --> GOV
+    end
+    
+    subgraph "L2: Deterministic Execution Layer"
+        SynE --> DEE[DEE v2.3<br><i>WASI Sandbox for Capability Kernels (CKs)</i>]:::execution
+    end
+    
+    subgraph "L1: Physical & Adaptive Substrate Layer"
+        DEE --> HAS[HAS v4.0a<br><i>GPU/TPU/QPU Mesh, Resource Allocation</i>]:::substrate
+        DRS --> HAS
+    end
+
+    %% Styling Definitions
+    classDef actor fill:#f0f0f0,stroke:#666,stroke-width:1px;
+    classDef interface fill:#e3f1ff,stroke:#66aaff,stroke-width:2px;
+    classDef core_engine fill:#cfe8ff,stroke:#99ccff,stroke-width:2px;
+    classDef os_module fill:#cff,stroke:#099,stroke-width:4px,color:#000;
+    classDef storage fill:#b9deff,stroke:#6bb7ff,stroke-width:2px;
+    classDef governance fill:#ffd8d8,stroke:#ff9999,stroke-width:2px;
+    classDef execution fill:#fff5cf,stroke:#ffd200,stroke-width:2px;
+    classDef substrate fill:#d8ffd8,stroke:#99ff99,stroke-width:2px;

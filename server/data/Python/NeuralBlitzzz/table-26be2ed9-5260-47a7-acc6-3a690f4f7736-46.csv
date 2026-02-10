@@ -1,0 +1,2 @@
+﻿Subcommand,Example,Function
+sync,nbx-mirror sync --src /mnt/local --dest registry.nbx/,Sync on-prem ARK to cloud.

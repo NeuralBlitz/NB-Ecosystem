@@ -1,0 +1,218 @@
+# UAID: NBX-API-OS-BOS-V1
+# GoldenDAG: c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0
+#
+# NeuralBlitz UEF/SIMI v11.1
+# OQT-BOS Project: API and Command Set Specification v1.0
+# This document defines the interface contracts for the OQT-BOS.
+
+# ==============================================================================
+# SECTION 1: NeuralBlitz Command Language (NBCL) Specification for /os.*
+# ==============================================================================
+nbcl_commands:
+  - verb: "/os.onton.inscribe"
+    description: "Creates a new Onton node in the DRS representing a core conceptual entity. If the concept already exists, this command increases its semantic resonance."
+    class: "OQT-BOS Onton Management"
+    parameters:
+      - name: "concept_string"
+        type: "string"
+        required: true
+        description: "The core concept to inscribe as an Onton (e.g., 'integrity', 'causality')."
+      - name: "--tag"
+        type: "list[string]"
+        required: false
+        description: "A list of semantic tags for categorization (e.g., ['axiom', 'meta'])."
+      - name: "--weight"
+        type: "float"
+        required: false
+        description: "An initial semantic weight or importance score (0.0 to 1.0)."
+    example_usage: "/os.onton.inscribe \"symbolic coherence\" --tag=['axiom', 'drs'] --weight=0.9"
+
+  - verb: "/os.onton.query"
+    description: "Searches the DRS for Ontons or Onton clusters that semantically resonate with a query string."
+    class: "OQT-BOS Onton Management"
+    parameters:
+      - name: "search_string"
+        type: "string"
+        required: true
+        description: "The string to search for."
+      - name: "--depth"
+        type: "integer"
+        required: false
+        default: 1
+        description: "The depth of relational links to traverse from matching nodes."
+      - name: "--filter"
+        type: "string"
+        required: false
+        description: "A filter query to apply (e.g., 'tag=axiom')."
+    example_usage: "/os.onton.query \"integrity\" --depth=2 --filter=\"tag=charter\""
+
+  - verb: "/os.braid.create"
+    description: "Initiates the creation of a new Braid artifact from a set of Ontons or a formal SOPES topology rule."
+    class: "OQT-BOS Braid Management"
+    parameters:
+      - name: "--from_ontons"
+        type: "list[string]"
+        required: true
+        description: "A list of Onton UAIDs to be woven into the Braid."
+      - name: "--topology"
+        type: "string"
+        required: false
+        default: "SOPES:DefaultTwist"
+        description: "A formal rule from the SOPES framework defining the braid's structure (e.g., 'SOPES:Pauli-X')."
+      - name: "--persist"
+        type: "boolean"
+        required: false
+        default: true
+        description: "If true, the created Braid is permanently stored in the DRS."
+    example_usage: "/os.braid.create --from_ontons=[\"NBX-ONT-ABC-123\", \"NBX-ONT-DEF-456\"] --topology=\"SOPES:Hopf_Fibration\""
+
+  - verb: "/os.braid.mutate"
+    description: "Applies a topological quantum gate operation (from SOPES) to an existing Braid, altering its structure."
+    class: "OQT-BOS Braid Management"
+    parameters:
+      - name: "braid_uid"
+        type: "string"
+        required: true
+        description: "The UAID of the Braid to mutate."
+      - name: "--operation"
+        type: "string"
+        required: true
+        description: "The name of the Tensor Knot Gate operation to apply (e.g., 'twist', 'cross', 'Hadamard_Braid')."
+      - name: "--params"
+        type: "json_object"
+        required: false
+        description: "A JSON object of parameters for the operation (e.g., '{\"rotation_angle\": 1.57}')."
+    example_usage: "/os.braid.mutate NBX-BRD-XYZ-789 --operation=\"Hadamard_Braid\""
+
+  - verb: "/os.braid.visualize"
+    description: "Renders a 3D interactive visualization of a specified Braid using the SOPES 3D Visual Simulator."
+    class: "OQT-BOS Braid Management"
+    parameters:
+      - name: "braid_uid"
+        type: "string"
+        required: true
+        description: "The UAID of the Braid to visualize."
+      - name: "--render_mode"
+        type: "string"
+        required: false
+        default: "3d_knot"
+        description: "The visualization mode (e.g., '3d_knot', 'force_graph', 'matrix_rep')."
+    example_usage: "/os.braid.visualize NBX-BRD-XYZ-789 --render_mode=\"force_graph\""
+
+  - verb: "/os.meta.ψ.state.get"
+    description: "Returns the current or historical Ψ-State (ε-tensor) of the Braided OS, reflecting its active affective and ontological signature."
+    class: "OQT-BOS Meta & Telemetry"
+    parameters:
+      - name: "--history"
+        type: "boolean"
+        required: false
+        default: false
+        description: "If true, returns the last N states instead of just the current one."
+    example_usage: "/os.meta.ψ.state.get --history=true"
+
+# ==============================================================================
+# SECTION 2: OpenAPI 3.1 Specification for OQT-BOS RESTful API
+# ==============================================================================
+openapi: 3.1.0
+info:
+  title: "NeuralBlitz OQT-BOS API"
+  version: "1.0.0"
+  description: "RESTful API for interacting with the Octiumetrifloundiatremorphteletopontoladerallquantic Braided OS."
+paths:
+  /api/os/onton/inscribe:
+    post:
+      summary: "Inscribe a new Onton"
+      operationId: "inscribeOnton"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                concept:
+                  type: string
+                  description: "The core concept to inscribe."
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: "Optional list of semantic tags."
+                weight:
+                  type: number
+                  format: float
+                  description: "Optional initial semantic weight."
+              required:
+                - concept
+      responses:
+        '201':
+          description: "Onton created successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  UAID:
+                    type: string
+                    description: "The UAID of the newly created Onton."
+                  GoldenDAG:
+                    type: string
+                    description: "The GoldenDAG hash of the new DRS node."
+  
+  /api/os/braid/create:
+    post:
+      summary: "Create a new Braid"
+      operationId: "createBraid"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ontons_uids:
+                  type: array
+                  items:
+                    type: string
+                  description: "List of Onton UAIDs to weave."
+                topology_rule:
+                  type: string
+                  description: "Formal SOPES rule for the Braid's structure."
+              required:
+                - ontons_uids
+      responses:
+        '201':
+          description: "Braid created successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  UAID:
+                    type: string
+                    description: "The UAID of the newly created Braid."
+                  GoldenDAG:
+                    type: string
+                    description: "The GoldenDAG hash of the new DRS hyperedge."
+
+  /api/os/meta/psi_state:
+    get:
+      summary: "Get current Ψ-State"
+      operationId: "getPsiState"
+      responses:
+        '200':
+          description: "Current Ψ-State ε-tensor."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                  epsilon_tensor:
+                    type: array
+                    items:
+                      type: number
+                      format: float
+                    description: "The 16-dimensional vector representing the Ψ-State."

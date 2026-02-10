@@ -1,0 +1,132 @@
+version: '3.8'
+
+services:
+  # NB Omnibus Server - The dedicated server
+  nb-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: nb-omnibus-server
+    ports:
+      - "8000:8000"
+    environment:
+      - NB_ENVIRONMENT=production
+      - NB_HOST=0.0.0.0
+      - NB_PORT=8000
+      - NB_LOG_LEVEL=INFO
+      - NB_WORKERS=4
+      - NB_CONFIG_FILE=/config/settings.yaml
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+    volumes:
+      - ./config:/config:ro
+      - ./logs:/app/logs
+      - ./data:/app/data
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - neuralblitz-network
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  # Redis cache
+  redis:
+    image: redis:7-alpine
+    container_name: nb-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: redis-server /usr/local/etc/redis/redis.conf
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - neuralblitz-network
+
+  # Nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    container_name: nb-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./web:/usr/share/nginx/html:ro
+    depends_on:
+      nb-server:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - neuralblitz-network
+
+  # Prometheus metrics
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: nb-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    restart: unless-stopped
+    networks:
+      - neuralblitz-network
+
+  # Grafana dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: nb-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=neuralblitz_admin
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - neuralblitz-network
+
+volumes:
+  redis-data:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  neuralblitz-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

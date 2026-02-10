@@ -1,0 +1,19 @@
+﻿#,Volume Title,UAID Prefix,Est. Pages,Capsule Contents,Quick Pull Example
+I,"Vision, Principles &amp; Charter",NBX-DOC-Φ1,~60,"Charter v4.0+, SentiaGuard clauses",/excerpt NBX-DOC-Φ1 §1
+II,Macro-Architecture,NBX-DOC-Φ2,~40,"Layer stack, NCE v1.1, DRS v5.0",/excerpt NBX-DOC-Φ2 NBX-DOC-Φ2-ARCH-HL
+III,Engines &amp; Subsystems,NBX-DOC-Φ3,~50,"UNE v6.1-Causal, SynE v5.1, MetaMind v4.0++",/excerpt NBX-DOC-Φ3 §12
+IV,Capability Kernel Atlas,NBX-DOC-Φ4,~65,"3,869 CKs auto-generated",/excerpt NBX-DOC-Φ4 §CKIP
+V,Protocols &amp; Standards,NBX-DOC-Φ5,~60,"CKIP v4.1, SRCPLEX v2, WASM sandboxing",/excerpt NBX-DOC-Φ5 §CKIP
+VI,Developer Guide,NBX-DOC-Φ6,~42,"kithara workflows, chaos patterns, build recipes",/excerpt NBX-DOC-Φ6 §chaos
+VII,Governance Mesh,NBX-DOC-Φ7,~55,"SentiaGuard, Custodian, Judex quorum flows",/excerpt NBX-DOC-Φ7 §SentiaGuard
+VIII,Formal Proof Corpus,NBX-PROOF-Φ,n/a,"Coq, TLA⁺, Isabelle proofs",/excerpt NBX-PROOF-Φ5-MemSafe
+IX,Benchmarks &amp; Traces,"NBX-BENCH-Φ, NBX-TRACE-Φ",var,"Latency graphs, chaos replays",/excerpt NBX-TRACE-Φ5-CHAOS-042
+X,Research Roadmap &amp; Milestones,NBX-DOC-ΦX,~12,"v8.1 → v10.0 timeline, KPIs",/excerpt NBX-DOC-ΦX-roadmap
+XI,"Glossary (2,700+ Terms)",NBX-DOC-ΦGLO,~90,Full terminology &amp; metaphor lexicon,/excerpt NBX-DOC-ΦGLO Ψ
+XII,Résumé &amp; Philosophical Mandate,NBX-DOC-ΦCV,~14,"David Riggs résumé, EPA theory",/excerpt NBX-DOC-ΦCV
+XIII,AlphaQuantumetaphysimorphumnrecurfolintual Programme,NBX-DOC-ΦAQM,~48,"AQM-RF charter, equations, scaffold plan",/excerpt NBX-DOC-ΦAQM §2
+XIV,Historical Changelog,NBX-DOC-ΦHC,~8,v1.0 → v8.0a commit log,/excerpt NBX-DOC-ΦHC 2016
+XV,Sustainability &amp; Carbon Ledger,NBX-DOC-ΦSUS,~18,"Hypha ILP solver, CO₂ budget, green energy metrics",/excerpt NBX-DOC-ΦSUS §4
+XVI,Data Governance &amp; Privacy,NBX-DOC-ΦDG,~20,"PII classes, DP ε-budgets, SG-900 Deep-Lock spec",/excerpt NBX-DOC-ΦDG SG-900
+XVII,Troubleshooting &amp; FAQ,NBX-DOC-ΦFAQ,~26,"Common build errors, SAFE-MODE triggers, fixes",/excerpt NBX-DOC-ΦFAQ FlashAttn
+XVIII,Extended Mathematical Appendix,NBX-DOC-ΦMATH,~62,"Full derivations (CausalAttn, GoldenDAG, λ-Stability)",/excerpt NBX-DOC-ΦMATH EQ-Causal

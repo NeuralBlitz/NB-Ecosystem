@@ -1,0 +1,3 @@
+﻿Subcommand,Example,Function
+--mode safe-mode,sentinel --mode safe-mode,Tail SAFE-MODE events.
+--stream,sentinel --stream,Monitor λ-Field eigenvalues in real time.

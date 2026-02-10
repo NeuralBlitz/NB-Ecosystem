@@ -1,0 +1,3 @@
+﻿Subcommand,Example,Function
+replay,dee replay patch.cap --diff &lt;Δpatch.cap&gt;,Apply state deltas during hot-swap.
+capsule verify,dee capsule verify hello.cap,Check SRCPLEX v2 capsule headers.

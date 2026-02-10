@@ -1,0 +1,4 @@
+﻿Subcommand,Example,Function
+list,curator list --layer CK --epoch Φ3 --fmt tree,Query artifact ledger.
+ledger shard,ledger shard --file NBX-LGR-Φ5-artefact-index.csv --period monthly,Split ledger into shards.
+ledger merge,ledger merge shard_2025-07.csv shard_2025-08.csv &gt; master.csv,Rebuild ledger from shards.

@@ -1,0 +1,4 @@
+﻿Subcommand,Example,Function
+watch,insight watch chaos,Track chaos test results.
+get,insight get csr --window 24h,"Pull metrics (e.g., routing latency, success rates)."
+list,insight list fai,View active Focused Advancement Initiatives (FAIs).

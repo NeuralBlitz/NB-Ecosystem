@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NeuralBlitz Development Environment - .gitignore
 # ⚠️ CRITICAL: This file protects your IP from accidental exposure
 
@@ -327,3 +328,11 @@ $RECYCLE.BIN/
 .gitsecurity
 .secrets/
 *.secrets
+=======
+node_modules
+dist
+.DS_Store
+server/public
+vite.config.ts.*
+*.tar.gz
+>>>>>>> 36670e0d1607e7edefd0ac6533515f0fce092458

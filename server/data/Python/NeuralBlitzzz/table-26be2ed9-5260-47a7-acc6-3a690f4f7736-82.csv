@@ -1,0 +1,3 @@
+﻿Subcommand,Example,Function
+solve,hypha solve --constraints carbon_green,Optimize resource allocation.
+report,hypha report --window 7d,Review carbon efficiency.

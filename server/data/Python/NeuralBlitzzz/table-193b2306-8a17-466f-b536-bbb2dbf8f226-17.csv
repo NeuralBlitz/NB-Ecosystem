@@ -1,0 +1,5 @@
+﻿KPI,Target,Monitoring Tool
+Flourishing Score (F), F \geq 0.80 ,SentiaGuard KPI gate.
+Emergence Latency,&lt;70 ms,Synergy trace timestamps.
+SAFE-MODE Incidents,0/month,Custodian incident ledger.
+CO₂ per 1k Requests,≤0.85 g,Hypha carbon ledger.

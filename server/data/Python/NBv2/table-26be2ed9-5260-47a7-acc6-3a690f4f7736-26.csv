@@ -1,0 +1,6 @@
+﻿Shortcut,Effect
+/trace &lt;id&gt;,"Inline DAG preview (e.g., "NBX-VIZ-Φ4-PILLARS).
+/excerpt &lt;UAID&gt;,"Stream doc/image/proof (e.g., "NBX-DOC-Φ1-6A0198A8).
+/settings tts off,Toggle text-to-speech.
+/profile export,"Export persona YAML (e.g., "nova.yaml).
+/pedagogy,"Adjust learning mode (e.g., "off", "micro-lesson).
