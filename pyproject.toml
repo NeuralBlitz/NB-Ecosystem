@@ -51,7 +51,7 @@ flax = { version = "^0.7.0", optional = true }
 langchain = { version = "^0.1.0", optional = true }
 langchain-anthropic = { version = "^0.1.0", optional = true }
 langchain-openai = { version = "^0.0.5", optional = true }
-langchain-community = { version = "^0.0.38", optional = true }
+langchain-community = { version = "^0.3.37", optional = true }
 langgraph = { version = "^0.0.20", optional = true }
 
 # Web/API (integration-bridge)
