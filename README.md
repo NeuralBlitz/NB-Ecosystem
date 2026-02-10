@@ -1,4 +1,9 @@
-# 🧠 NB-Ecosystem: NeuralBlitz Production Implementation
+# 🧠 Buggy a.k.a Omnibus-Transit-Station.
+>A complete Advanced TUI like OpenCode, and Crush. with tons of new and improved agents functions that can be install straight on your local computer. VHD & Dev Drive with new file systems Resilient File System (ReFS) built by Microsoft
+
+Go here to learn more!! [Dev Drives and VHD](https://learm.microsoft.com/en-us/windows/dev-drive)
+
+NeuralBlitz Production Implementation
 
 > **From theoretical research framework to enterprise-ready AI platform**
 
