@@ -67,7 +67,7 @@ gunicorn = { version = "^23.0.0", optional = true }
 # Authentication/Security
 python-jose = { version = "^3.3.0", extras = ["cryptography"], optional = true }
 passlib = { version = "^1.7.4", extras = ["bcrypt"], optional = true }
-cryptography = { version = "^43.0.3", optional = true }
+cryptography = { version = "^44.0.1", optional = true }
 
 # Data & Visualization
 matplotlib = { version = "^3.5.0", optional = true }
